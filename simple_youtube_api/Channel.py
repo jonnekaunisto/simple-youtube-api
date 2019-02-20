@@ -1,10 +1,7 @@
+from . import Video
 import argparse
 import http.client
 import httplib2
-import os
-import random
-import time
-import configparser
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
@@ -51,4 +48,8 @@ class Channel(object):
             http = httplib2.Http()
             credentials = run_flow(flow, STORAGE, http=http)
         self.channel = build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
+
+
+    def upload_video(self, video):
+        print("hi")
             
