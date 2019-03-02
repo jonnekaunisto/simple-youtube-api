@@ -5,5 +5,5 @@ ch = Channel()
 
 
 ch.login("client_secret.json", "credentials.storage")
-
-ch.upload_video(video)
+video = Video()
+#ch.upload_video(video)

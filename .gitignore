@@ -103,3 +103,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+#youtube api files
+credentials.storage
+client_secret.json
