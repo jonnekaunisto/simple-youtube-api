@@ -7,7 +7,9 @@ import os
 
 
 def test_channel_regular_function():
-    pass
+    channel = Channel()
+
+    assert channel is not None
 
 
 if __name__ == "__main__":
