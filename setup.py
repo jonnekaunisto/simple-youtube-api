@@ -15,12 +15,12 @@ requires = [
 	"uritemplate>=3.0.0"
 ]
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="simple-youtube-api",
-    version="0.0.1",
+    version="0.0.2",
     author="Jonne Kaunisto",
     author_email="jonneka@gmail.com",
     description="A python YouTube API wrapper",
@@ -28,7 +28,7 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/jonnekaunisto/simple-youtube-api",
     license='MIT License',
-    keywords="youtube"
+    keywords="youtube",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
