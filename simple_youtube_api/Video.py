@@ -21,18 +21,24 @@ class Video(object):
 
 
     def __init__(self, file_path=None, title="", description="", tags=[], category=None):
-        self.file_path = self.set_file_path(file_path)
-        self.title = self.set_title(title)
-        self.description = set_description(description)
-        self.tags = set_tags(tags)
-        self.category = set_category(category)
+        self.file_path = None
+        self.title = ""
+        self.description = ""
+        self.tags = []
+        self.category = None
         self.privacy_status = "private"
+
+        self.set_file_path(file_path)
+        self.set_title(title)
+        self.set_description(description)
+        self.set_tags(tags)
+        self.set_category(category)
 
 
     def set_file_path(self, file_path):
         if file_path is not None and os.path.isfile(file_path):
             self.file_path = file_path
-        elif file_path is not None:
+        elif file_path is None:
             print("File path does not exist")
             self.file_path = None
 
@@ -81,13 +87,15 @@ class Video(object):
 
 
     def set_category(self, category):
+        if category is None:
+            category = None
+            return
+
         category = category.lower()
         if category in YOUTUBE_CATEGORIES_ID_LIST:
             self.category = category
         elif category in YOUTUBE_CATEGORIES_DICT.keys():
             self.category = YOUTUBE_CATEGORIES_DICT[category]
-        elif category is None:
-            category = None
         else:
             print("Not a valid category")
             self.category = None
@@ -104,27 +112,4 @@ class Video(object):
 
     def get_privacy_status(self):
         return self.privacy_status
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 

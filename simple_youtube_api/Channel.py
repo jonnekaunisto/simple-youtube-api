@@ -51,35 +51,35 @@ class Channel(object):
 
 
     def upload_video(self, video):
-        status = initialize_upload(self, video, channel)
+        self.initialize_upload(video)
 
 
-    def initialize_upload(self, video, channel):
+    def initialize_upload(self, video):
         body = dict(
             snippet=dict(
-                title=video.title,
-                description=video.description,
-                tags=video.tags,
-                categoryId=video.category
+                title=video.get_title(),
+                description=video.get_description(),
+                tags=video.get_tags(),
+                categoryId=video.get_category()
             ),
             status=dict(
-                privacyStatus=video.privacy_status
+                privacyStatus=video.get_privacy_status()
             )
         )
 
         # Call the API's videos.insert method to create and upload the video.
-        insert_request = channel.videos().insert(
+        insert_request = self.channel.videos().insert(
             part=','.join(list(body.keys())),
             body=body,
-            media_body=MediaFileUpload(video.file_path, chunksize=-1, resumable=True)
+            media_body=MediaFileUpload(video.get_file_path(), chunksize=-1, resumable=True)
         )
 
-        resumable_upload(insert_request)
+        self.resumable_upload(insert_request)
 
 
     # This method implements an exponential backoff strategy to resume a
     # failed upload.
-    def resumable_upload(request):
+    def resumable_upload(self, request):
         response = None
         error = None
         retry = 0
