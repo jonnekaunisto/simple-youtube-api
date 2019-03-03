@@ -20,12 +20,12 @@ VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 class Video(object):
 
 
-    def __init__(self, file_path=None, title="", description=""):
+    def __init__(self, file_path=None, title="", description="", tags=[], category=None):
         self.file_path = self.set_file_path(file_path)
         self.title = self.set_title(title)
-        self.description = ""
-        self.tags = []
-        self.category = None
+        self.description = set_description(description)
+        self.tags = set_tags(tags)
+        self.category = set_category(category)
         self.privacy_status = "private"
 
 
@@ -86,6 +86,8 @@ class Video(object):
             self.category = category
         elif category in YOUTUBE_CATEGORIES_DICT.keys():
             self.category = YOUTUBE_CATEGORIES_DICT[category]
+        elif category is None:
+            category = None
         else:
             print("Not a valid category")
             self.category = None
