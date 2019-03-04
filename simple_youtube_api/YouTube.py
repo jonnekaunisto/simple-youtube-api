@@ -1,12 +1,13 @@
 import json
 
+from simple_youtube_api.YouTubeVideo import YouTubeVideo
+
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 
 # Always retry when an apiclient.errors.HttpError with one of these status
 # codes is raised.
 RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
-SCOPE = ['https://www.googleapis.com/auth/youtube.upload']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 
@@ -25,10 +26,30 @@ class YouTube(object):
 
 
    def __init__(self):
-      pass
+      self.youtube = None
 
    def login(self, developer_key):
-      print(developer_key)
+      self.youtube = build(API_SERVICE_NAME, API_VERSION,
+                      developerKey=developer_key)
 
-      youtube = build(API_SERVICE_NAME, API_VERSION,
-                      cdeveloperKey=developer_key)
+   def search(self, search_term, max_results = 25):
+      search_response = self.youtube.search().list(
+        q=search_term,
+        part='snippet',
+        maxResults=max_results
+      ).execute()
+
+
+      videos = []
+      for search_result in search_response.get('items', []):
+         if search_result['id']['kind'] == 'youtube#video':
+            video_id = search_result['id']['videoId']
+            video_title = search_result['snippet']['title']
+            video_description = search_result['snippet']['description']
+
+            video = YouTubeVideo(video_id, title=video_title, description=video_description)
+
+            videos.append(video)
+
+
+      return videos

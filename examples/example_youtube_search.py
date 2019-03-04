@@ -1,5 +1,16 @@
 from simple_youtube_api.YouTube import YouTube
 
+with open('developer_key', 'r') as myfile:
+    data=myfile.read().replace('\n', '')
+
+developer_key = data
 
 youtube = YouTube()
-youtube.login()
+youtube.login(developer_key)
+
+videos = youtube.search("Your Search Term")
+
+for video in videos:
+	print(video.get_title())
+
+

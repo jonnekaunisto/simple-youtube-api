@@ -107,3 +107,4 @@ venv.bak/
 #youtube api files
 credentials.storage
 client_secret.json
+developer_key

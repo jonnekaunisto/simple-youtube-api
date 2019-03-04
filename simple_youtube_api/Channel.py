@@ -1,4 +1,4 @@
-from . import Video
+from simple_youtube_api.Video import Video
 import argparse
 import http.client
 import httplib2
