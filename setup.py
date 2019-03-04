@@ -20,7 +20,7 @@ with open("README.rst", "r") as fh:
 
 setuptools.setup(
     name="simple-youtube-api",
-    version="0.0.2",
+    version="0.0.3",
     author="Jonne Kaunisto",
     author_email="jonneka@gmail.com",
     description="A python YouTube API wrapper",

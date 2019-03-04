@@ -46,10 +46,9 @@ YOUTUBE_CATEGORIES_DICT = {"film": 1, "animation": 1,
 VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
-class Video(object):
+class YouTube_Video(object):
 
-    def __init__(self, file_path=None, title="", description="", tags=[], category=None):
-        self.file_path = None
+    def __init__(self, title="", description="", tags=[], category=None):
         self.title = ""
         self.description = ""
         self.tags = []
@@ -85,7 +84,7 @@ class Video(object):
 
 
     def set_description(self, description):
-        if len(description) > MAX_YOUTUBE_DESCRIPTION_LENGTH:
+        if len(description) > youtube.MAX_YOUTUBE_DESCRIPTION_LENGTH:
             print("Description is too long: " + len(description))
         else:
             self.description = description
