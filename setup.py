@@ -15,6 +15,11 @@ requires = [
 	"uritemplate>=3.0.0"
 ]
 
+test_reqs = [
+        'pytest-cov>=2.5.1,<3.0',
+        'pytest>=3.0.0,<4.0',
+    ]
+
 with open("README.rst", "r") as fh:
     long_description = fh.read()
 
@@ -35,5 +40,6 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    install_requires=requires
+    install_requires=requires,
+    tests_require=test_reqs,
 )

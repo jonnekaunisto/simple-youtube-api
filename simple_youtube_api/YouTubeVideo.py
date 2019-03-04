@@ -48,8 +48,8 @@ VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 class YouTubeVideo(object):
 
-    def __init__(self, id, title="", description="", tags=[], category=None):
-        self.__id = id
+    def __init__(self, video_id, title="", description="", tags=[], category=None):
+        self.__video_id = video_id
         self.__title = title
         self.__description = description
         self.__tags = tags
@@ -57,7 +57,7 @@ class YouTubeVideo(object):
         self.__privacy_status = "public"
 
 
-    def get_id(self):
+    def get_video_id(self):
         return self.__id
 
     def get_title(self):
