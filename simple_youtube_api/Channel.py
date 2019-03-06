@@ -1,4 +1,5 @@
 from simple_youtube_api.Video import Video
+from simple_youtube_api.YouTubeVideo import YouTubeVideo
 import argparse
 import http.client
 import httplib2
@@ -113,4 +114,14 @@ class Channel(object):
                 sleep_seconds = random.random() * max_sleep
                 print('Sleeping %f seconds and then retrying...' % sleep_seconds)
                 time.sleep(sleep_seconds)
+
+    def set_video_thumbnail(self, video=None, video_id=None, thumbnail_path):
+        if video is not None:
+            video_id = video.get_video_id()
+
+        self.channel.thumbnails().set(
+            videoId=video_id,
+            media_body=thumbnail_path
+            )
+
                 
