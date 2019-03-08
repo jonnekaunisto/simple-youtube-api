@@ -18,7 +18,7 @@ def test_youtube_video_regular_function():
     video = YouTubeVideo(video_id, title=title, description=description, tags=tags)
     
 
-    assert video.get_id() == video_id
+    assert video.get_video_id() == video_id
     assert video.get_title() == title
     assert video.get_description() == description
     assert video.get_tags() == tags

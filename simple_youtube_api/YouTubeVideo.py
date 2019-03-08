@@ -58,7 +58,7 @@ class YouTubeVideo(object):
 
 
     def get_video_id(self):
-        return self.__id
+        return self.__video_id
 
     def get_title(self):
         return self.__title
@@ -74,4 +74,26 @@ class YouTubeVideo(object):
 
     def get_privacy_status(self):
         return self.privacy_status
+
+    def fetch(self):
+        pass
+
+    def update(self, channel, title=None):
+        body = {"id": self.__video_id, "snippet": {"title": '', "categoryId": 1}}
+
+        if title is not None:
+            body["snippet"]["title"] = title
+        print(body)
+        response = channel.get_login().videos().update(
+            body=body,
+            part='snippet,status').execute()
+
+        print(response)
+
+
+
+
+    
+
+
 

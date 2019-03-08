@@ -27,7 +27,7 @@ RETRIABLE_EXCEPTIONS = (httplib2.HttpLib2Error, IOError, http.client.NotConnecte
 # Always retry when an apiclient.errors.HttpError with one of these status
 # codes is raised.
 RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
-SCOPE = ['https://www.googleapis.com/auth/youtube.upload']
+SCOPE = ['https://www.googleapis.com/auth/youtube']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
@@ -49,6 +49,9 @@ class Channel(object):
             http = httplib2.Http()
             credentials = run_flow(flow, STORAGE, http=http)
         self.channel = build(API_SERVICE_NAME, API_VERSION, credentials = credentials)
+
+    def get_login(self):
+        return self.channel
 
 
     def upload_video(self, video):
@@ -115,7 +118,7 @@ class Channel(object):
                 print('Sleeping %f seconds and then retrying...' % sleep_seconds)
                 time.sleep(sleep_seconds)
 
-    def set_video_thumbnail(self, video=None, video_id=None, thumbnail_path):
+    def set_video_thumbnail(self, thumbnail_path, video=None, video_id=None):
         if video is not None:
             video_id = video.get_video_id()
 
