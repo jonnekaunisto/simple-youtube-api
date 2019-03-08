@@ -12,6 +12,7 @@ Simple Youtube API is a Youtube API wrapper for python, making it easier to sear
 Examples
 ------------
 
+This is an example
 .. code:: python
 	from simple_youtube_api.Channel import Channel
 	from simple_youtube_api.Video import Video
