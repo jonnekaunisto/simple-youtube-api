@@ -10,24 +10,24 @@ Simple Youtube API is a Youtube API wrapper for python, making it easier to sear
 
 
 Examples
-------------
+--------
 
-This is an example
+In this example we open a video file, select the subclip between t=50s and t=60s, add a title at the center of the screen, and write the result to a new file:
+
 .. code:: python
-	from simple_youtube_api.Channel import Channel
-	from simple_youtube_api.Video import Video
 
-	channel = Channel()
-	channel.login("client_secret.json", "credentials.storage")
+    from simple_youtube_api.Channel import Channel from simple_youtube_api.Video import Video
 
-	video = Video(file_path="test_vid.mp4")
-	video.set_title("This is a title")
-	video.set_description("This is a description")
-	video.set_tags(["this", "tag"])
-	video.set_category("film")
-	video.set_privacy_status("private")
+    channel = Channel() channel.login("client_secret.json", "credentials.storage")
 
-	channel.upload_video(video)
+    video = Video(file_path="test_vid.mp4") 
+    video.set_title("This is a title") 
+    video.set_description("This is a description")
+    video.set_tags(["this", "tag"]) 
+    video.set_category("film") 
+    video.set_privacy_status("private")
+
+    channel.upload_video(video)
 
 
 Installation
