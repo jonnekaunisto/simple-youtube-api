@@ -47,8 +47,30 @@ VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
 class Video(object):
+  
+    '''
+      The class for making a YouTube uploadable video
+      
+      Attributes
+     -----------
+     
+     file_path:
+       The file path for the video
+     
+     title:
+      The title for the video on YouTube
+     
+     description:
+       The description for the video on YouTube
+     
+     tags:
+       The list of tags that the video is going to have on YouTube
+     
+     category:
+         The category that the video would be on YouTube
 
     def __init__(self, file_path=None, title="", description="", tags=[], category=None):
+        
         self.file_path = None
         self.title = ""
         self.description = ""
@@ -95,14 +117,8 @@ class Video(object):
 
 
     def set_tags(self, tags):
-        """Sets tags to the video
-
-        Parameters
-        -----------
-
-        tags
-          set tags for the video in list format
-
+        """
+        Sets tags to the video
         """
 
         if len("".join(tags)) > MAX_YOUTUBE_TAGS_LENGTH:
