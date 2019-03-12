@@ -71,7 +71,8 @@ class Video(object):
          
      '''
 
-    def __init__(self, file_path=None, title="", description="", tags=[], category=None):
+    def __init__(self, file_path=None, title="", description="", tags=[],
+                 category=None, privacy_status="private"):
         
         self.file_path = None
         self.title = ""
@@ -85,6 +86,7 @@ class Video(object):
         self.set_description(description)
         self.set_tags(tags)
         self.set_category(category)
+        self.set_privacy_status(privacy_status)
 
 
     def set_file_path(self, file_path):
@@ -151,6 +153,7 @@ class Video(object):
 
 
     def set_privacy_status(self, privacy_status):
+
         if privacy_status not in VALID_PRIVACY_STATUSES:
             print("Not a valid privacy status: " + privacy_status)
         else:

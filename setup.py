@@ -34,7 +34,7 @@ setuptools.setup(
     url="https://github.com/jonnekaunisto/simple-youtube-api",
     license='MIT License',
     keywords="youtube",
-    packages=setuptools.find_packages(),
+    packages=setuptools.find_packages(exclude='docs'),
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
