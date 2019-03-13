@@ -49,17 +49,26 @@ Simple YouTube API needs API keys from Google in order to be able to make querie
 
 Documentation
 -------------
-
-
 Running Tests
 -------------
+References
+----------
+`YouTube API Documentation`_
 
+`Python YouTube API Examples`_
 
 
 Contribute
 ----------
 
 
+
 Maintainers
 -----------
 jonnekaunisto (owner)
+
+
+.. _`YouTube API Documentation`: https://developers.google.com/youtube/v3/docs/
+.. _`Python YouTube API Examples`: https://github.com/youtube/api-samples/tree/master/python
+
+
