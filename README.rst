@@ -16,7 +16,8 @@ In this example we log in into a YouTube channel, set the appropriate variables 
 
 .. code:: python
 
-    from simple_youtube_api.Channel import Channel from simple_youtube_api.Video import Video
+    from simple_youtube_api.Channel import Channel 
+    from simple_youtube_api.Video import Video
 
     channel = Channel() channel.login("client_secret.json", "credentials.storage")
 
