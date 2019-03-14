@@ -46,6 +46,7 @@ YOUTUBE_CATEGORIES_DICT = {"film": 1, "animation": 1,
 VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
+#TODO add more functions
 class YouTubeVideo(object):
 
     def __init__(self, video_id, title="", description="", tags=[], category=None):
@@ -75,9 +76,11 @@ class YouTubeVideo(object):
     def get_privacy_status(self):
         return self.privacy_status
 
+    #TODO Implement
     def fetch(self):
         pass
 
+    #TODO Finish
     def update(self, channel, title=None):
         body = {"id": self.__video_id, "snippet": {"title": '', "categoryId": 1}}
 

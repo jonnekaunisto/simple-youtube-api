@@ -46,6 +46,7 @@ YOUTUBE_CATEGORIES_DICT = {"film": 1, "animation": 1,
 VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
+#TODO add variables
 class Video(object):
   
     '''
