@@ -50,7 +50,7 @@ VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 class Video(object):
   
     '''
-      The class for making a YouTube uploadable video
+      Super class for YouTubeVideo and LocalVideo
       
       Attributes
      -----------
@@ -72,8 +72,7 @@ class Video(object):
          
      '''
 
-    def __init__(self, file_path=None, title="", description="", tags=[],
-                 category=None, privacy_status="private"):
+    def __init__(self):
         
         self.file_path = None
         self.title = ""
@@ -81,13 +80,6 @@ class Video(object):
         self.tags = []
         self.category = None
         self.privacy_status = "private"
-
-        self.set_file_path(file_path)
-        self.set_title(title)
-        self.set_description(description)
-        self.set_tags(tags)
-        self.set_category(category)
-        self.set_privacy_status(privacy_status)
 
 
     def set_file_path(self, file_path):

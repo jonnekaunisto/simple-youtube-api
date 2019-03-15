@@ -1,5 +1,5 @@
 from simple_youtube_api.Channel import Channel
-from simple_youtube_api.Video import Video
+from simple_youtube_api.LocalVideo import LocalVideo
 
 
 import pytest
@@ -7,7 +7,7 @@ import os
 
 
 def test_video_regular_function():
-    file_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + "test_video.py"
+    file_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + "test_local_video.py"
     title = "this is a title"
     description = "this is a description"
     tags = ["this", "is" "a", "tag"]
@@ -16,9 +16,8 @@ def test_video_regular_function():
     privacy_statuses = ['public', 'private', 'unlisted']
 
 
-    video = Video()
+    video = LocalVideo(file_path)
 
-    video.set_file_path(file_path)
     video.set_title(title)
     video.set_description(description)
     video.set_tags(tags)
@@ -36,7 +35,7 @@ def test_video_regular_function():
         assert video.get_privacy_status() == privacy_status
 
 def test_video_constructor():
-    file_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + "test_video.py"
+    file_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + "test_local_video.py"
     title = "this is a title"
     description = "this is a description"
     tags = ["this", "is" "a", "tag"]
@@ -45,7 +44,7 @@ def test_video_constructor():
     privacy_status = "public"
 
 
-    video = Video(file_path=file_path, title=title, description=description,
+    video = LocalVideo(file_path=file_path, title=title, description=description,
                   tags=tags, category=string_category, privacy_status=privacy_status)
 
     assert video.get_file_path() == file_path

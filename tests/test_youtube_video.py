@@ -5,7 +5,7 @@ import pytest
 import os
 
 
-def test_youtube_video_regular_function():
+def test_youtube_video_constructor():
     
     video_id = "EI"
     title = "this is a title"
@@ -29,6 +29,7 @@ def test_youtube_video_regular_function():
         video.set_privacy_status(privacy_status)
         assert video.get_privacy_status() == privacy_status
     '''
+
 
 
 if __name__ == "__main__":

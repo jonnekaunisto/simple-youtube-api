@@ -1,3 +1,4 @@
+from simple_youtube_api.Video import Video
 import os.path
 
 
@@ -47,34 +48,20 @@ VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
 #TODO add more functions
-class YouTubeVideo(object):
+class YouTubeVideo(Video):
 
-    def __init__(self, video_id, title="", description="", tags=[], category=None):
-        self.__video_id = video_id
-        self.__title = title
-        self.__description = description
-        self.__tags = tags
-        self.__category = category
-        self.__privacy_status = "public"
+    def __init__(self, video_id, title="", description="", tags=[], 
+                 category=None):
+        Video.__init__(self)
 
+        self.video_id = video_id
+        self.title = title
+        self.description = description
+        self.tags = tags
+        self.category = category
 
     def get_video_id(self):
-        return self.__video_id
-
-    def get_title(self):
-        return self.__title
-
-    def get_description(self):
-        return self.__description
-
-    def get_tags(self):
-        return self.__tags
-
-    def get_category(self):
-        return self.__category
-
-    def get_privacy_status(self):
-        return self.privacy_status
+        return self.video_id
 
     #TODO Implement
     def fetch(self):
