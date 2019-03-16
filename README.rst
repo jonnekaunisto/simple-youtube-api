@@ -7,6 +7,10 @@ Simple Youtube API
 .. image:: https://travis-ci.org/jonnekaunisto/simple-youtube-api.svg?branch=master
     :target: https://travis-ci.org/jonnekaunisto/simple-youtube-api
     :alt: Build status on travis
+.. image:: https://coveralls.io/repos/github/jonnekaunisto/simple-youtube-api/badge.svg?branch=master
+    :target: https://coveralls.io/github/jonnekaunisto/simple-youtube-api?branch=master
+    :alt: Coverage on coveralls
+
 
 
 Simple Youtube API is a Youtube API wrapper for python, making it easier to search and upload your videos.
@@ -22,7 +26,8 @@ In this example we log in into a YouTube channel, set the appropriate variables 
     from simple_youtube_api.Channel import Channel 
     from simple_youtube_api.Video import Video
 
-    channel = Channel() channel.login("client_secret.json", "credentials.storage")
+    channel = Channel() 
+    channel.login("client_secret.json", "credentials.storage")
 
     video = Video(file_path="test_vid.mp4") 
     video.set_title("This is a title") 
