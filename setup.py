@@ -18,6 +18,7 @@ requires = [
 test_reqs = [
         'pytest-cov>=2.5.1,<3.0',
         'pytest>=3.0.0,<4.0',
+        'coveralls>=1.1,<2.0'
     ]
 
 with open("README.rst", "r") as fh:

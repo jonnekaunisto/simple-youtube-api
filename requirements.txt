@@ -10,3 +10,4 @@ rsa==4.0
 six==1.12.0
 uritemplate==3.0.0
 pytest==4.3.0
+coveralls==1.6.0
