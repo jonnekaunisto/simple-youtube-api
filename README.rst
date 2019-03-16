@@ -7,6 +7,10 @@ Simple Youtube API
 .. image:: https://travis-ci.org/jonnekaunisto/simple-youtube-api.svg?branch=master
     :target: https://travis-ci.org/jonnekaunisto/simple-youtube-api
     :alt: Build status on travis
+.. image:: https://coveralls.io/repos/github/jonnekaunisto/simple-youtube-api/badge.svg?branch=master
+    :target: https://coveralls.io/github/jonnekaunisto/simple-youtube-api?branch=master
+    :alt: Coverage on coveralls
+
 
 
 Simple Youtube API is a Youtube API wrapper for python, making it easier to search and upload your videos.
