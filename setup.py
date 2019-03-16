@@ -1,4 +1,43 @@
-import setuptools
+#credit to moviepy
+import sys
+
+from setuptools import find_packages, setup
+from setuptools.command.test import test as TestCommand
+
+
+
+
+class PyTest(TestCommand):
+    """Handle test execution from setup."""
+
+    user_options = [('pytest-args=', 'a', "Arguments to pass into pytest")]
+
+    def initialize_options(self):
+        """Initialize the PyTest options."""
+        TestCommand.initialize_options(self)
+        self.pytest_args = ""
+
+    def finalize_options(self):
+        """Finalize the PyTest options."""
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        """Run the PyTest testing suite."""
+        try:
+            import pytest
+        except ImportError:
+            raise ImportError('Running tests requires additional dependencies.'
+                '\nPlease run (pip install moviepy[test])')
+
+        errno = pytest.main(self.pytest_args.split(" "))
+        sys.exit(errno)
+
+
+cmdclass = {'test': PyTest} # Define custom commands.
+
+
 
 # Define the requirements for specific execution needs.
 requires = [
@@ -24,7 +63,7 @@ test_reqs = [
 with open("README.rst", "r") as fh:
     long_description = fh.read()
 
-setuptools.setup(
+setup(
     name="simple-youtube-api",
     version="0.0.3",
     author="Jonne Kaunisto",
@@ -35,7 +74,8 @@ setuptools.setup(
     url="https://github.com/jonnekaunisto/simple-youtube-api",
     license='MIT License',
     keywords="youtube",
-    packages=setuptools.find_packages(exclude='docs'),
+    packages=find_packages(exclude='docs'),
+    cmdclass=cmdclass,
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
