@@ -1,10 +1,14 @@
 #credit to moviepy
 import sys
+from codecs import open
 
 from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
-
+MAJOR               = 0
+MINOR               = 0
+MICRO               = 4
+VERSION             = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
 
 class PyTest(TestCommand):
@@ -60,17 +64,16 @@ test_reqs = [
         'coveralls>=1.1,<2.0'
     ]
 
-with open("README.rst", "r") as fh:
+with open('README.rst', 'r', 'utf-8') as fh:
     long_description = fh.read()
 
 setup(
     name="simple-youtube-api",
-    version="0.0.3",
+    version=VERSION,
     author="Jonne Kaunisto",
     author_email="jonneka@gmail.com",
     description="A python YouTube API wrapper",
     long_description=long_description,
-    long_description_content_type="text/markdown",
     url="https://github.com/jonnekaunisto/simple-youtube-api",
     license='MIT License',
     keywords="youtube",
