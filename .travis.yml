@@ -8,4 +8,5 @@ install:
 
 script: pytest
 
-after_success: coveralls
+after_success: 
+  - coveralls
