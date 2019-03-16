@@ -37,9 +37,11 @@ class Video(object):
 
     def set_title(self, title):
         if len(title) > youtube_api.MAX_YOUTUBE_TITLE_LENGTH:
-            print("Title is too long: " + len(title))
+            print("Title is too long: " + str(len(title)))
+            return False
         else:
             self.title = title
+            return True
 
     def get_title(self):
         return self.title
@@ -47,9 +49,11 @@ class Video(object):
 
     def set_description(self, description):
         if len(description) > youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH:
-            print("Description is too long: " + len(description))
+            print("Description is too long: " + str(len(description)))
+            return False
         else:
             self.description = description
+            return True
 
     def get_description(self):
         return self.description
@@ -61,9 +65,11 @@ class Video(object):
         """
 
         if len("".join(tags)) > youtube_api.MAX_YOUTUBE_TAGS_LENGTH:
-            print("Description is too long: " + len("".join(tags)))
+            print("Description is too long: " + str(len("".join(tags))))
+            return False
         else:
             self.tags = tags
+            return True
 
     def get_tags(self):
         return self.tags
@@ -71,17 +77,21 @@ class Video(object):
 
     def set_category(self, category):
         if category is None:
-            category = None
-            return
+            return False
 
-        category = category.lower()
         if category in youtube_api.YOUTUBE_CATEGORIES_ID_LIST:
             self.category = category
-        elif category in youtube_api.YOUTUBE_CATEGORIES_DICT.keys():
+            return True
+
+        elif type(category) == str \
+             and category.lower() in youtube_api.YOUTUBE_CATEGORIES_DICT.keys():
+
             self.category = youtube_api.YOUTUBE_CATEGORIES_DICT[category]
+            return True
         else:
             print("Not a valid category")
             self.category = None
+            return False
 
     def get_category(self):
         return self.category
@@ -91,8 +101,10 @@ class Video(object):
 
         if privacy_status not in youtube_api.VALID_PRIVACY_STATUSES:
             print("Not a valid privacy status: " + privacy_status)
+            return False
         else:
             self.privacy_status = privacy_status
+            return True
 
     def get_privacy_status(self):
         return self.privacy_status

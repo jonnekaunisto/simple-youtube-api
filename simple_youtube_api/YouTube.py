@@ -60,7 +60,7 @@ class YouTube(object):
           id=video_id
         ).execute()
 
-        videos = []
+        video = None
         for search_result in search_response.get('items', []):
             if search_result['kind'] == 'youtube#video':
                 video_id = search_result['id']
@@ -69,8 +69,7 @@ class YouTube(object):
 
                 video = YouTubeVideo(video_id, title=video_title, description=video_description)
 
-                videos.append(video)
 
-        return videos[0]
+        return video
 
 

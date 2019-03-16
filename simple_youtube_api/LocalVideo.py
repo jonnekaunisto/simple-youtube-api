@@ -16,14 +16,15 @@ class LocalVideo(Video):
         self.set_category(category)
         self.set_privacy_status(privacy_status)
 
+
     def set_file_path(self, file_path):
         if file_path is not None and os.path.isfile(file_path):
-            print(file_path)
             self.file_path = file_path
-            print(self.file_path)
+            return True
         else:
             print("File path does not exist")
             self.file_path = None
+            return False
 
 
     def get_file_path(self):
