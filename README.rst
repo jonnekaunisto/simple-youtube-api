@@ -58,7 +58,14 @@ Simple YouTube API needs API keys from Google in order to be able to make querie
   
 Generating YouTube API Keys
 ---------------------------
-
+1. Log into https://console.cloud.google.com
+2. Create a new Project
+3. Search for "YouTube Data API V3"
+4. Click Credentials
+5. Click Create Credentials
+6. Select that you will call API from "Web Server"
+7. Select "Public Data" if you want to not get private data and "User Data" if you do
+8. Download or copy your API key from the Credentials tab
 
 Documentation
 -------------
