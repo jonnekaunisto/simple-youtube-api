@@ -1,5 +1,5 @@
 Simple Youtube API
-=======
+==================
 
 .. image:: https://badge.fury.io/py/simple-youtube-api.svg
     :target: https://badge.fury.io/py/simple-youtube-api
