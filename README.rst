@@ -29,8 +29,7 @@ In this example we log in into a YouTube channel, set the appropriate variables 
     channel = Channel() 
     channel.login("client_secret.json", "credentials.storage")
 
-    video = Video(file_path="test_vid.mp4") 
-    video.set_title("This is a title") 
+    video = Video(file_path="test_vid.mp4", title="This is a title") 
     video.set_description("This is a description")
     video.set_tags(["this", "tag"]) 
     video.set_category("film") 
@@ -80,7 +79,10 @@ References
 
 Contribute
 ----------
-
+Fork the repository from Github
+Clone your fork: git clone https://github.com/yourname/simple-youtube-api.git
+Add the main repository as a remote: git remote add upstream https://github.com/jonnekaunisto/simple-youtube-api.git
+Create a pull request and follow the guidelines
 
 
 Maintainers
