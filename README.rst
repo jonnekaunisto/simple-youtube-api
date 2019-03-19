@@ -79,10 +79,20 @@ References
 
 Contribute
 ----------
-Fork the repository from Github
-Clone your fork: git clone https://github.com/yourname/simple-youtube-api.git
-Add the main repository as a remote: git remote add upstream https://github.com/jonnekaunisto/simple-youtube-api.git
-Create a pull request and follow the guidelines
+1. Fork the repository from Github
+2. Clone your fork 
+
+.. code:: bash 
+
+   git clone https://github.com/yourname/simple-youtube-api.git
+
+3. Add the main repository as a remote
+
+.. code:: bash
+
+    git remote add upstream https://github.com/jonnekaunisto/simple-youtube-api.git
+
+4. Create a pull request and follow the guidelines
 
 
 Maintainers
