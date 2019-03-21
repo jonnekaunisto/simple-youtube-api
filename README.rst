@@ -70,6 +70,12 @@ Documentation
 -------------
 Running Tests
 -------------
+Run the python command
+
+.. code:: bash 
+
+   python pytest
+
 References
 ----------
 `YouTube API Documentation`_
