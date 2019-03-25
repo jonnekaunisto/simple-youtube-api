@@ -9,6 +9,7 @@ script:
   - python setup.py test --pytest-args "tests/ --doctest-modules -v --cov simple_youtube_api --cov-report term-missing"
   - pip install -e .
   - pip install -e .[test]
+  - pip install coveralls
 
 after_success: 
   - coveralls
