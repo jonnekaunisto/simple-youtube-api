@@ -55,7 +55,8 @@ requires = [
 	"pyasn1-modules>=0.2.4",
 	"rsa>=4.0",
 	"six>=1.12.0",
-	"uritemplate>=3.0.0"
+	"uritemplate>=3.0.0",
+    "pytube>=9.4.0"
 ]
 
 test_reqs = [

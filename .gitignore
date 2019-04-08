@@ -2,7 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-.DS_Store
+
 
 # C extensions
 *.so
@@ -83,6 +83,7 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
+.vscode
 .env
 .venv
 env/
@@ -90,6 +91,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.DS_Store
 
 # Spyder project settings
 .spyderproject

@@ -1,6 +1,10 @@
 from simple_youtube_api.Video import Video
-import os.path
 from simple_youtube_api import youtube_api
+
+from pytube import YouTube as pytube_YouTube
+
+import os.path
+
 
 
 #TODO add more functions
@@ -35,6 +39,10 @@ class YouTubeVideo(Video):
             part='snippet,status').execute()
 
         print(response)
+
+    def download(self):
+        pytube_YouTube('http://youtube.com/watch?v=' + self.).streams.first().download()
+
 
 
 

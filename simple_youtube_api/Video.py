@@ -109,3 +109,4 @@ class Video(object):
     def get_privacy_status(self):
         return self.privacy_status
 
+
