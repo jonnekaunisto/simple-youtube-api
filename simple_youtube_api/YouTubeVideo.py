@@ -41,7 +41,7 @@ class YouTubeVideo(Video):
         print(response)
 
     def download(self):
-        pytube_YouTube('http://youtube.com/watch?v=' + self.).streams.first().download()
+        pytube_YouTube('http://youtube.com/watch?v=' + self).streams.first().download()
 
 
 
