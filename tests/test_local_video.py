@@ -30,7 +30,7 @@ def test_local_video_regular_function():
     assert video.get_tags() == tags
     assert video.get_category() == id_category
 
-    assert video.set_category(id_categoryg)
+    assert video.set_category(id_category)
     assert video.get_category() == id_category
 
 
