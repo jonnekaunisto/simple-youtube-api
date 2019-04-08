@@ -12,3 +12,4 @@ uritemplate==3.0.0
 pytest==4.3.0
 pytube==9.4.0
 coveralls==1.6.0
+rstvalidator

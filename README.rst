@@ -29,8 +29,7 @@ In this example we log in into a YouTube channel, set the appropriate variables 
     channel = Channel() 
     channel.login("client_secret.json", "credentials.storage")
 
-    video = Video(file_path="test_vid.mp4") 
-    video.set_title("This is a title") 
+    video = LocalVideo(file_path="test_vid.mp4", title="This is a title") 
     video.set_description("This is a description")
     video.set_tags(["this", "tag"]) 
     video.set_category("film") 
@@ -71,6 +70,12 @@ Documentation
 -------------
 Running Tests
 -------------
+Run the python command
+
+.. code:: bash 
+
+   python pytest
+
 References
 ----------
 `YouTube API Documentation`_
@@ -80,7 +85,20 @@ References
 
 Contribute
 ----------
+1. Fork the repository from Github
+2. Clone your fork 
 
+.. code:: bash 
+
+   git clone https://github.com/yourname/simple-youtube-api.git
+
+3. Add the main repository as a remote
+
+.. code:: bash
+
+    git remote add upstream https://github.com/jonnekaunisto/simple-youtube-api.git
+
+4. Create a pull request and follow the guidelines
 
 
 Maintainers
