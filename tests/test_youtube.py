@@ -13,9 +13,7 @@ def test_youtube_search():
 
     youtube = YouTube()
     youtube.login(developer_key)
-
-    youtube.search()
-
+    
     videos = youtube.search("Your Search Term")
 
     for video in videos:
