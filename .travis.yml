@@ -5,6 +5,8 @@ python: 3.6
 install: 
   - pip install -r requirements.txt
   - pip install .
+  - echo YOUTUBE_DEVELOPER_KEY > developer_key
+  - echo YOUTUBE_DEVELOPER_KEY > tests/developer_key
 
 script: 
   - python setup.py test --pytest-args "tests/ --doctest-modules -v --cov simple_youtube_api --cov-report term-missing"

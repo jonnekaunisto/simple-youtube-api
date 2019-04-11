@@ -16,10 +16,15 @@ def validate_rst_file(path):
         print("failed")
 
 def test_readme_format():
-    #os.chdir("..")
     project_path = os.path.abspath(os.curdir)
 
     readme_path = project_path + os.sep + README_FILE_NAME
+
+    if not os.path.isfile(readme_path):
+        os.chdir('..')
+        project_path = os.path.abspath(os.curdir)
+        readme_path = project_path + os.sep + README_FILE_NAME
+
     errors = rstvalidator.rstvalidator(readme_path)
     
     assert len(errors) == 0, " | ".join(errors)
