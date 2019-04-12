@@ -5,6 +5,7 @@ python: 3.6
 install: 
   - pip install -r requirements.txt
   - pip install .
+  - mkdir credentials
   - echo $YOUTUBE_DEVELOPER_KEY > credentials/developer_key
   - #echo $YOUTUBE_DEVELOPER_KEY > tests/developer_key
   - echo $CHANNEL_CREDENTIALS > credentials/credentials.storage
