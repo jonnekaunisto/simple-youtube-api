@@ -110,3 +110,4 @@ venv.bak/
 credentials.storage
 client_secret.json
 developer_key
+*.mp4
