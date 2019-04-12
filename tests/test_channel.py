@@ -13,7 +13,7 @@ def download_video():
     urllib.request.urlretrieve(VIDEO_RESOURCE_URL, VIDEO_NAME) 
 
 def test_channel_regular_function():
-    title = "Time: " + datetime.datetime.now()
+    title = "Time: " + str(datetime.datetime.now())
     download_video()
 
     channel = Channel()
