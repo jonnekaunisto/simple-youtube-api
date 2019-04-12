@@ -53,10 +53,8 @@ class Channel(object):
     def get_login(self):
         return self.channel
 
-
     def upload_video(self, video):
         return self.initialize_upload(video)
-
 
     def initialize_upload(self, video):
         body = dict(
