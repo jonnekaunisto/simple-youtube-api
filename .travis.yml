@@ -6,7 +6,11 @@ install:
   - pip install -r requirements.txt
   - pip install .
   - echo $YOUTUBE_DEVELOPER_KEY > developer_key
-  - echo $YOUTUBE_DEVELOPER_KEY > tests/developer_key
+  - #echo $YOUTUBE_DEVELOPER_KEY > tests/developer_key
+  - echo $CHANNEL_CREDENTIALS > credentials.storage
+  - #echo $CHANNEL_CREDENTIALS > tests/credentials.storage
+  - echo $CLIENT_SECRET > client_secret.json
+  - #echo $CLIENT_SECRET > tests/client_secret.json
 
 script: 
   - python setup.py test --pytest-args "tests/ --doctest-modules -v --cov simple_youtube_api --cov-report term-missing"
