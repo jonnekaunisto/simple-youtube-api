@@ -55,7 +55,7 @@ class Channel(object):
 
 
     def upload_video(self, video):
-        self.initialize_upload(video)
+        return self.initialize_upload(video)
 
 
     def initialize_upload(self, video):
@@ -78,7 +78,7 @@ class Channel(object):
             media_body=MediaFileUpload(video.get_file_path(), chunksize=-1, resumable=True)
         )
 
-        self.resumable_upload(insert_request)
+        return self.resumable_upload(insert_request)
 
 
     # This method implements an exponential backoff strategy to resume a
@@ -111,12 +111,13 @@ class Channel(object):
                 print(error)
                 retry += 1
                 if retry > MAX_RETRIES:
-                    exit('No longer attempting to retry.')
+                    return False
 
                 max_sleep = 2 ** retry
                 sleep_seconds = random.random() * max_sleep
                 print('Sleeping %f seconds and then retrying...' % sleep_seconds)
                 time.sleep(sleep_seconds)
+        return True
 
     def set_video_thumbnail(self, thumbnail_path, video=None, video_id=None):
         if video is not None:

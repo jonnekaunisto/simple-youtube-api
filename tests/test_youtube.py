@@ -8,7 +8,7 @@ def test_regular_function():
 
 def test_youtube_search():
     print(os.path.abspath(os.curdir))
-    with open('developer_key', 'r') as myfile:
+    with open('credentials/developer_key', 'r') as myfile:
         developer_key=myfile.read().replace('\n', '')
 
     youtube = YouTube()
