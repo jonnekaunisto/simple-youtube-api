@@ -53,6 +53,38 @@ class Channel(object):
     def get_login(self):
         return self.channel
 
+    def fetch_uploads(self):
+        response = self.channel.channels().list(
+            mine=True,
+            part='contentDetails'
+        ).execute()
+        uploads_playlist_id = response['items'][0]['contentDetails']['relatedPlaylists']['uploads']
+
+        playlistitems_list_request = self.channel.playlistItems().list(
+            playlistId=uploads_playlist_id,
+            part='snippet',
+            maxResults=5
+        )
+        
+        videos = []
+        while playlistitems_list_request:
+            playlistitems_list_response = playlistitems_list_request.execute()
+            # Print information about each video.
+            for playlist_item in playlistitems_list_response.get('items', []):
+                video_title = playlist_item['snippet']['title']
+                video_id = playlist_item['snippet']['resourceId']['videoId']
+                video_description = playlist_item['snippet']['description']
+
+                video = YouTubeVideo(video_id, title=video_title, description=video_description)
+                videos.append(video)
+
+                playlistitems_list_request = self.channel.playlistItems().list_next(
+                playlistitems_list_request, playlistitems_list_response)
+
+        return videos
+
+
+
     def upload_video(self, video):
         return self.initialize_upload(video)
 
