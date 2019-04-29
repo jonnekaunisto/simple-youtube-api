@@ -6,8 +6,8 @@ from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
 MAJOR               = 0
-MINOR               = 0
-MICRO               = 4
+MINOR               = 1
+MICRO               = 0
 VERSION             = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
 
 
