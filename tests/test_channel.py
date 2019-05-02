@@ -16,10 +16,26 @@ def download_video():
 
 def test_channel_regular_function():
     channel = Channel()
+
+def test_channel_fetch_uploads():
+    channel = Channel()
+
+    assert os.path.isfile(CLIENT_SECRET_NAME), "CLIENT SECRET_NAME is not valid"
+    assert os.path.isfile(CREDENTIALS), "CREDENTIALS is not valid"
+
+    channel.login(CLIENT_SECRET_NAME, CREDENTIALS)
+    
+    videos = channel.fetch_uploads()
+
+    for video in videos:
+        print(video.get_title())
+
+def not_working_channel_upload_video():
+    channel = Channel()
     '''
     testing this will make too many requests to google which will go over the query quota
     '''
-    '''
+    
     assert os.path.isfile(CLIENT_SECRET_NAME), "CLIENT SECRET_NAME is not valid"
     assert os.path.isfile(CREDENTIALS), "CREDENTIALS is not valid"
 
@@ -36,7 +52,6 @@ def test_channel_regular_function():
     video.set_privacy_status("private")
 
     assert channel.upload_video(video)
-    '''
 
 if __name__ == "__main__":
     pytest.main()

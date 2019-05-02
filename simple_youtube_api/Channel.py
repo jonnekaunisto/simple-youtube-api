@@ -83,8 +83,6 @@ class Channel(object):
 
         return videos
 
-
-
     def upload_video(self, video):
         return self.initialize_upload(video)
 
