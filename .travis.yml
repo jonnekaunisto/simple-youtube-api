@@ -6,9 +6,9 @@ install:
   - pip install -r requirements.txt
   - pip install .
   - mkdir credentials
-  - echo $YOUTUBE_DEVELOPER_KEY > credentials/developer_key
-  - echo $CHANNEL_CREDENTIALS > credentials/credentials.storage
-  - echo $CLIENT_SECRET > credentials/client_secret.json
+  - echo "$YOUTUBE_DEVELOPER_KEY" > "credentials/developer_key"
+  - echo "$CHANNEL_CREDENTIALS" > "credentials/credentials.storage"
+  - echo "$CLIENT_SECRET" > "credentials/client_secret.json"
   - cat credentials/client_secret.json
   - cat credentials/credentials.storage 
 
