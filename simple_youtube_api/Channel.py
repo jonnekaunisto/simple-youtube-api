@@ -1,5 +1,9 @@
 from simple_youtube_api.Video import Video
 from simple_youtube_api.YouTubeVideo import YouTubeVideo
+from simple_youtube_api import youtube_api
+
+import time
+import random
 import argparse
 import http.client
 import httplib2
@@ -84,7 +88,7 @@ class Channel(object):
         return videos
 
     def upload_video(self, video):
-        return self.initialize_upload(video)
+        return youtube_api.initialize_upload(self.channel, video)
 
     def initialize_upload(self, video):
         body = dict(

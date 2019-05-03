@@ -29,11 +29,19 @@ class Video(object):
 
     def __init__(self):
         
+        #snippet
         self.title = ""
         self.description = ""
         self.tags = []
         self.category = None
+        self.defaultLanguage = None #implement
+
+        #status
+        self.embeddable = True 
+        self.license = "youtube" #implement
         self.privacy_status = "private"
+        self.publicStatsViewable = True #implement
+        self.publishAt = None #implement (YYYY-MM-DDThh:mm:ss.sZ) format
 
     def set_title(self, title):
         if len(title) > youtube_api.MAX_YOUTUBE_TITLE_LENGTH:
