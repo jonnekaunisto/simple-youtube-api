@@ -90,67 +90,6 @@ class Channel(object):
     def upload_video(self, video):
         return youtube_api.initialize_upload(self.channel, video)
 
-    def initialize_upload(self, video):
-        body = dict(
-            snippet=dict(
-                title=video.get_title(),
-                description=video.get_description(),
-                tags=video.get_tags(),
-                categoryId=video.get_category()
-            ),
-            status=dict(
-                privacyStatus=video.get_privacy_status()
-            )
-        )
-
-        # Call the API's videos.insert method to create and upload the video.
-        insert_request = self.channel.videos().insert(
-            part=','.join(list(body.keys())),
-            body=body,
-            media_body=MediaFileUpload(video.get_file_path(), chunksize=-1, resumable=True)
-        )
-
-        return self.resumable_upload(insert_request)
-
-
-    # This method implements an exponential backoff strategy to resume a
-    # failed upload.
-    def resumable_upload(self, request):
-        response = None
-        error = None
-        retry = 0
-        while response is None:
-            try:
-                print('Uploading file...')
-                status, response = request.next_chunk()
-                if response is not None:
-                    if 'id' in response:
-                        print(('Video https://www.youtube.com/watch?v=%s was successfully uploaded.' %
-                               response['id']))
-                        UPLOAD_STATUS = True
-                    else:
-                        exit('The upload failed with an unexpected response: %s' % response)
-            except HttpError as e:
-                if e.resp.status in RETRIABLE_STATUS_CODES:
-                    error = 'A retriable HTTP error %d occurred:\n%s' % (e.resp.status,
-                                                                         e.content)
-                else:
-                    raise
-            except RETRIABLE_EXCEPTIONS as e:
-                error = 'A retriable error occurred: %s' % e
-
-            if error is not None:
-                print(error)
-                retry += 1
-                if retry > MAX_RETRIES:
-                    return False
-
-                max_sleep = 2 ** retry
-                sleep_seconds = random.random() * max_sleep
-                print('Sleeping %f seconds and then retrying...' % sleep_seconds)
-                time.sleep(sleep_seconds)
-        return True
-
     def set_video_thumbnail(self, thumbnail_path, video=None, video_id=None):
         if video is not None:
             video_id = video.get_video_id()
@@ -159,5 +98,3 @@ class Channel(object):
             videoId=video_id,
             media_body=thumbnail_path
             )
-
-                
