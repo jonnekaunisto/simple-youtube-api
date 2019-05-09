@@ -39,23 +39,41 @@ def test_local_video_regular_function():
         assert video.get_privacy_status() == privacy_status
 
 def test_local_video_negative_function():
+    #snippet variables
     file_path = "not_valid"
     title = "-" * (youtube_api.MAX_YOUTUBE_TITLE_LENGTH + 1)
     description = "-" * (youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH + 1)
     tags = ["-" * (youtube_api.MAX_YOUTUBE_TAGS_LENGTH + 1)]
     string_category = "not a category"
     id_category = -1
+    default_language = False
+
+    #status variables
+    embeddable = "not_valid"
+    license = "not_valid"
     privacy_status = "not_valid"
+    public_stats_viewable = "not_valid"
+    publish_at = False
+
 
 
     video = LocalVideo(file_path)
 
+    #snippet test
     assert not video.set_title(title)
     assert not video.set_description(description)
     assert not video.set_tags(tags)
     assert not video.set_category(string_category)
     assert not video.set_category(id_category)
+    assert not video.set_default_language(default_language)
+
+    #status test
+    assert not video.set_embeddable(embeddable)
+    assert not video.set_license(license)
     assert not video.set_privacy_status(privacy_status)
+    assert not video.set_public_stats_viewable(public_stats_viewable)
+    assert not video.set_publish_at(publish_at)
+
 
 def test_local_video_constructor():
     file_path = os.path.dirname(os.path.abspath(__file__)) + os.sep + "test_local_video.py"
@@ -65,7 +83,13 @@ def test_local_video_constructor():
     string_category = "film"
     id_category = 1
 
+
+    #status variables
+    embeddable = True
+    license = "youtube"
     privacy_status = "public"
+    public_stats_viewable = True
+    publish_at = "9"
 
     #snippet test
     video = LocalVideo(file_path=file_path, title=title, description=description,
@@ -81,9 +105,18 @@ def test_local_video_constructor():
     #status test
     assert video.status_set == False, "Wrong status set" + str(video.status_set)
 
-    video.set_privacy_status(privacy_status)
+    assert video.set_embeddable(embeddable)
+    assert video.set_license(license)
+    assert video.set_privacy_status(privacy_status)
+    assert video.set_public_stats_viewable(public_stats_viewable)
+    assert video.set_publish_at(publish_at)
 
+    assert video.get_embeddable() == embeddable
+    assert video.get_license() == license
     assert video.get_privacy_status() == privacy_status, "Privacy Wrong: " + str(video.get_privacy_status())
+    assert video.get_public_stats_viewable() == public_stats_viewable
+    assert video.get_publish_at() == publish_at
+
     assert video.status_set == True, "Wrong video status: " + str(video.status_set)
 
 
