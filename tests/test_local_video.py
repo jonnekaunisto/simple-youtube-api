@@ -64,18 +64,27 @@ def test_local_video_constructor():
     tags = ["this", "is" "a", "tag"]
     string_category = "film"
     id_category = 1
+
     privacy_status = "public"
 
-
+    #snippet test
     video = LocalVideo(file_path=file_path, title=title, description=description,
-                  tags=tags, category=string_category, privacy_status=privacy_status)
+                  tags=tags, category=string_category)
+    
+    assert video.get_file_path() == file_path, "Wrong file path: " + str(video.get_file_path())
+    assert video.get_title() == title, "Wrong title:" + str(video.get_title())
+    assert video.get_description() == description, "Wrong description: " + str(video.get_description())
+    assert video.get_tags() == tags, "Wrong tags: " + str(video.get_tags())
+    assert video.get_category() == id_category, "Wrong category: " + str(video.get_category())
+    assert video.snippet_set == True, "Wrong snippet set: " + str(video.snippet_set)
 
-    assert video.get_file_path() == file_path
-    assert video.get_title() == title
-    assert video.get_description() == description
-    assert video.get_tags() == tags
-    assert video.get_category() == id_category
-    assert video.get_privacy_status() == privacy_status
+    #status test
+    assert video.status_set == False, "Wrong status set" + str(video.status_set)
+
+    video.set_privacy_status(privacy_status)
+
+    assert video.get_privacy_status() == privacy_status, "Privacy Wrong: " + str(video.get_privacy_status())
+    assert video.status_set == True, "Wrong video status: " + str(video.status_set)
 
 
 

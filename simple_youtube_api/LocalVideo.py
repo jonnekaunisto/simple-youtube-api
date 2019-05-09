@@ -6,7 +6,7 @@ class LocalVideo(Video):
 
 
     def __init__(self, file_path, title="", description="", tags=[],
-                 category=None, privacy_status="private"):
+                 category=1):
         Video.__init__(self)
 
         self.set_file_path(file_path)
@@ -14,8 +14,6 @@ class LocalVideo(Video):
         self.set_description(description)
         self.set_tags(tags)
         self.set_category(category)
-        self.set_privacy_status(privacy_status)
-
 
     def set_file_path(self, file_path):
         if file_path is not None and os.path.isfile(file_path):
@@ -25,7 +23,6 @@ class LocalVideo(Video):
             print("File path does not exist")
             self.file_path = None
             return False
-
 
     def get_file_path(self):
         return self.file_path
