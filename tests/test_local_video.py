@@ -33,7 +33,6 @@ def test_local_video_regular_function():
     assert video.set_category(id_category)
     assert video.get_category() == id_category
 
-
     for privacy_status in privacy_statuses:
         assert video.set_privacy_status(privacy_status)
         assert video.get_privacy_status() == privacy_status
@@ -54,8 +53,6 @@ def test_local_video_negative_function():
     privacy_status = "not_valid"
     public_stats_viewable = "not_valid"
     publish_at = False
-
-
 
     video = LocalVideo(file_path)
 
@@ -82,6 +79,7 @@ def test_local_video_constructor():
     tags = ["this", "is" "a", "tag"]
     string_category = "film"
     id_category = 1
+    default_language = "english"
 
 
     #status variables
@@ -93,13 +91,15 @@ def test_local_video_constructor():
 
     #snippet test
     video = LocalVideo(file_path=file_path, title=title, description=description,
-                  tags=tags, category=string_category)
+                  tags=tags, category=string_category, default_language="english")
     
     assert video.get_file_path() == file_path, "Wrong file path: " + str(video.get_file_path())
     assert video.get_title() == title, "Wrong title:" + str(video.get_title())
     assert video.get_description() == description, "Wrong description: " + str(video.get_description())
     assert video.get_tags() == tags, "Wrong tags: " + str(video.get_tags())
     assert video.get_category() == id_category, "Wrong category: " + str(video.get_category())
+    assert video.get_default_language() == default_language, "Wrong language: " + str(video.get_default_language())
+
     assert video.snippet_set == True, "Wrong snippet set: " + str(video.snippet_set)
 
     #status test
@@ -120,7 +120,5 @@ def test_local_video_constructor():
     assert video.status_set == True, "Wrong video status: " + str(video.status_set)
 
 
-
 if __name__ == "__main__":
     pytest.main()
-
