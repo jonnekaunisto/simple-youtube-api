@@ -32,13 +32,17 @@ class YouTube(object):
         self.youtube = build(API_SERVICE_NAME, API_VERSION,
                       developerKey=developer_key)
 
-    def search(self, search_term, max_results = 25):
+    def search_raw(self, search_term, max_results=25):
         search_response = self.youtube.search().list(
-          q=search_term,
-          part='snippet',
-          maxResults=max_results
+            q=search_term,
+            part='snippet',
+            maxResults=max_results
         ).execute()
 
+        return search_response
+
+    def search(self, search_term, max_results = 25):
+        search_response = self.search_raw(search_term, max_results=max_results)
 
         videos = []
         for search_result in search_response.get('items', []):
@@ -51,14 +55,18 @@ class YouTube(object):
 
                 videos.append(video)
 
-
         return videos
 
-    def search_by_video_id(self, video_id):
+    def search_by_video_id_raw(self, video_id):
         search_response = self.youtube.videos().list(
           part='snippet',
           id=video_id
         ).execute()
+
+        return search_response
+
+    def search_by_video_id(self, video_id):
+        search_response = self.search_by_video_id_raw(video_id)
 
         video = None
         for search_result in search_response.get('items', []):
@@ -71,5 +79,3 @@ class YouTube(object):
 
 
         return video
-
-
