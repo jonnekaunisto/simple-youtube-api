@@ -22,5 +22,8 @@ def test_youtube_search():
     video = youtube.search_by_video_id("Ks-_Mh1QhMc")
     print(video.get_title())
 
+    response = youtube.search_by_video_id_raw("Ks-_Mh1QhMc")
+    print(response)
+
 if __name__ == "__main__":
     pytest.main()

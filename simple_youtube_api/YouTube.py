@@ -32,6 +32,9 @@ class YouTube(object):
         self.youtube = build(API_SERVICE_NAME, API_VERSION,
                       developerKey=developer_key)
 
+    def get_login(self):
+        return self.youtube
+
     def search_raw(self, search_term, max_results=25):
         search_response = self.youtube.search().list(
             q=search_term,
@@ -51,7 +54,7 @@ class YouTube(object):
                 video_title = search_result['snippet']['title']
                 video_description = search_result['snippet']['description']
 
-                video = YouTubeVideo(video_id, self.youtube)
+                video = YouTubeVideo(video_id, youtube=self.youtube)
                 video.title = video_title
                 video.description = video_description
 
@@ -68,7 +71,7 @@ class YouTube(object):
         return search_response
 
     def search_by_video_id(self, video_id):
-        video = YouTubeVideo(video_id, self.youtube)
+        video = YouTubeVideo(video_id, youtube=self.youtube)
         video.fetch()
 
         return video

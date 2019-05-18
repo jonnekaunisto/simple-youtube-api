@@ -79,7 +79,7 @@ class Channel(object):
                 video_id = playlist_item['snippet']['resourceId']['videoId']
                 video_description = playlist_item['snippet']['description']
 
-                video = YouTubeVideo(video_id, self.channel)
+                video = YouTubeVideo(video_id, channel=self.channel)
                 video.title = video_title
                 video.description = video_description
 
