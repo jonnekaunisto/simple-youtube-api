@@ -10,23 +10,32 @@ import os.path
 #TODO add more functions
 class YouTubeVideo(Video):
 
-    def __init__(self, video_id, title="", description="", tags=[], 
-                 category=None):
+    def __init__(self, video_id, youtube):
         Video.__init__(self)
 
         self.video_id = video_id
-        self.title = title
-        self.description = description
-        self.tags = tags
-        self.category = category
+        self.youtube = youtube
 
     def get_video_id(self):
         return self.video_id
 
     #TODO Implement
     def fetch(self):
-        pass
+        search_response = self.youtube.videos().list(
+          part='snippet',
+          id=self.video_id
+        ).execute()
 
+        
+        for search_result in search_response.get('items', []):
+            if search_result['kind'] == 'youtube#video':
+                video_id = search_result['id']
+                video_title = search_result['snippet']['title']
+                video_description = search_result['snippet']['description']
+
+                self.title = video_title
+                self.description = video_description
+                
     #TODO Finish
     def update(self, channel, title=None):
         body = {"id": self.__video_id, "snippet": {"title": '', "categoryId": 1}}

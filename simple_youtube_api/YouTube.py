@@ -51,7 +51,9 @@ class YouTube(object):
                 video_title = search_result['snippet']['title']
                 video_description = search_result['snippet']['description']
 
-                video = YouTubeVideo(video_id, title=video_title, description=video_description)
+                video = YouTubeVideo(video_id, self.youtube)
+                video.title = video_title
+                video.description = video_description
 
                 videos.append(video)
 
@@ -66,16 +68,7 @@ class YouTube(object):
         return search_response
 
     def search_by_video_id(self, video_id):
-        search_response = self.search_by_video_id_raw(video_id)
-
-        video = None
-        for search_result in search_response.get('items', []):
-            if search_result['kind'] == 'youtube#video':
-                video_id = search_result['id']
-                video_title = search_result['snippet']['title']
-                video_description = search_result['snippet']['description']
-
-                video = YouTubeVideo(video_id, title=video_title, description=video_description)
-
+        video = YouTubeVideo(video_id, self.youtube)
+        video.fetch()
 
         return video
