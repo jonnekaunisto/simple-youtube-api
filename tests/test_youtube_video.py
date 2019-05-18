@@ -65,12 +65,9 @@ def test_youtube_video_rating():
     video.remove_rating()
     video.like()
 
-    assert not video.rate_video("not_valid")
+    with pytest.raises(Exception):
+        video.rate_video("not_valid")
 
-    
-
-    
-    
 
 if __name__ == "__main__":
     pytest.main()

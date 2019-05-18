@@ -66,10 +66,8 @@ class YouTubeVideo(Video):
                 rating=rating
             )
             request.execute()
-            return True
         else:
-            print("Not a valid rating")
-            return False
+            raise Exception("Not a valid rating:" + str(rating))
 
     @require_channel_auth
     def like(self):
