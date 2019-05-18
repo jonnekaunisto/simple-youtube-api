@@ -30,6 +30,11 @@ def test_youtube_video_constructor():
     youtube.login(developer_key)
 
     video = YouTubeVideo(video_id, youtube=youtube)
+
+    video.get_video_id()
+    
+    video.set_youtube_auth(youtube)
+    video.set_channel_auth(youtube)
     
     '''
     assert video.get_video_id() == video_id
@@ -59,6 +64,10 @@ def test_youtube_video_rating():
     video.dislike()
     video.remove_rating()
     video.like()
+
+    assert not video.rate_video("not_valid")
+
+    
 
     
     

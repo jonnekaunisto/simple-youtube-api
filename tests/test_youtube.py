@@ -4,7 +4,14 @@ import os.path
 
 
 def test_regular_function():
-	yt = YouTube()
+    with open('credentials/developer_key', 'r') as myfile:
+        developer_key=myfile.read().replace('\n', '')
+
+    yt = YouTube()
+    yt.login(developer_key)
+    yt.get_login()
+
+    
 
 def test_youtube_search():
     print(os.path.abspath(os.curdir))
