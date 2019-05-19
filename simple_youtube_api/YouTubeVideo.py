@@ -18,8 +18,8 @@ class YouTubeVideo(Video):
         self.youtube = youtube
         self.channel = channel
 
-    def get_video_id(self):
-        return self.video_id
+        #snippet
+        self.channel_id = None
 
     def set_youtube_auth(self, youtube):
         self.youtube = youtube
@@ -27,10 +27,54 @@ class YouTubeVideo(Video):
     def set_channel_auth(self, channel):
         self.channel = channel
 
-    #TODO add more values
-    def fetch(self):
+    def get_video_id(self):
+        return self.video_id
+    
+    def get_channel_id(self):
+        return self.channel_id
+
+    #TODO add more values to be fetched
+    #TODO add fetching some values that are only available to channel
+    @require_youtube_auth
+    def fetch(self, snippet=True, content_details=False, status=False,
+                    statistics=False, player=False, topic_details= False,
+                    recording_details=False, file_details=False, processing_details=False,
+                    suggestions=False, live_streaming_details=False, localizations=False,
+                    all_parts=False):
+
+        parts_list = []
+
+        if snippet or all_parts:
+            parts_list.append('snippet')
+        if status or all_parts:
+            parts_list.append('status')
+        if statistics or all_parts:
+            parts_list.append('statistics')
+        if player or all_parts:
+            parts_list.append('player')
+        if topic_details or all_parts:
+            parts_list.append('topicDetails')
+        if recording_details or all_parts:
+            parts_list.append('recordingDetails')
+        if file_details or all_parts:
+            #parts_list.append('fileDetails')
+            pass
+        if processing_details or all_parts:
+            #parts_list.append('processingDetails')
+            pass
+        if suggestions or all_parts:
+            #parts_list.append('suggestions')
+            pass
+        if live_streaming_details or all_parts:
+            parts_list.append('liveStreamingDetails')
+        if localizations or all_parts:
+            parts_list.append('localizations')
+
+        part = ', '.join(parts_list)
+        print(part)
+
         search_response = self.youtube.videos().list(
-          part='snippet',
+          part=part,
           id=self.video_id
         ).execute()
 
@@ -38,11 +82,23 @@ class YouTubeVideo(Video):
         for search_result in search_response.get('items', []):
             if search_result['kind'] == 'youtube#video':
                 video_id = search_result['id']
-                video_title = search_result['snippet']['title']
-                video_description = search_result['snippet']['description']
+                if snippet:
+                    snippet_result = search_result['snippet']
+                    self.channel_id = snippet_result['channelId']
+                    self.title = snippet_result['title']
+                    self.description = snippet_result['description']
+                    self.tags = snippet_result['tags']
+                    self.category = snippet_result['categoryId']
+                    #self.default_language = snippet_result['defaultLanguage']
+                
+                if status:
+                    status_result = search_result['status']
+                    self.embeddable = status_result['embeddable']
+                    self.license = status_result['license']
+                    self.privacy_status = status_result['privacyStatus']
+                    self.public_stats_viewable = status_result['publicStatsViewable']
+                    self.publish_at = status_result['publishAt']
 
-                self.title = video_title
-                self.description = video_description
 
     #TODO Finish
     @require_channel_auth

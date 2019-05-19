@@ -10,18 +10,12 @@ import os
 CLIENT_SECRET_NAME = "credentials/client_secret.json"
 CREDENTIALS = "credentials/credentials.storage"
 
+YOUTUBE_VIDEO_ID = "_i4fVYVqLbQ"
+
 
 def test_youtube_video_constructor():
     
-    video_id = "_i4fVYVqLbQ"
-    '''
-    title = "this is a title"
-    description = "this is a description"
-    tags = ["this", "is" "a", "tag"]
-    string_category = "film"
-    id_category = 1
-    privacy_statuses = ['public', 'private', 'unlisted']
-    '''
+    video_id = YOUTUBE_VIDEO_ID
 
     with open('credentials/developer_key', 'r') as myfile:
         developer_key=myfile.read().replace('\n', '')
@@ -29,7 +23,7 @@ def test_youtube_video_constructor():
     youtube = YouTube()
     youtube.login(developer_key)
 
-    video = YouTubeVideo(video_id, youtube=youtube)
+    video = YouTubeVideo(video_id, youtube=youtube.get_login())
 
     video.get_video_id()
     
@@ -50,7 +44,7 @@ def test_youtube_video_constructor():
     '''
 
 def test_youtube_video_rating():
-    video_id = "_i4fVYVqLbQ"
+    video_id = YOUTUBE_VIDEO_ID
 
     channel = Channel()
 
@@ -67,6 +61,18 @@ def test_youtube_video_rating():
 
     with pytest.raises(Exception):
         video.rate_video("not_valid")
+
+def test_youtube_video_fetch():
+    video_id = YOUTUBE_VIDEO_ID
+
+    with open('credentials/developer_key', 'r') as myfile:
+        developer_key=myfile.read().replace('\n', '')
+
+    youtube = YouTube()
+    youtube.login(developer_key)
+
+    video = YouTubeVideo(video_id, youtube=youtube.get_login())
+    video.fetch(all_parts=True)
 
 
 if __name__ == "__main__":

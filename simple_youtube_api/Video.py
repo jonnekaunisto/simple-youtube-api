@@ -47,9 +47,13 @@ class Video(object):
 
     @video_snippet_set
     def set_title(self, title):
+        """
+            Sets title for video and returns Exception if title is invalid
+        """
+        if not type(title) is str:
+            raise Exception("Title must be a string")
         if len(title) > youtube_api.MAX_YOUTUBE_TITLE_LENGTH:
             raise Exception("Title is too long: " + str(len(title)))
-            
         else:
             self.title = title
 
@@ -58,6 +62,11 @@ class Video(object):
 
     @video_snippet_set
     def set_description(self, description):
+        """
+            Sets description for video and returns Exception if description is invalid
+        """
+        if not type(description) is str:
+            raise Exception("Description must be a string")
         if len(description) > youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH:
             raise Exception("Description is too long: " + str(len(description)))
         else:
@@ -70,11 +79,12 @@ class Video(object):
     @video_snippet_set
     def set_tags(self, tags):
         """
-        Sets tags to the video
+        Sets tags to the video and returns an Exception if tags are invalid
         """
-
+        if not type(tags) is list:
+            raise Exception("Tags must be a list")
         if len("".join(tags)) > youtube_api.MAX_YOUTUBE_TAGS_LENGTH:
-            raise Exception("Description is too long: " + str(len("".join(tags))))
+            raise Exception("Tags are too long: " + str(len("".join(tags))))
         else:
             self.tags = tags
 
@@ -104,20 +114,21 @@ class Video(object):
 
     @video_snippet_set
     def set_default_language(self, language):
-        if type(language) == str:
-            self.default_language = language
+        if not type(language) is str:
+            raise Exception("Language must be a string")
         else:
-            raise Exception("Not a valid language: " + str(language))
+            self.default_language = language
 
     def get_default_language(self):
         return self.default_language
 
     @video_status_set
     def set_embeddable(self, embeddable):
-        if(type(embeddable) == bool):
-            self.embeddable = embeddable
+        if not type(embeddable) is bool:
+            raise Exception("Embeddable must be a boolean")
+
         else:
-            raise Exception("Not valid type: " + str(embeddable))
+            self.embeddable = embeddable
 
     def get_embeddable(self):
         return self.embeddable
