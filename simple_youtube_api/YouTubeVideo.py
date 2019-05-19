@@ -82,7 +82,7 @@ class YouTubeVideo(Video):
         for search_result in search_response.get('items', []):
             if search_result['kind'] == 'youtube#video':
                 video_id = search_result['id']
-                if snippet:
+                if snippet or all_parts:
                     snippet_result = search_result['snippet']
                     self.channel_id = snippet_result['channelId']
                     self.title = snippet_result['title']
@@ -91,14 +91,12 @@ class YouTubeVideo(Video):
                     self.category = snippet_result['categoryId']
                     #self.default_language = snippet_result['defaultLanguage']
                 
-                if status:
+                if status or all_parts:
                     status_result = search_result['status']
                     self.embeddable = status_result['embeddable']
                     self.license = status_result['license']
                     self.privacy_status = status_result['privacyStatus']
                     self.public_stats_viewable = status_result['publicStatsViewable']
-                    self.publish_at = status_result['publishAt']
-
 
     #TODO Finish
     @require_channel_auth

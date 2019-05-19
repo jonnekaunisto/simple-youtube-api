@@ -29,6 +29,7 @@ def test_youtube_video_constructor():
     
     video.set_youtube_auth(youtube)
     video.set_channel_auth(youtube)
+    video.get_channel_id()
     
     '''
     assert video.get_video_id() == video_id
