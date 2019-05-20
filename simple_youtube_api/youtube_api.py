@@ -21,40 +21,40 @@ YOUTUBE_CATEGORIES_ID_LIST = (1, 2, 10, 15, 17, 18, 19, 20, 21, 22, 23, 24, 25,
                                26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37,
                                38, 39, 40, 41, 42, 43, 44)
 
-YOUTUBE_CATEGORIES_DICT = {"film": 1, "animation": 1,
-                           "autos": 2, "vehicles": 2,
-                           "music": 10,
-                           "pets": 15, "animals":15,
-                           "sports": 17,
-                           "short movies": 18,
-                           "travel": 19, "events": 19,
-                           "gaming": 20,
-                           "videoblogging": 21,
-                           "people": 22, "blogs":22,
-                           "comedy": 23,
-                           "entertainment": 24,
-                           "news": 25, "politics": 25,
-                           "howto": 26, "style": 26,
-                           "education": 27,
-                           "science": 28, "technology": 28,
-                           "nonprofits": 29, "activism": 29,
-                           "movies": 30,
-                           "anime": 31, "animation":31,
-                           "action": 32, "adventure": 32,
-                           "classics": 33,
-                           "comedy": 34,
-                           "documentary": 35,
-                           "drama":36,
-                           "family": 37,
-                           "foreign": 38,
-                           "horror": 39,
-                           "sci-fi": 40, "fantasy": 40,
-                           "thriller": 41,
-                           "shorts": 42,
-                           "shows": 43,
-                           "trailers": 44}
+YOUTUBE_CATEGORIES_DICT = {'film': 1, 'animation': 1,
+                           'autos': 2, 'vehicles': 2,
+                           'music': 10,
+                           'pets': 15, 'animals':15,
+                           'sports': 17,
+                           'short movies': 18,
+                           'travel': 19, 'events': 19,
+                           'gaming': 20,
+                           'videoblogging': 21,
+                           'people': 22, 'blogs':22,
+                           'comedy': 23,
+                           'entertainment': 24,
+                           'news': 25, 'politics': 25,
+                           'howto': 26, 'style': 26,
+                           'education': 27,
+                           'science': 28, 'technology': 28,
+                           'nonprofits': 29, 'activism': 29,
+                           'movies': 30,
+                           'anime': 31, 'animation':31,
+                           'action': 32, 'adventure': 32,
+                           'classics': 33,
+                           'comedy': 34,
+                           'documentary': 35,
+                           'drama':36,
+                           'family': 37,
+                           'foreign': 38,
+                           'horror': 39,
+                           'sci-fi': 40, 'fantasy': 40,
+                           'thriller': 41,
+                           'shorts': 42,
+                           'shows': 43,
+                           'trailers': 44}
 
-YOUTUBE_LICENCES_LIST = ["creativeCommon", "youtube"]
+YOUTUBE_LICENCES_LIST = ['creativeCommon', 'youtube']
 
 
 httplib2.RETRIES = 1
@@ -77,18 +77,46 @@ API_VERSION = 'v3'
 VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
+def generate_upload_body(video):
+    body = dict()
+
+    snippet = dict()
+    if not video.title is None:
+        snippet.update({"title": video.title})
+    else:
+        Exception("Title is required")
+    if not video.description is None:
+        snippet.update({"description": video.description})
+    if not video.tags is None:
+        snippet.update({"tags": video.tags})
+    if not video.category is None:
+        snippet.update({"categoryId": video.category})
+    else:
+        Exception("Category is required")
+    if not video.default_language is None:
+        snippet.update({"defaultLanguage": video.default_language})
+    body.update({"snippet": snippet})
+
+    if video.status_set:
+        status = dict()
+        if not video.embeddable is None:
+            status.update({"embeddable": video.embeddable})
+        if not video.license is None:
+            status.update({"license": video.license})
+        if not video.privacy_status is None:
+            status.update({"privacyStatus": video.privacy_status})
+        if not video.public_stats_viewable is None:
+            status.update({"publicStatsViewable": video.public_stats_viewable})
+        if not video.publish_at is None:
+            status.update({"publishAt": video.embeddable})
+        body.update({"status": status})
+    
+    return body
+
+    
+
 def initialize_upload(channel, video):
-    body = dict(
-        snippet=dict(
-            title=video.get_title(),
-            description=video.get_description(),
-            tags=video.get_tags(),
-            categoryId=video.get_category()
-        ),
-        status=dict(
-            privacyStatus=video.get_privacy_status()
-        )
-    )
+    body = generate_upload_body(video)
 
     # Call the API's videos.insert method to create and upload the video.
     insert_request = channel.videos().insert(
