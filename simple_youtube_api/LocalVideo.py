@@ -6,7 +6,7 @@ class LocalVideo(Video):
 
 
     def __init__(self, file_path, title="", description="", tags=[],
-                 category=1, default_language="english"):
+                 category=1, default_language=None):
         Video.__init__(self)
 
         self.set_file_path(file_path)
@@ -14,7 +14,8 @@ class LocalVideo(Video):
         self.set_description(description)
         self.set_tags(tags)
         self.set_category(category)
-        self.set_default_language(default_language)
+        if not default_language is None:
+            self.set_default_language(default_language)
 
     def set_file_path(self, file_path):
         if file_path is not None and os.path.isfile(file_path):

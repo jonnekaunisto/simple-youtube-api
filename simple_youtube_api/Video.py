@@ -34,7 +34,7 @@ class Video(object):
         self.description = ""
         self.tags = []
         self.category = 1
-        self.default_language = "English" #implement
+        self.default_language = None
         self.snippet_set = True
 
         #status

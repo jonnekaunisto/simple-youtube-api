@@ -110,6 +110,8 @@ def generate_upload_body(video):
         if not video.publish_at is None:
             status.update({"publishAt": video.embeddable})
         body.update({"status": status})
+
+    print(body)
     
     return body
 
