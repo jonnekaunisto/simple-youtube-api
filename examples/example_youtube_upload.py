@@ -14,10 +14,10 @@ video.set_category("gaming")
 #video.set_default_language("english")
 
 #status
-#video.set_embeddable(True)
-#video.set_license("creativeCommon")
-#video.set_privacy_status("private")
-#video.set_public_stats_viewable(True)
+video.set_embeddable(True)
+video.set_license("creativeCommon")
+video.set_privacy_status("private")
+video.set_public_stats_viewable(True)
 
 print(video.default_language)
 
