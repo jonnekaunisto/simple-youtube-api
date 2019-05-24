@@ -5,26 +5,25 @@ from simple_youtube_api.decorators import (video_snippet_set, video_status_set)
 class Video(object):
   
     '''
-      Super class for YouTubeVideo and LocalVideo
+    Base class for YouTubeVideo and LocalVideo
       
-      Attributes
-     -----------
+    Attributes
+    -----------
      
-     file_path:
-       The file path for the video
-     
-     title:
+    title:
       The title for the video on YouTube
-     
-     description:
-       The description for the video on YouTube
-     
-     tags:
-       The list of tags that the video is going to have on YouTube
-     
-     category:
-         The category that the video would be on YouTube
-         
+    
+    description:
+      The description for the video on YouTube
+    
+    tags:
+      The list of tags for the video on YouTube
+    
+    category:
+      The category for the video on YouTube 
+
+    default_langualage:
+      The default language for the video on YouTube WARNING MIGHT NOT WORK 
      '''
 
     def __init__(self):
@@ -48,7 +47,7 @@ class Video(object):
     @video_snippet_set
     def set_title(self, title):
         """
-            Sets title for video and returns Exception if title is invalid
+            Sets title for video and returns an exception if title is invalid
         """
         if not type(title) is str:
             raise Exception("Title must be a string")
@@ -58,12 +57,13 @@ class Video(object):
             self.title = title
 
     def get_title(self):
+        """ Returns title of the video
+        """
         return self.title
 
     @video_snippet_set
     def set_description(self, description):
-        """
-            Sets description for video and returns Exception if description is invalid
+        """Sets description for video and returns an exception if description is invalid
         """
         if not type(description) is str:
             raise Exception("Description must be a string")
@@ -73,13 +73,14 @@ class Video(object):
             self.description = description
 
     def get_description(self):
+        """ Returns description of the video
+        """
         return self.description
 
 
     @video_snippet_set
     def set_tags(self, tags):
-        """
-        Sets tags to the video and returns an Exception if tags are invalid
+        """Sets tags to the video and returns an exception if tags are invalid
         """
         if not type(tags) is list:
             raise Exception("Tags must be a list")
@@ -89,6 +90,8 @@ class Video(object):
             self.tags = tags
 
     def get_tags(self):
+        """ Returns tags of the video
+        """
         return self.tags
 
 
@@ -109,6 +112,8 @@ class Video(object):
             
 
     def get_category(self):
+        """ Returns category of the video
+        """
         return self.category
 
 
@@ -120,6 +125,8 @@ class Video(object):
             self.default_language = language
 
     def get_default_language(self):
+        """ Returns default language of the video
+        """
         return self.default_language
 
     @video_status_set
@@ -131,6 +138,8 @@ class Video(object):
             self.embeddable = embeddable
 
     def get_embeddable(self):
+        """ Returns if the video is embeddable
+        """
         return self.embeddable
         
 
@@ -142,6 +151,8 @@ class Video(object):
             raise Exception("Not a valid license: " + str(license))
 
     def get_license(self):
+        """ Returns license of the video
+        """
         return self.license
 
 
@@ -153,6 +164,8 @@ class Video(object):
             self.privacy_status = privacy_status
 
     def get_privacy_status(self):
+        """ Returns privacy status of the video
+        """
         return self.privacy_status
 
 
@@ -164,6 +177,8 @@ class Video(object):
             raise Exception("Not a valid status: " + str(boolean))
 
     def get_public_stats_viewable(self):
+        """ Returns if the video's public statistics are viewable
+        """
         return self.public_stats_viewable
 
 
@@ -174,4 +189,6 @@ class Video(object):
             raise Exception("Not a valid publish time: " + str(time))
 
     def get_publish_at(self):
+        """ Returns what time the video is going to be published
+        """
         return self.publish_at
