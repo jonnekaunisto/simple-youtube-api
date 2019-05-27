@@ -136,4 +136,4 @@ class YouTubeVideo(Video):
         self.rate_video("none")
 
     def download(self):
-        pytube_YouTube('http://youtube.com/watch?v=' + self).streams.first().download()
+        pytube_YouTube('http://youtube.com/watch?v=' + self.video_id).streams.first().download()
