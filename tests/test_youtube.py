@@ -5,22 +5,21 @@ import os.path
 
 def test_regular_function():
     with open('credentials/developer_key', 'r') as myfile:
-        developer_key=myfile.read().replace('\n', '')
+        developer_key = myfile.read().replace('\n', '')
 
     yt = YouTube()
     yt.login(developer_key)
     yt.get_login()
 
-    
 
 def test_youtube_search():
     print(os.path.abspath(os.curdir))
     with open('credentials/developer_key', 'r') as myfile:
-        developer_key=myfile.read().replace('\n', '')
+        developer_key = myfile.read().replace('\n', '')
 
     youtube = YouTube()
     youtube.login(developer_key)
-    
+
     videos = youtube.search("Your Search Term")
 
     for video in videos:

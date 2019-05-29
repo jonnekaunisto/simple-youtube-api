@@ -1,4 +1,3 @@
-#credit to moviepy
 import sys
 from codecs import open
 
@@ -33,29 +32,28 @@ class PyTest(TestCommand):
             import pytest
         except ImportError:
             raise ImportError('Running tests requires additional dependencies.'
-                '\nPlease run (pip install moviepy[test])')
+                              '\nPlease run (pip install moviepy[test])')
 
         errno = pytest.main(self.pytest_args.split(" "))
         sys.exit(errno)
 
 
-cmdclass = {'test': PyTest} # Define custom commands.
-
+cmdclass = {'test': PyTest}  # Define custom commands.
 
 
 # Define the requirements for specific execution needs.
 requires = [
-	"cachetools>=3.1.0",
-	"google-api-python-client>=1.7.7",
-	"google-auth>=1.6.2",
-	"google-auth-httplib2>=0.0.3",
-	"httplib2>=0.12.1",
-	"oauth2client>=4.1.3",
-	"pyasn1>=0.4.5",
-	"pyasn1-modules>=0.2.4",
-	"rsa>=4.0",
-	"six>=1.12.0",
-	"uritemplate>=3.0.0",
+    "cachetools>=3.1.0",
+    "google-api-python-client>=1.7.7",
+    "google-auth>=1.6.2",
+    "google-auth-httplib2>=0.0.3",
+    "httplib2>=0.12.1",
+    "oauth2client>=4.1.3",
+    "pyasn1>=0.4.5",
+    "pyasn1-modules>=0.2.4",
+    "rsa>=4.0",
+    "six>=1.12.0",
+    "uritemplate>=3.0.0",
     "pytube>=9.4.0",
     "decorator==4.4.0"
 ]

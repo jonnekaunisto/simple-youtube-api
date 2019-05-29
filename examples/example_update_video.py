@@ -2,10 +2,8 @@ from simple_youtube_api.YouTubeVideo import YouTubeVideo
 from simple_youtube_api.Channel import Channel
 from simple_youtube_api.YouTube import YouTube
 
-
-
 with open('developer_key', 'r') as myfile:
-    data=myfile.read().replace('\n', '')
+    data = myfile.read().replace('\n', '')
 
 developer_key = data
 youtube = YouTube()

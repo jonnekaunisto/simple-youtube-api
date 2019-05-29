@@ -16,7 +16,6 @@ def test_local_video_regular_function():
     id_category = 1
     privacy_statuses = ['public', 'private', 'unlisted']
 
-
     video = LocalVideo(file_path)
 
     video.set_title(title)
@@ -24,21 +23,22 @@ def test_local_video_regular_function():
     video.set_tags(tags)
     video.set_category(string_category)
 
-    video.get_file_path() == file_path
-    video.get_title() == title
-    video.get_description() == description
-    video.get_tags() == tags
-    video.get_category() == id_category
+    assert video.get_file_path() == file_path
+    assert video.get_title() == title
+    assert video.get_description() == description
+    assert video.get_tags() == tags
+    assert video.get_category() == id_category
 
     video.set_category(id_category)
-    video.get_category() == id_category
+    assert video.get_category() == id_category
 
     for privacy_status in privacy_statuses:
         video.set_privacy_status(privacy_status)
         video.get_privacy_status() == privacy_status
 
+
 def test_local_video_negative_function():
-    #snippet variables
+    # snippet variables
     file_path = "not_valid"
     title = "-" * (youtube_api.MAX_YOUTUBE_TITLE_LENGTH + 1)
     description = "-" * (youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH + 1)
@@ -47,7 +47,7 @@ def test_local_video_negative_function():
     id_category = -1
     default_language = False
 
-    #status variables
+    # status variables
     embeddable = "not_valid"
     license = "not_valid"
     privacy_status = "not_valid"
@@ -56,7 +56,7 @@ def test_local_video_negative_function():
 
     video = LocalVideo(file_path)
 
-    #snippet test
+    # snippet test
     with pytest.raises(Exception):
         video.set_title(title)
     with pytest.raises(Exception):
@@ -70,7 +70,7 @@ def test_local_video_negative_function():
     with pytest.raises(Exception):
         video.set_default_language(default_language)
 
-    #status test
+    # status test
     with pytest.raises(Exception):
         video.set_embeddable(embeddable)
     with pytest.raises(Exception):
@@ -93,28 +93,29 @@ def test_local_video_constructor():
     default_language = "english"
 
 
-    #status variables
+    # status variables
     embeddable = True
     license = "youtube"
     privacy_status = "public"
     public_stats_viewable = True
     publish_at = "9"
 
-    #snippet test
-    video = LocalVideo(file_path=file_path, title=title, description=description,
-                  tags=tags, category=string_category, default_language="english")
-    
-    video.get_file_path() == file_path, "Wrong file path: " + str(video.get_file_path())
-    video.get_title() == title, "Wrong title:" + str(video.get_title())
-    video.get_description() == description, "Wrong description: " + str(video.get_description())
-    video.get_tags() == tags, "Wrong tags: " + str(video.get_tags())
-    video.get_category() == id_category, "Wrong category: " + str(video.get_category())
-    video.get_default_language() == default_language, "Wrong language: " + str(video.get_default_language())
+    # snippet test
+    video = LocalVideo(file_path=file_path, title=title,
+                       description=description, tags=tags,
+                       category=string_category, default_language="english")
 
-    video.snippet_set == True, "Wrong snippet set: " + str(video.snippet_set)
+    assert video.get_file_path() == file_path, "Wrong file path: " + str(video.get_file_path())
+    assert video.get_title() == title, "Wrong title:" + str(video.get_title())
+    assert video.get_description() == description, "Wrong description: " + str(video.get_description())
+    assert video.get_tags() == tags, "Wrong tags: " + str(video.get_tags())
+    assert video.get_category() == id_category, "Wrong category: " + str(video.get_category())
+    assert video.get_default_language() == default_language, "Wrong language: " + str(video.get_default_language())
 
-    #status test
-    video.status_set == False, "Wrong status set" + str(video.status_set)
+    assert video.snippet_set == True, "Wrong snippet set: " + str(video.snippet_set)
+
+    # status test
+    assert video.status_set == False, "Wrong status set" + str(video.status_set)
 
     video.set_embeddable(embeddable)
     video.set_license(license)
@@ -122,13 +123,13 @@ def test_local_video_constructor():
     video.set_public_stats_viewable(public_stats_viewable)
     video.set_publish_at(publish_at)
 
-    video.get_embeddable() == embeddable
-    video.get_license() == license
-    video.get_privacy_status() == privacy_status, "Privacy Wrong: " + str(video.get_privacy_status())
-    video.get_public_stats_viewable() == public_stats_viewable
-    video.get_publish_at() == publish_at
+    assert video.get_embeddable() == embeddable
+    assert video.get_license() == license
+    assert video.get_privacy_status() == privacy_status, "Privacy Wrong: " + str(video.get_privacy_status())
+    assert video.get_public_stats_viewable() == public_stats_viewable
+    assert video.get_publish_at() == publish_at
 
-    video.status_set == True, "Wrong video status: " + str(video.status_set)
+    assert video.status_set == True, "Wrong video status: " + str(video.status_set)
 
 
 if __name__ == "__main__":

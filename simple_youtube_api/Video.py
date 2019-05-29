@@ -1,34 +1,35 @@
 from simple_youtube_api import youtube_api
 from simple_youtube_api.decorators import (video_snippet_set, video_status_set)
 
-#TODO add variables
+
+# TODO add variables
 class Video(object):
-  
+
     '''
     Base class for YouTubeVideo and LocalVideo
-      
+
     Attributes
     -----------
-     
+
     title:
       The title for the video on YouTube
-    
+
     description:
       The description for the video on YouTube
-    
+
     tags:
       The list of tags for the video on YouTube
-    
+
     category:
-      The category for the video on YouTube 
+      The category for the video on YouTube
 
     default_langualage:
-      The default language for the video on YouTube WARNING MIGHT NOT WORK 
+      The default language for the video on YouTube WARNING MIGHT NOT WORK
      '''
 
     def __init__(self):
-        
-        #snippet
+
+        # snippet
         self.title = ""
         self.description = ""
         self.tags = []
@@ -36,12 +37,12 @@ class Video(object):
         self.default_language = None
         self.snippet_set = True
 
-        #status
-        self.embeddable = None #implement
-        self.license = None #implement
-        self.privacy_status = None #implement
-        self.public_stats_viewable = None #implement
-        self.publish_at = None #implement (YYYY-MM-DDThh:mm:ss.sZ) format
+        # status
+        self.embeddable = None
+        self.license = None
+        self.privacy_status = None
+        self.public_stats_viewable = None
+        self.publish_at = None  # implement (YYYY-MM-DDThh:mm:ss.sZ) format
         self.status_set = False
 
     @video_snippet_set
@@ -63,7 +64,8 @@ class Video(object):
 
     @video_snippet_set
     def set_description(self, description):
-        """Sets description for video and returns an exception if description is invalid
+        """Sets description for video and returns an exception if description
+        is invalid
         """
         if not type(description) is str:
             raise Exception("Description must be a string")
@@ -76,7 +78,6 @@ class Video(object):
         """ Returns description of the video
         """
         return self.description
-
 
     @video_snippet_set
     def set_tags(self, tags):
@@ -94,28 +95,25 @@ class Video(object):
         """
         return self.tags
 
-
     @video_snippet_set
     def set_category(self, category):
         cat_type = type(category)
 
-        if cat_type == int and category in youtube_api.YOUTUBE_CATEGORIES_ID_LIST:
+        if cat_type == int \
+           and category in youtube_api.YOUTUBE_CATEGORIES_ID_LIST:
             self.category = category
 
         elif type(category) == str \
              and category.lower() in youtube_api.YOUTUBE_CATEGORIES_DICT.keys():
-
             self.category = youtube_api.YOUTUBE_CATEGORIES_DICT[category]
 
         else:
             raise Exception("Not a valid category: " + str(category))
-            
 
     def get_category(self):
         """ Returns category of the video
         """
         return self.category
-
 
     @video_snippet_set
     def set_default_language(self, language):
@@ -141,11 +139,11 @@ class Video(object):
         """ Returns if the video is embeddable
         """
         return self.embeddable
-        
 
     @video_status_set
     def set_license(self, license):
-        if type(license) == str and license in youtube_api.YOUTUBE_LICENCES_LIST:
+        if type(license) == str \
+           and license in youtube_api.YOUTUBE_LICENCES_LIST:
             self.license = license
         else:
             raise Exception("Not a valid license: " + str(license))
@@ -155,11 +153,10 @@ class Video(object):
         """
         return self.license
 
-
-    @video_status_set  
+    @video_status_set
     def set_privacy_status(self, privacy_status):
         if privacy_status not in youtube_api.VALID_PRIVACY_STATUSES:
-            raise Exception("Not a valid privacy status: " + str(privacy_status))
+            raise Exception("Not valid privacy status: " + str(privacy_status))
         else:
             self.privacy_status = privacy_status
 
@@ -167,7 +164,6 @@ class Video(object):
         """ Returns privacy status of the video
         """
         return self.privacy_status
-
 
     @video_status_set
     def set_public_stats_viewable(self, boolean):
@@ -180,7 +176,6 @@ class Video(object):
         """ Returns if the video's public statistics are viewable
         """
         return self.public_stats_viewable
-
 
     def set_publish_at(self, time):
         if type(time) == str:

@@ -1,14 +1,15 @@
 from simple_youtube_api.Video import Video
 from simple_youtube_api import youtube_api
-from simple_youtube_api.decorators import (require_channel_auth, require_youtube_auth, require_channel_or_youtube_auth)
+from simple_youtube_api.decorators import (require_channel_auth,
+                                           require_youtube_auth,
+                                           require_channel_or_youtube_auth)
 
 from pytube import YouTube as pytube_YouTube
 
 import os.path
 
 
-
-#TODO add more functions
+# TODO add more functions
 class YouTubeVideo(Video):
 
     def __init__(self, video_id, youtube=None, channel=None):
@@ -18,7 +19,7 @@ class YouTubeVideo(Video):
         self.youtube = youtube
         self.channel = channel
 
-        #snippet
+        # snippet
         self.channel_id = None
 
     def set_youtube_auth(self, youtube):
@@ -29,18 +30,19 @@ class YouTubeVideo(Video):
 
     def get_video_id(self):
         return self.video_id
-    
+
     def get_channel_id(self):
         return self.channel_id
 
-    #TODO add more values to be fetched
-    #TODO add fetching some values that are only available to channel
+    # TODO add more values to be fetched
+    # TODO add fetching some values that are only available to channel
     @require_youtube_auth
     def fetch(self, snippet=True, content_details=False, status=False,
-                    statistics=False, player=False, topic_details= False,
-                    recording_details=False, file_details=False, processing_details=False,
-                    suggestions=False, live_streaming_details=False, localizations=False,
-                    all_parts=False):
+              statistics=False, player=False, topic_details=False,
+              recording_details=False, file_details=False,
+              processing_details=False, suggestions=False,
+              live_streaming_details=False, localizations=False,
+              all_parts=False):
 
         parts_list = []
 
@@ -57,13 +59,13 @@ class YouTubeVideo(Video):
         if recording_details or all_parts:
             parts_list.append('recordingDetails')
         if file_details or all_parts:
-            #parts_list.append('fileDetails')
+            # parts_list.append('fileDetails')
             pass
         if processing_details or all_parts:
-            #parts_list.append('processingDetails')
+            # parts_list.append('processingDetails')
             pass
         if suggestions or all_parts:
-            #parts_list.append('suggestions')
+            # parts_list.append('suggestions')
             pass
         if live_streaming_details or all_parts:
             parts_list.append('liveStreamingDetails')
@@ -78,7 +80,6 @@ class YouTubeVideo(Video):
           id=self.video_id
         ).execute()
 
-        
         for search_result in search_response.get('items', []):
             if search_result['kind'] == 'youtube#video':
                 video_id = search_result['id']
@@ -89,8 +90,8 @@ class YouTubeVideo(Video):
                     self.description = snippet_result['description']
                     self.tags = snippet_result['tags']
                     self.category = snippet_result['categoryId']
-                    #self.default_language = snippet_result['defaultLanguage']
-                
+                    # self.default_language = snippet_result['defaultLanguage']
+
                 if status or all_parts:
                     status_result = search_result['status']
                     self.embeddable = status_result['embeddable']
@@ -98,7 +99,7 @@ class YouTubeVideo(Video):
                     self.privacy_status = status_result['privacyStatus']
                     self.public_stats_viewable = status_result['publicStatsViewable']
 
-    #TODO Finish
+    # TODO Finish
     @require_channel_auth
     def update(self, title=None):
         body = {"id": self.__video_id, "snippet": {"title": '', "categoryId": 1}}
@@ -136,4 +137,5 @@ class YouTubeVideo(Video):
         self.rate_video("none")
 
     def download(self):
-        pytube_YouTube('http://youtube.com/watch?v=' + self.video_id).streams.first().download()
+        video_url = 'http://youtube.com/watch?v=' + self.video_id
+        pytube_YouTube(video_url).streams.first().download()

@@ -15,22 +15,17 @@ API_VERSION = 'v3'
 MAX_YOUTUBE_TITLE_LENGTH = 100
 MAX_YOUTUBE_DESCRIPTION_LENGTH = 5000
 MAX_YOUTUBE_TAGS_LENGTH = 500
-
-
-
 VALID_PRIVACY_STATUSES = ('public', 'private', 'unlisted')
 
 
-
 class YouTube(object):
-
 
     def __init__(self):
         self.youtube = None
 
     def login(self, developer_key):
         self.youtube = build(API_SERVICE_NAME, API_VERSION,
-                      developerKey=developer_key)
+                             developerKey=developer_key)
 
     def get_login(self):
         return self.youtube
@@ -44,12 +39,12 @@ class YouTube(object):
 
         return search_response
 
-    def search(self, search_term, max_results = 25):
+    def search(self, search_term, max_results=25):
         search_response = self.search_raw(search_term, max_results=max_results)
 
         videos = []
         for search_result in search_response.get('items', []):
-           if search_result['id']['kind'] == 'youtube#video':
+            if search_result['id']['kind'] == 'youtube#video':
                 video_id = search_result['id']['videoId']
                 video_title = search_result['snippet']['title']
                 video_description = search_result['snippet']['description']
