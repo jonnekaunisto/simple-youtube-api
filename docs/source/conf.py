@@ -38,9 +38,13 @@ release = '0.0.3'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    'sphinx.ext.autodoc',
-]
+extensions = ['sphinx.ext.autodoc', 'sphinx.ext.todo',
+              'sphinx.ext.viewcode', 'sphinx.ext.autosummary', 'numpydoc',
+              'sphinx_autodoc_typehints']
+
+numpydoc_class_members_toctree = False
+numpydoc_show_class_members = False
+autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

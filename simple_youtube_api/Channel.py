@@ -1,4 +1,4 @@
-from simple_youtube_api.Video import Video
+from simple_youtube_api.LocalVideo import LocalVideo
 from simple_youtube_api.YouTubeVideo import YouTubeVideo
 from simple_youtube_api import youtube_api
 
@@ -7,6 +7,8 @@ import random
 import argparse
 import http.client
 import httplib2
+import typing
+from typing import List
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
@@ -23,12 +25,22 @@ API_VERSION = 'v3'
 
 # add functions
 class Channel(object):
+    '''
+    Class for authorizing changes to channel
 
+    Attributes
+    -----------
+
+    channel
+      login object to the channel
+     '''
     def __init__(self):
         self.channel = None
 
     # TODO: add scopes as option
-    def login(self, client_secret_path, storage_path):
+    def login(self, client_secret_path: str, storage_path: str):
+        ''' Logs into the channel with credentials
+        '''
         STORAGE = Storage(storage_path)
         credentials = STORAGE.get()
         
@@ -39,9 +51,13 @@ class Channel(object):
         self.channel = build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
 
     def get_login(self):
+        ''' Returns the login object
+        '''
         return self.channel
 
-    def fetch_uploads(self):
+    def fetch_uploads(self) -> List[YouTubeVideo]:
+        ''' Fetches uploaded videos from channel
+        '''
         response = self.channel.channels().list(
             mine=True,
             part='contentDetails'
@@ -53,7 +69,7 @@ class Channel(object):
             part='snippet',
             maxResults=5
         )
-        
+
         videos = []
         while playlistitems_list_request:
             playlistitems_list_response = playlistitems_list_request.execute()
@@ -74,14 +90,18 @@ class Channel(object):
 
         return videos
 
-    def upload_video(self, video):
+    def upload_video(self, video: LocalVideo):
+        ''' Uploads video to authorized channel
+        '''
         return youtube_api.initialize_upload(self.channel, video)
 
     def set_video_thumbnail(self, thumbnail_path, video=None, video_id=None):
+        ''' Sets thumbnail for video
+        '''
         if video is not None:
             video_id = video.get_video_id()
 
         self.channel.thumbnails().set(
             videoId=video_id,
             media_body=thumbnail_path
-            )
+        )
