@@ -45,7 +45,12 @@ class YouTubeVideo(Video):
               all_parts=False):
 
         parts_list = []
-
+        youtube_perm_parts = [(snippet, 'snippet'),(status, 'status'), (statistics, 'statistics'), (player, 'player'),
+                              (topic_details, 'topicDetails'), (recordingDetails, 'recordingDetails'),
+                              (live_streaming_details, 'liveStreamingDetails'),(localization, 'localization')]
+        channel_perm_parts = [(live_streaming_details, 'liveStreamingDetails'),
+                              (processing_details, 'processingDetails'),(suggestions, 'suggestions')]]
+        
         if snippet or all_parts:
             parts_list.append('snippet')
         if status or all_parts:
