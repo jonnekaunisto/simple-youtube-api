@@ -13,12 +13,7 @@ def test_regular_function():
 
 
 def test_youtube_search():
-    print(os.path.abspath(os.curdir))
-    with open('credentials/developer_key', 'r') as myfile:
-        developer_key = myfile.read().replace('\n', '')
-
-    youtube = YouTube()
-    youtube.login(developer_key)
+    youtube = get_youtube()
 
     videos = youtube.search("Your Search Term")
 
@@ -30,6 +25,21 @@ def test_youtube_search():
 
     response = youtube.search_by_video_id_raw("Ks-_Mh1QhMc")
     print(response)
+
+
+def test_fetch_categories():
+    youtube = get_youtube()
+    youtube.fetch_categories()
+
+
+def get_youtube():
+    with open('credentials/developer_key', 'r') as myfile:
+        developer_key = myfile.read().replace('\n', '')
+
+    youtube = YouTube()
+    youtube.login(developer_key)
+
+    return youtube
 
 if __name__ == "__main__":
     pytest.main()
