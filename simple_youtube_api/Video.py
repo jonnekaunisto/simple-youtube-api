@@ -1,4 +1,10 @@
-from simple_youtube_api import youtube_api
+from simple_youtube_api.youtube_api import (MAX_YOUTUBE_TITLE_LENGTH,
+                                            MAX_YOUTUBE_DESCRIPTION_LENGTH,
+                                            MAX_YOUTUBE_TAGS_LENGTH,
+                                            YOUTUBE_CATEGORIES,
+                                            YOUTUBE_LICENCES,
+                                            VALID_PRIVACY_STATUS)
+
 from simple_youtube_api.decorators import (video_snippet_set, video_status_set)
 
 import typing
@@ -45,7 +51,6 @@ class Video(object):
         self.license = None
         self.privacy_status = None
         self.public_stats_viewable = None
-        self.publish_at = None  # implement (YYYY-MM-DDThh:mm:ss.sZ) format
         self.status_set = False
 
     @video_snippet_set
@@ -55,7 +60,7 @@ class Video(object):
         '''
         if not type(title) is str:
             raise Exception("Title must be a string")
-        if len(title) > youtube_api.MAX_YOUTUBE_TITLE_LENGTH:
+        if len(title) > MAX_YOUTUBE_TITLE_LENGTH:
             raise Exception("Title is too long: " + str(len(title)))
         else:
             self.title = title
@@ -72,8 +77,8 @@ class Video(object):
         '''
         if not type(description) is str:
             raise Exception("Description must be a string")
-        if len(description) > youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH:
-            raise Exception("Description is too long: " + str(len(description)))
+        if len(description) > MAX_YOUTUBE_DESCRIPTION_LENGTH:
+            raise Exception("Description is too long: "+str(len(description)))
         else:
             self.description = description
 
@@ -88,7 +93,7 @@ class Video(object):
         '''
         if not type(tags) is list:
             raise Exception("Tags must be a list")
-        if len("".join(tags)) > youtube_api.MAX_YOUTUBE_TAGS_LENGTH:
+        if len("".join(tags)) > MAX_YOUTUBE_TAGS_LENGTH:
             raise Exception("Tags are too long: " + str(len("".join(tags))))
         else:
             self.tags = tags
@@ -112,12 +117,12 @@ class Video(object):
         cat_type = type(category)
 
         if cat_type == int \
-           and category in youtube_api.YOUTUBE_CATEGORIES_ID_LIST:
+           and category in YOUTUBE_CATEGORIES.values():
             self.category = category
 
         elif type(category) == str \
-             and category.lower() in youtube_api.YOUTUBE_CATEGORIES_DICT.keys():
-            self.category = youtube_api.YOUTUBE_CATEGORIES_DICT[category]
+             and category.lower() in YOUTUBE_CATEGORIES.keys():
+            self.category = YOUTUBE_CATEGORIES[category]
 
         else:
             raise Exception("Not a valid category: " + str(category))
@@ -161,7 +166,7 @@ class Video(object):
         ''' Specifies license for video either 'youtube' or 'creativeCommon'
         '''
         if type(license) == str \
-           and license in youtube_api.YOUTUBE_LICENCES_LIST:
+           and license in YOUTUBE_LICENCES:
             self.license = license
         else:
             raise Exception("Not a valid license: " + str(license))
@@ -175,7 +180,7 @@ class Video(object):
     def set_privacy_status(self, privacy_status: str):
         ''' Set privacy status, either 'private', 'unlisted' or 'public
         '''
-        if privacy_status not in youtube_api.VALID_PRIVACY_STATUSES:
+        if privacy_status not in VALID_PRIVACY_STATUS:
             raise Exception("Not valid privacy status: " + str(privacy_status))
         else:
             self.privacy_status = privacy_status

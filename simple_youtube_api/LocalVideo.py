@@ -25,6 +25,8 @@ class LocalVideo(Video):
         self.set_description(description)
         self.set_tags(tags)
         self.set_category(category)
+        self.publish_at = None  # implement (YYYY-MM-DDThh:mm:ss.sZ) format
+
         if default_language is not None:
             self.set_default_language(default_language)
 

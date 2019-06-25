@@ -1,0 +1,1 @@
+{'film & animation': '1', 'autos & vehicles': '2', 'music': '10', 'pets & animals': '15', 'sports': '17', 'travel & events': '19', 'gaming': '20', 'people & blogs': '22', 'comedy': '23', 'entertainment': '24', 'news & politics': '25', 'howto & style': '26', 'education': '27', 'science & technology': '28', 'nonprofits & activism': '29'}

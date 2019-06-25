@@ -1,9 +1,9 @@
-import json
-
 from simple_youtube_api.YouTubeVideo import YouTubeVideo
+from simple_youtube_api import youtube_api
 
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
+import json
 
 # Always retry when an apiclient.errors.HttpError with one of these status
 # codes is raised.
@@ -70,3 +70,10 @@ class YouTube(object):
         video.fetch()
 
         return video
+
+    def fetch_categories(self):
+        response = self.youtube.videoCategories().list(
+          part="snippet",
+          regionCode="US"
+        ).execute()
+        return youtube_api.parse_categories(response)

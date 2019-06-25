@@ -6,7 +6,8 @@ import pytest
 import os
 import datetime
 
-VIDEO_RESOURCE_URL = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+VIDEO_RESOURCE_URL = "http://commondatastorage.googleapis.com/ \
+                      gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
 VIDEO_NAME = "test_video.mp4"
 CLIENT_SECRET_NAME = "credentials/client_secret.json"
 CREDENTIALS = "credentials/credentials.storage"
@@ -24,6 +25,7 @@ def test_channel_fetch_uploads():
     channel = Channel()
 
     assert os.path.isfile(CLIENT_SECRET_NAME), "CLIENT SECRET_NAME not valid"
+
     assert os.path.isfile(CREDENTIALS), "CREDENTIALS is not valid"
 
     channel.login(CLIENT_SECRET_NAME, CREDENTIALS)

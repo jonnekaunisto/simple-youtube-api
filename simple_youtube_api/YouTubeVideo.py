@@ -45,37 +45,26 @@ class YouTubeVideo(Video):
               all_parts=False):
 
         parts_list = []
-        youtube_perm_parts = [(snippet, 'snippet'),(status, 'status'), (statistics, 'statistics'), (player, 'player'),
-                              (topic_details, 'topicDetails'), (recordingDetails, 'recordingDetails'),
-                              (live_streaming_details, 'liveStreamingDetails'),(localization, 'localization')]
+        youtube_perm_parts = [(snippet, 'snippet'), (status, 'status'),
+                              (statistics, 'statistics'), (player, 'player'),
+                              (topic_details, 'topicDetails'),
+                              (recording_details, 'recordingDetails'),
+                              (live_streaming_details, 'liveStreamingDetails'),
+                              (localizations, 'localizations')]
         channel_perm_parts = [(live_streaming_details, 'liveStreamingDetails'),
-                              (processing_details, 'processingDetails'),(suggestions, 'suggestions')]]
-        
-        if snippet or all_parts:
-            parts_list.append('snippet')
-        if status or all_parts:
-            parts_list.append('status')
-        if statistics or all_parts:
-            parts_list.append('statistics')
-        if player or all_parts:
-            parts_list.append('player')
-        if topic_details or all_parts:
-            parts_list.append('topicDetails')
-        if recording_details or all_parts:
-            parts_list.append('recordingDetails')
-        if file_details or all_parts:
-            # parts_list.append('fileDetails')
-            pass
-        if processing_details or all_parts:
-            # parts_list.append('processingDetails')
-            pass
-        if suggestions or all_parts:
-            # parts_list.append('suggestions')
-            pass
-        if live_streaming_details or all_parts:
-            parts_list.append('liveStreamingDetails')
-        if localizations or all_parts:
-            parts_list.append('localizations')
+                              (processing_details, 'processingDetails'),
+                              (suggestions, 'suggestions')]
+
+        # For youtube authenticated
+        for part_tupple in youtube_perm_parts:
+            if part_tupple[0] or all_parts:
+                parts_list.append(part_tupple[1])
+
+        # For Channel authenticated
+        if False:
+            for part_tupple in channel_perm_parts:
+                if part_tupple[0] or all_parts:
+                    parts_list.append(part_tupple[1])
 
         part = ', '.join(parts_list)
         print(part)
@@ -107,7 +96,8 @@ class YouTubeVideo(Video):
     # TODO Finish
     @require_channel_auth
     def update(self, title=None):
-        body = {"id": self.__video_id, "snippet": {"title": '', "categoryId": 1}}
+        body = {"id": self.__video_id,
+                "snippet": {"title": '', "categoryId": 1}}
 
         if title is not None:
             body["snippet"]["title"] = title

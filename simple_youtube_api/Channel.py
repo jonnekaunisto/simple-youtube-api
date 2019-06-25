@@ -38,17 +38,18 @@ class Channel(object):
         self.channel = None
 
     # TODO: add scopes as option
-    def login(self, client_secret_path: str, storage_path: str):
+    def login(self, client_secret_path: str, storage_path: str, scope=SCOPE):
         ''' Logs into the channel with credentials
         '''
         STORAGE = Storage(storage_path)
         credentials = STORAGE.get()
-        
+
         if credentials is None or credentials.invalid:
-            flow = flow_from_clientsecrets(client_secret_path, scope=SCOPE)
+            flow = flow_from_clientsecrets(client_secret_path, scope=scope)
             http = httplib2.Http()
             credentials = run_flow(flow, STORAGE, http=http)
-        self.channel = build(API_SERVICE_NAME, API_VERSION, credentials=credentials)
+        self.channel = build(API_SERVICE_NAME, API_VERSION,
+                             credentials=credentials)
 
     def get_login(self):
         ''' Returns the login object
@@ -86,7 +87,7 @@ class Channel(object):
                 videos.append(video)
 
                 playlistitems_list_request = self.channel.playlistItems().list_next(
-                playlistitems_list_request, playlistitems_list_response)
+                    playlistitems_list_request, playlistitems_list_response)
 
         return videos
 
