@@ -6,6 +6,8 @@ import httplib2
 import pickle
 import os
 
+import simple_youtube_api.YouTubeVideo as ytv
+
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
@@ -130,7 +132,9 @@ def initialize_upload(channel, video):
 
 # This method implements an exponential backoff strategy to resume a
 # failed upload.
+# TODO: add more variables into video when returned
 def resumable_upload(request):
+    youtube_video = None
     response = None
     error = None
     retry = 0
@@ -140,16 +144,15 @@ def resumable_upload(request):
             status, response = request.next_chunk()
             if response is not None:
                 if 'id' in response:
-                    print(('Video https://www.youtube.com/watch?v=%s was successfully uploaded.' %
-                           response['id']))
-                    UPLOAD_STATUS = True
+                    print(str(response))
+                    youtube_video = ytv.YouTubeVideo(response['id'])
                 else:
-                    exit('The upload failed with an unexpected response: %s' % 
+                    exit('The upload failed with an unexpected response: %s' %
                          response)
         except HttpError as e:
             if e.resp.status in RETRIABLE_STATUS_CODES:
-                error = 'A retriable HTTP error %d occurred:\n%s' % (e.resp.status,
-                                                                        e.content)
+                error = 'A retriable HTTP error %d occurred:\n%s' %\
+                         (e.resp.status, e.content)
             else:
                 raise
         except RETRIABLE_EXCEPTIONS as e:
@@ -159,13 +162,13 @@ def resumable_upload(request):
             print(error)
             retry += 1
             if retry > MAX_RETRIES:
-                return False
+                return youtube_video
 
             max_sleep = 2 ** retry
             sleep_seconds = random.random() * max_sleep
             print('Sleeping %f seconds and then retrying...' % sleep_seconds)
             time.sleep(sleep_seconds)
-    return True
+    return youtube_video
 
 
 def init_categories(data):

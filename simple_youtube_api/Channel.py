@@ -63,7 +63,8 @@ class Channel(object):
             mine=True,
             part='contentDetails'
         ).execute()
-        uploads_playlist_id = response['items'][0]['contentDetails']['relatedPlaylists']['uploads']
+        content_details = response['items'][0]['contentDetails']
+        uploads_playlist_id = content_details['relatedPlaylists']['uploads']
 
         playlistitems_list_request = self.channel.playlistItems().list(
             playlistId=uploads_playlist_id,
@@ -86,8 +87,9 @@ class Channel(object):
 
                 videos.append(video)
 
-                playlistitems_list_request = self.channel.playlistItems().list_next(
-                    playlistitems_list_request, playlistitems_list_response)
+                playlistitems_list_request = self.channel.playlistItems().\
+                    list_next(playlistitems_list_request,
+                              playlistitems_list_response)
 
         return videos
 
