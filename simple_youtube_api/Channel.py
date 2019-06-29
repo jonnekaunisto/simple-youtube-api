@@ -17,6 +17,24 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.tools import run_flow
 from oauth2client.file import Storage
 
+httplib2.RETRIES = 1
+# Maximum number of times to retry before giving up.
+MAX_RETRIES = 10
+
+# Always retry when these exceptions are raised.
+RETRIABLE_EXCEPTIONS = (httplib2.HttpLib2Error, IOError,
+                        http.client.NotConnected, http.client.IncompleteRead,
+                        http.client.ImproperConnectionState,
+                        http.client.CannotSendRequest,
+                        http.client.CannotSendHeader,
+                        http.client.ResponseNotReady,
+                        http.client.BadStatusLine)
+
+
+# Always retry when an apiclient.errors.HttpError with one of these status
+# codes is raised.
+RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
+
 
 SCOPE = ['https://www.googleapis.com/auth/youtube']
 API_SERVICE_NAME = 'youtube'
@@ -96,15 +114,106 @@ class Channel(object):
     def upload_video(self, video: LocalVideo):
         ''' Uploads video to authorized channel
         '''
-        return youtube_api.initialize_upload(self.channel, video)
+        return initialize_upload(self.channel, video)
 
-    def set_video_thumbnail(self, thumbnail_path, video=None, video_id=None):
+    def set_video_thumbnail(self, video, thumbnail_path):
         ''' Sets thumbnail for video
         '''
-        if video is not None:
-            video_id = video.get_video_id()
+        video_id = video.get_video_id()
 
         self.channel.thumbnails().set(
             videoId=video_id,
             media_body=thumbnail_path
         )
+
+
+def generate_upload_body(video):
+    body = dict()
+
+    snippet = dict()
+    if video.title is not None:
+        snippet.update({"title": video.title})
+    else:
+        Exception("Title is required")
+    if video.description is not None:
+        snippet.update({"description": video.description})
+    if video.tags is not None:
+        snippet.update({"tags": video.tags})
+    if video.category is not None:
+        snippet.update({"categoryId": video.category})
+    else:
+        Exception("Category is required")
+    if video.default_language is not None:
+        snippet.update({"defaultLanguage": video.default_language})
+    body.update({"snippet": snippet})
+
+    if video.status_set:
+        status = dict()
+        if video.embeddable is not None:
+            status.update({"embeddable": video.embeddable})
+        if video.license is not None:
+            status.update({"license": video.license})
+        if video.privacy_status is not None:
+            status.update({"privacyStatus": video.privacy_status})
+        if video.public_stats_viewable is not None:
+            status.update({"publicStatsViewable": video.public_stats_viewable})
+        if video.publish_at is not None:
+            status.update({"publishAt": video.embeddable})
+        body.update({"status": status})
+
+    return body
+
+
+def initialize_upload(channel, video):
+    body = generate_upload_body(video)
+
+    # Call the API's videos.insert method to create and upload the video.
+    insert_request = channel.videos().insert(
+        part=','.join(list(body.keys())),
+        body=body,
+        media_body=MediaFileUpload(video.get_file_path(), chunksize=-1,
+                                   resumable=True)
+    )
+
+    return resumable_upload(insert_request)
+
+
+# This method implements an exponential backoff strategy to resume a
+# failed upload.
+# TODO: add more variables into video when returned
+def resumable_upload(request):
+    youtube_video = None
+    response = None
+    error = None
+    retry = 0
+    while response is None:
+        try:
+            print('Uploading file...')
+            status, response = request.next_chunk()
+            if response is not None:
+                if 'id' in response:
+                    print(str(response))
+                    youtube_video = YouTubeVideo(response['id'])
+                else:
+                    exit('The upload failed with an unexpected response: %s' %
+                         response)
+        except HttpError as e:
+            if e.resp.status in RETRIABLE_STATUS_CODES:
+                error = 'A retriable HTTP error %d occurred:\n%s' %\
+                         (e.resp.status, e.content)
+            else:
+                raise
+        except RETRIABLE_EXCEPTIONS as e:
+            error = 'A retriable error occurred: %s' % e
+
+        if error is not None:
+            print(error)
+            retry += 1
+            if retry > MAX_RETRIES:
+                return youtube_video
+
+            max_sleep = 2 ** retry
+            sleep_seconds = random.random() * max_sleep
+            print('Sleeping %f seconds and then retrying...' % sleep_seconds)
+            time.sleep(sleep_seconds)
+    return youtube_video

@@ -19,6 +19,7 @@ video.set_license("creativeCommon")
 video.set_privacy_status("private")
 video.set_public_stats_viewable(True)
 
-print(video.default_language)
 
-channel.upload_video(video)
+video = channel.upload_video(video)
+print(video.get_video_id())
+print(video.get_title())

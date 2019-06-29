@@ -23,15 +23,23 @@ class YouTubeVideo(Video):
         self.channel_id = None
 
     def set_youtube_auth(self, youtube):
+        '''Sets authentication for video
+        '''
         self.youtube = youtube
 
     def set_channel_auth(self, channel):
+        '''Sets channel authenticaton for video
+        '''
         self.channel = channel
 
     def get_video_id(self):
+        '''Returns video id
+        '''
         return self.video_id
 
     def get_channel_id(self):
+        '''Returns channel id
+        '''
         return self.channel_id
 
     # TODO add more values to be fetched
@@ -43,6 +51,8 @@ class YouTubeVideo(Video):
               processing_details=False, suggestions=False,
               live_streaming_details=False, localizations=False,
               all_parts=False):
+        '''Fetches specified parts of video
+        '''
 
         parts_list = []
         youtube_perm_parts = [(snippet, 'snippet'), (status, 'status'),
@@ -91,11 +101,14 @@ class YouTubeVideo(Video):
                     self.embeddable = status_result['embeddable']
                     self.license = status_result['license']
                     self.privacy_status = status_result['privacyStatus']
-                    self.public_stats_viewable = status_result['publicStatsViewable']
+                    self.public_stats_viewable = \
+                        status_result['publicStatsViewable']
 
     # TODO Finish
     @require_channel_auth
     def update(self, title=None):
+        '''updates a part of video
+        '''
         body = {"id": self.__video_id,
                 "snippet": {"title": '', "categoryId": 1}}
 
@@ -110,6 +123,8 @@ class YouTubeVideo(Video):
 
     @require_channel_auth
     def rate_video(self, rating):
+        '''Rates video
+        '''
         if rating in ["like", "dislike", "none"]:
             request = self.channel.videos().rate(
                 id="Ks-_Mh1QhMc",
@@ -121,16 +136,24 @@ class YouTubeVideo(Video):
 
     @require_channel_auth
     def like(self):
+        '''Likes video
+        '''
         self.rate_video("like")
 
     @require_channel_auth
     def dislike(self):
+        '''Dislikes video
+        '''
         self.rate_video("dislike")
 
     @require_channel_auth
     def remove_rating(self):
+        '''Removes rating
+        '''
         self.rate_video("none")
 
     def download(self):
+        '''Downloads video
+        '''
         video_url = 'https://youtube.com/watch?v=' + self.video_id
         pytube_YouTube(video_url).streams.first().download()

@@ -55,8 +55,7 @@ class Video(object):
 
     @video_snippet_set
     def set_title(self, title: str):
-        '''
-            Sets title for video and returns an exception if title is invalid
+        '''Sets title for video and returns an exception if title is invalid
         '''
         if not type(title) is str:
             raise Exception("Title must be a string")

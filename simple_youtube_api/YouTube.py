@@ -24,13 +24,19 @@ class YouTube(object):
         self.youtube = None
 
     def login(self, developer_key):
+        '''Logs into YouTube with credentials
+        '''
         self.youtube = build(API_SERVICE_NAME, API_VERSION,
                              developerKey=developer_key)
 
     def get_login(self):
+        '''Gets login object
+        '''
         return self.youtube
 
     def search_raw(self, search_term, max_results=25):
+        '''Searches YouTube and returns a JSON response
+        '''
         search_response = self.youtube.search().list(
             q=search_term,
             part='snippet',
@@ -40,6 +46,8 @@ class YouTube(object):
         return search_response
 
     def search(self, search_term, max_results=25):
+        '''Searches YouTube and returns a list of video objects
+        '''
         search_response = self.search_raw(search_term, max_results=max_results)
 
         videos = []
@@ -58,6 +66,8 @@ class YouTube(object):
         return videos
 
     def search_by_video_id_raw(self, video_id):
+        '''Returns a JSON of video
+        '''
         search_response = self.youtube.videos().list(
           part='snippet',
           id=video_id
@@ -66,12 +76,16 @@ class YouTube(object):
         return search_response
 
     def search_by_video_id(self, video_id):
+        '''Returns a video object
+        '''
         video = YouTubeVideo(video_id, youtube=self.youtube)
         video.fetch()
 
         return video
 
     def fetch_categories(self):
+        '''Finds all the video categories on YouTube
+        '''
         response = self.youtube.videoCategories().list(
           part="snippet",
           regionCode="US"
