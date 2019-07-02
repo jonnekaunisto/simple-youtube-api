@@ -158,7 +158,7 @@ def generate_upload_body(video):
         if video.public_stats_viewable is not None:
             status.update({"publicStatsViewable": video.public_stats_viewable})
         if video.publish_at is not None:
-            status.update({"publishAt": video.embeddable})
+            status.update({"publishAt": video.publish_at})
         body.update({"status": status})
 
     return body
