@@ -53,7 +53,12 @@ YOUTUBE_CATEGORIES = {'film': 1, 'animation': 1,
 
 YOUTUBE_LICENCES = ['creativeCommon', 'youtube']
 
-SCOPE = ['https://www.googleapis.com/auth/youtube']
+SCOPES = ['https://www.googleapis.com/auth/youtube',
+          'https://www.googleapis.com/auth/youtube.force-ssl',
+          'https://www.googleapis.com/auth/youtube.readonly',
+          'https://www.googleapis.com/auth/youtube.upload',
+          'https://www.googleapis.com/auth/youtubepartner',
+          'https://www.googleapis.com/auth/youtubepartner-channel-audit']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 VALID_PRIVACY_STATUS = ('public', 'private', 'unlisted')

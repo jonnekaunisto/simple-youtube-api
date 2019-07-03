@@ -42,14 +42,16 @@ Files
 =====
 Channel
 -------
-Make a MyChannel and a YouTube Channel or something.
+Make a MyChannel and a YouTube Channel or something. Restructure classes.
 
 Channel should be able to do everything in YouTube
+
+Add functionality to get metadata
 
 
 LocalVideo
 ----------
-Done
+Make set_publish_at validate time
 
 
 Video
@@ -69,12 +71,13 @@ Add more parts to be accessible
 decorators
 ----------
 
-Write tests to cover everything
+Nothing
 
 
 youtube_api
 -----------
-Nothing
+
+Write a function to convert json response to YouTube Video
 
 Additionally
 ------------

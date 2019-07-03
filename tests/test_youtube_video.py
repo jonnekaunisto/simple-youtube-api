@@ -45,6 +45,11 @@ def test_youtube_video_constructor():
     '''
 
 
+def test_youtube_video_downloading():
+    video = YouTubeVideo(YOUTUBE_VIDEO_ID)
+    video.download()
+
+
 def test_youtube_video_rating():
     video_id = YOUTUBE_VIDEO_ID
 
@@ -63,6 +68,30 @@ def test_youtube_video_rating():
 
     with pytest.raises(Exception):
         video.rate_video("not_valid")
+
+
+def test_youtube_video_without_credentials():
+    video_id = YOUTUBE_VIDEO_ID
+
+    video = YouTubeVideo(video_id)
+
+    with pytest.raises(Exception):
+        video.fetch()
+
+    with pytest.raises(Exception):
+        video.update()
+
+    with pytest.raises(Exception):
+        video.rate_video("like")
+
+    with pytest.raises(Exception):
+        video.like()
+
+    with pytest.raises(Exception):
+        video.dislike()
+
+    with pytest.raises(Exception):
+        video.remove_rating()
 
 
 def test_youtube_video_fetch():

@@ -36,7 +36,6 @@ RETRIABLE_EXCEPTIONS = (httplib2.HttpLib2Error, IOError,
 RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 
 
-SCOPE = ['https://www.googleapis.com/auth/youtube']
 API_SERVICE_NAME = 'youtube'
 API_VERSION = 'v3'
 
@@ -55,8 +54,8 @@ class Channel(object):
     def __init__(self):
         self.channel = None
 
-    # TODO: add scopes as option
-    def login(self, client_secret_path: str, storage_path: str, scope=SCOPE):
+    def login(self, client_secret_path: str, storage_path: str,
+              scope=youtube_api.SCOPES):
         ''' Logs into the channel with credentials
         '''
         STORAGE = Storage(storage_path)
@@ -111,10 +110,18 @@ class Channel(object):
 
         return videos
 
+    # TODO add more metadata to returned video
     def upload_video(self, video: LocalVideo):
         ''' Uploads video to authorized channel
         '''
-        return initialize_upload(self.channel, video)
+        youtube_video = initialize_upload(self.channel, video)
+
+        youtube_video.channel = self.get_login()
+
+        if video.thumbnail_path is not None:
+            self.set_video_thumbnail(youtube_video, video.thumbnail_path)
+
+        return youtube_video
 
     def set_video_thumbnail(self, video, thumbnail_path):
         ''' Sets thumbnail for video

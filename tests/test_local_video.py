@@ -39,7 +39,9 @@ def test_local_video_regular_function():
 
 def test_local_video_negative_function():
     # snippet variables
-    file_path = "not_valid"
+    file_path = os.path.realpath(__file__)
+    bad_file_path = "not_valid"
+    thumbnail_path = "not_valid"
     title = "-" * (youtube_api.MAX_YOUTUBE_TITLE_LENGTH + 1)
     description = "-" * (youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH + 1)
     tags = ["-" * (youtube_api.MAX_YOUTUBE_TAGS_LENGTH + 1)]
@@ -56,13 +58,25 @@ def test_local_video_negative_function():
 
     video = LocalVideo(file_path)
 
+    # misc test
+    with pytest.raises(Exception):
+        video.set_file_path(bad_file_path)
+    with pytest.raises(Exception):
+        video.set_thumbnail_path(thumbnail_path)
+
     # snippet test
     with pytest.raises(Exception):
         video.set_title(title)
     with pytest.raises(Exception):
+        video.set_title(True)
+    with pytest.raises(Exception):
         video.set_description(description)
     with pytest.raises(Exception):
+        video.set_description(True)
+    with pytest.raises(Exception):
         video.set_tags(tags)
+    with pytest.raises(Exception):
+        video.set_tags(True)
     with pytest.raises(Exception):
         video.set_category(string_category)
     with pytest.raises(Exception):
@@ -92,7 +106,6 @@ def test_local_video_constructor():
     id_category = 1
     default_language = "english"
 
-
     # status variables
     embeddable = True
     license = "youtube"
@@ -112,10 +125,10 @@ def test_local_video_constructor():
     assert video.get_category() == id_category, "Wrong category: " + str(video.get_category())
     assert video.get_default_language() == default_language, "Wrong language: " + str(video.get_default_language())
 
-    assert video.snippet_set == True, "Wrong snippet set: " + str(video.snippet_set)
+    assert video.snippet_set is True, "Wrong snippet set: " + str(video.snippet_set)
 
     # status test
-    assert video.status_set == False, "Wrong status set" + str(video.status_set)
+    assert video.status_set is False, "Wrong status set" + str(video.status_set)
 
     video.set_embeddable(embeddable)
     video.set_license(license)
@@ -129,7 +142,10 @@ def test_local_video_constructor():
     assert video.get_public_stats_viewable() == public_stats_viewable
     assert video.get_publish_at() == publish_at
 
-    assert video.status_set == True, "Wrong video status: " + str(video.status_set)
+    assert video.status_set is True, "Wrong video status: " + str(video.status_set)
+
+    video.set_thumbnail_path(file_path)
+    assert video.get_thumbnail_path() == file_path
 
 
 if __name__ == "__main__":
