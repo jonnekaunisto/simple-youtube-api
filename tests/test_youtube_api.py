@@ -22,7 +22,7 @@ def test_parse_comment_thread():
     assert comment_thread.id == data['id']
 
     # snippet
-    snippet_data = data.get('status', False)
+    snippet_data = data.get('snippet', False)
     if snippet_data:
         assert comment_thread.video_id == snippet_data.get('channel_id', None)
         assert comment_thread.video_id == snippet_data.get('video_id', None)
@@ -46,7 +46,7 @@ def test_parse_comment():
     assert comment.id == data['id']
 
     # snippet
-    snippet_data = data.get('status', False)
+    snippet_data = data.get('snippet', False)
     if snippet_data:
         assert comment.author_display_name == snippet_data['authorDisplayName']
         assert comment.author_profile_image_url == \

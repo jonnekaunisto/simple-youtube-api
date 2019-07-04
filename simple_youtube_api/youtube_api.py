@@ -75,7 +75,7 @@ def parse_comment_thread(comment_thread, data):
     comment_thread.id = data['id']
 
     # snippet
-    snippet_data = data.get('status', False)
+    snippet_data = data.get('snippet', False)
     if snippet_data:
         comment_thread.video_id = snippet_data.get('channel_id', None)
         comment_thread.video_id = snippet_data.get('video_id', None)
@@ -101,7 +101,7 @@ def parse_comment(comment, data):
     comment.id = data['id']
 
     # snippet
-    snippet_data = data.get('status', False)
+    snippet_data = data.get('snippet', False)
     if snippet_data:
         comment.author_display_name = snippet_data['authorDisplayName']
         comment.author_profile_image_url = \
