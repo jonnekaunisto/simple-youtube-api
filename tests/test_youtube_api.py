@@ -24,8 +24,8 @@ def test_parse_comment_thread():
     # snippet
     snippet_data = data.get('snippet', False)
     if snippet_data:
-        assert comment_thread.video_id == snippet_data.get('channel_id', None)
-        assert comment_thread.video_id == snippet_data.get('video_id', None)
+        assert comment_thread.channel_id == snippet_data.get('channelId', None)
+        assert comment_thread.video_id == snippet_data.get('videoId', None)
         assert comment_thread.can_reply == snippet_data['canReply']
         assert comment_thread.total_reply_count ==\
             snippet_data['totalReplyCount']
@@ -54,15 +54,15 @@ def test_parse_comment():
         assert comment.author_channel_url == snippet_data['authorChannelUrl']
         assert comment.author_channel_id == \
             snippet_data['authorChannelId']['value']
-        assert comment.channel_id == snippet_data['channelId']
-        assert comment.video_id == snippet_data['videoId']
-        assert comment.text_display == snippet_data['testDisplay']
+        assert comment.channel_id == snippet_data.get('videoId', None)
+        assert comment.video_id == snippet_data.get('videoId', None)
+        assert comment.text_display == snippet_data['textDisplay']
         assert comment.text_original == snippet_data['textOriginal']
-        assert comment.parent_id == snippet_data['parentId']
+        assert comment.parent_id == snippet_data.get('parentId', None)
         assert comment.can_rate == snippet_data['canRate']
         assert comment.viewer_rating == snippet_data['viewerRating']
-        assert comment.like_counter == snippet_data['likeCounter']
-        assert comment.moderation_status == snippet_data['moderationStatus']
+        assert comment.like_counter == snippet_data['likeCount']
+        assert comment.moderation_status == snippet_data.get('moderationStatus', None)
         assert comment.published_at == snippet_data['publishedAt']
         assert comment.updated_at == snippet_data['updatedAt']
 

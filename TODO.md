@@ -8,9 +8,9 @@ Channels - Not Done
 
 ChannelSections - Not Done
 
-Comments - Not Done
+Comments - Added classes
 
-CommentThreads - Not Done
+CommentThreads - Added Classes
 
 GuideCategories - Not Done
 
@@ -68,6 +68,16 @@ YoutubeVideo
 Add more parts to be accessible
 
 
+Comment
+-------
+Add function to get by id
+
+
+Comment Threads
+---------------
+Add function to get by id
+
+
 decorators
 ----------
 
@@ -79,6 +89,9 @@ youtube_api
 
 Write a function to convert json response to YouTube Video
 
+
+
+
 Additionally
 ------------
-Add Comments
+Nothing

@@ -77,8 +77,8 @@ def parse_comment_thread(comment_thread, data):
     # snippet
     snippet_data = data.get('snippet', False)
     if snippet_data:
-        comment_thread.video_id = snippet_data.get('channel_id', None)
-        comment_thread.video_id = snippet_data.get('video_id', None)
+        comment_thread.channel_id = snippet_data.get('channelId', None)
+        comment_thread.video_id = snippet_data.get('videoId', None)
         comment = Comment()
         comment_data = snippet_data['topLevelComment']
         comment_thread.top_level_comment = parse_comment(comment, comment_data)
@@ -99,7 +99,7 @@ def parse_comment_thread(comment_thread, data):
 def parse_comment(comment, data):
     comment.etag = data['etag']
     comment.id = data['id']
-
+    print(data)
     # snippet
     snippet_data = data.get('snippet', False)
     if snippet_data:
@@ -108,15 +108,15 @@ def parse_comment(comment, data):
             snippet_data['authorProfileImageUrl']
         comment.author_channel_url = snippet_data['authorChannelUrl']
         comment.author_channel_id = snippet_data['authorChannelId']['value']
-        comment.channel_id = snippet_data['channelId']
-        comment.video_id = snippet_data['videoId']
-        comment.text_display = snippet_data['testDisplay']
+        comment.channel_id = snippet_data.get('channelId', None)
+        comment.video_id = snippet_data.get('videoId', None)
+        comment.text_display = snippet_data['textDisplay']
         comment.text_original = snippet_data['textOriginal']
-        comment.parent_id = snippet_data['parentId']
+        comment.parent_id = snippet_data.get('parentId', None)
         comment.can_rate = snippet_data['canRate']
         comment.viewer_rating = snippet_data['viewerRating']
-        comment.like_counter = snippet_data['likeCounter']
-        comment.moderation_status = snippet_data['moderationStatus']
+        comment.like_counter = snippet_data['likeCount']
+        comment.moderation_status = snippet_data.get('moderationStatus', None)
         comment.published_at = snippet_data['publishedAt']
         comment.updated_at = snippet_data['updatedAt']
 
