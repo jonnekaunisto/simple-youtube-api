@@ -1,0 +1,21 @@
+{
+    "kind": "youtube#comment",
+    "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/7lRYhQc2_NmngYp9nMHCNON6BI0\"",
+    "id": "UgzDE2tasfmrYLyNkGt4AaABAg.8g7oZbuBjXg8ilIKfmOr81",
+    "snippet": {
+     "authorDisplayName": "Burak Karakuş",
+     "authorProfileImageUrl": "https://yt3.ggpht.com/-qoNUogjGHQg/AAAAAAAAAAI/AAAAAAAAAAA/5m7hSLsI8dE/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+     "authorChannelUrl": "http://www.youtube.com/channel/UCXPaHuq_I7IMjQanCONvzuw",
+     "authorChannelId": {
+      "value": "UCXPaHuq_I7IMjQanCONvzuw"
+     },
+     "textDisplay": "\u003ca href=\"https://www.youtube.com/watch?v=7_2CJs_VZk4\"\u003ehttps://www.youtube.com/watch?v=7_2CJs_VZk4\u003c/a\u003e",
+     "textOriginal": "https://www.youtube.com/watch?v=7_2CJs_VZk4",
+     "parentId": "UgzDE2tasfmrYLyNkGt4AaABAg",
+     "canRate": true,
+     "viewerRating": "none",
+     "likeCount": 0,
+     "publishedAt": "2018-07-16T13:05:07.000Z",
+     "updatedAt": "2018-07-16T13:05:07.000Z"
+    }
+}

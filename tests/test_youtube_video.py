@@ -107,5 +107,17 @@ def test_youtube_video_fetch():
     video.fetch(all_parts=True)
 
 
+def test_youtube_video_fetch_comment_threads():
+    with open('credentials/developer_key', 'r') as myfile:
+        developer_key = myfile.read().replace('\n', '')
+
+    youtube = YouTube()
+    youtube.login(developer_key)
+
+    video = YouTubeVideo(YOUTUBE_VIDEO_ID, youtube=youtube.get_login())
+
+    video.fetch_comment_threads()
+
+
 if __name__ == "__main__":
     pytest.main()

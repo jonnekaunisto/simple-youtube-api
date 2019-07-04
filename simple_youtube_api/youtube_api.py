@@ -6,6 +6,8 @@ import httplib2
 import pickle
 import os
 
+from simple_youtube_api.Comment import Comment
+
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
@@ -68,6 +70,59 @@ VALID_PRIVACY_STATUS = ('public', 'private', 'unlisted')
 def parse_youtube_video(video):
     pass
 
+
+def parse_comment_thread(comment_thread, data):
+    comment_thread.id = data['id']
+
+    # snippet
+    snippet_data = data.get('status', False)
+    if snippet_data:
+        comment_thread.video_id = snippet_data.get('channel_id', None)
+        comment_thread.video_id = snippet_data.get('video_id', None)
+        comment = Comment()
+        comment_data = snippet_data['topLevelComment']
+        comment_thread.top_level_comment = parse_comment(comment, comment_data)
+        comment_thread.can_reply = snippet_data['canReply']
+        comment_thread.total_reply_count = snippet_data['totalReplyCount']
+        comment_thread.is_public = snippet_data['isPublic']
+
+    replies_data = data.get('replies', False)
+    if replies_data:
+        comment_thread.replies = []
+        for reply_data in replies_data.get('comments', []):
+            comment = parse_comment(Comment(), reply_data)
+            comment_thread.replies.append(comment)
+
+    return comment_thread
+
+
+def parse_comment(comment, data):
+    comment.etag = data['etag']
+    comment.id = data['id']
+
+    # snippet
+    snippet_data = data.get('status', False)
+    if snippet_data:
+        comment.author_display_name = snippet_data['authorDisplayName']
+        comment.author_profile_image_url = \
+            snippet_data['authorProfileImageUrl']
+        comment.author_channel_url = snippet_data['authorChannelUrl']
+        comment.author_channel_id = snippet_data['authorChannelId']['value']
+        comment.channel_id = snippet_data['channelId']
+        comment.video_id = snippet_data['videoId']
+        comment.text_display = snippet_data['testDisplay']
+        comment.text_original = snippet_data['textOriginal']
+        comment.parent_id = snippet_data['parentId']
+        comment.can_rate = snippet_data['canRate']
+        comment.viewer_rating = snippet_data['viewerRating']
+        comment.like_counter = snippet_data['likeCounter']
+        comment.moderation_status = snippet_data['moderationStatus']
+        comment.published_at = snippet_data['publishedAt']
+        comment.updated_at = snippet_data['updatedAt']
+
+    return comment
+
+
 def init_categories(data):
     with open(DATA_PATH + 'categories.pickle', 'rb') as handle:
         return pickle.load(handle)
@@ -75,7 +130,7 @@ def init_categories(data):
 
 def parse_categories(data):
     categories = {}
-    for item in data["items"]:
+    for item in data['items']:
         if item["snippet"]["assignable"]:
             category_name = item["snippet"]["title"]
             category_id = item["id"]

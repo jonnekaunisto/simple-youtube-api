@@ -1,0 +1,124 @@
+{
+    "kind": "youtube#commentThread",
+    "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/GadOd3XASoKqKL8OO_8iWg6NCj4\"",
+    "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+    "snippet": {
+      "videoId": "iBb9Io-E9A8",
+      "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/nWANvxxra5hHim1umoaKEUuHAks\"",
+        "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+        "snippet": {
+          "authorDisplayName": "Orange Juice Gaming",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-866YL_6XbPQ/AAAAAAAAAAI/AAAAAAAAAAA/5rl24TNayQ0/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UC3S6nIDGJ5OtpC-mbvFA8Ew",
+          "authorChannelId": {
+            "value": "UC3S6nIDGJ5OtpC-mbvFA8Ew"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "If you have the Pass Royale and want to farm 300 crowns really quickly like I did, create a 3x Elixir tournament and invite all your clan mates. Make sure you all win equal amounts of time so you don&#39;t get stuck in match making. Trade crowns 3 for 2 every game.",
+          "textOriginal": "If you have the Pass Royale and want to farm 300 crowns really quickly like I did, create a 3x Elixir tournament and invite all your clan mates. Make sure you all win equal amounts of time so you don't get stuck in match making. Trade crowns 3 for 2 every game.",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 557,
+          "publishedAt": "2019-07-01T21:07:52.000Z",
+          "updatedAt": "2019-07-01T21:08:44.000Z"
+        }
+      },
+      "canReply": true,
+      "totalReplyCount": 32,
+      "isPublic": true
+    },
+    "replies": {
+      "comments": [
+        {
+          "kind": "youtube#comment",
+          "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/OCYXYH_qraztq93vbWkPxFDD8Hw\"",
+          "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wuYh6Bz82C",
+          "snippet": {
+            "authorDisplayName": "PhatTw0",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-m9AA_ESYstg/AAAAAAAAAAI/AAAAAAAAAAA/ttSnx-JlmU4/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCHsS-to9iSQ-9NDkOmz9Z3Q",
+            "authorChannelId": {
+              "value": "UCHsS-to9iSQ-9NDkOmz9Z3Q"
+            },
+            "videoId": "iBb9Io-E9A8",
+            "textDisplay": "@TrAsH baNDiT got the same problem, any news?",
+            "textOriginal": "@TrAsH baNDiT got the same problem, any news?",
+            "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-07-03T02:40:48.000Z",
+            "updatedAt": "2019-07-03T02:40:48.000Z"
+          }
+        },
+        {
+          "kind": "youtube#comment",
+          "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/U9xN4Pby2JA1DpR45zGXP7q6Ks8\"",
+          "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wttwQLbmfn",
+          "snippet": {
+            "authorDisplayName": "SETH MARCUM",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-O0D4iUtRdtE/AAAAAAAAAAI/AAAAAAAAAAA/jd5z2Otblv4/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UClKpoGwd0HnpJHQNlxMpjdw",
+            "authorChannelId": {
+              "value": "UClKpoGwd0HnpJHQNlxMpjdw"
+            },
+            "videoId": "iBb9Io-E9A8",
+            "textDisplay": "The event for the legendary fisherman comes out ether Wednesday thru Friday this week",
+            "textOriginal": "The event for the legendary fisherman comes out ether Wednesday thru Friday this week",
+            "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1,
+            "publishedAt": "2019-07-02T20:35:54.000Z",
+            "updatedAt": "2019-07-02T20:35:54.000Z"
+          }
+        },
+        {
+          "kind": "youtube#comment",
+          "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/dUaSPW8zK2mWOUeMERX-enHwbE0\"",
+          "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wtnp6lMEje",
+          "snippet": {
+            "authorDisplayName": "Tanja Eremic",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-8ruQH3zw6iw/AAAAAAAAAAI/AAAAAAAAAAA/kWKutc1nA58/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCZzDLSn28CXFSdU4niBL6eA",
+            "authorChannelId": {
+              "value": "UCZzDLSn28CXFSdU4niBL6eA"
+            },
+            "videoId": "iBb9Io-E9A8",
+            "textDisplay": "My shop is broken if that offer goes away I&#39;m braking my phone",
+            "textOriginal": "My shop is broken if that offer goes away I'm braking my phone",
+            "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 0,
+            "publishedAt": "2019-07-02T19:42:28.000Z",
+            "updatedAt": "2019-07-02T19:42:28.000Z"
+          }
+        },
+        {
+          "kind": "youtube#comment",
+          "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/DjWDof9wtlwz8PxVWxFPfcjZp4I\"",
+          "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wtbYyITUu2",
+          "snippet": {
+            "authorDisplayName": "Casper Breer",
+            "authorProfileImageUrl": "https://yt3.ggpht.com/-uoAl8_AUQyI/AAAAAAAAAAI/AAAAAAAAAAA/HRSkEyU5Td0/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+            "authorChannelUrl": "http://www.youtube.com/channel/UCnB5_JHkwc9x9bbB2uAbWSQ",
+            "authorChannelId": {
+              "value": "UCnB5_JHkwc9x9bbB2uAbWSQ"
+            },
+            "videoId": "iBb9Io-E9A8",
+            "textDisplay": "How do you create a private tournament?",
+            "textOriginal": "How do you create a private tournament?",
+            "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+            "canRate": true,
+            "viewerRating": "none",
+            "likeCount": 1,
+            "publishedAt": "2019-07-02T17:55:16.000Z",
+            "updatedAt": "2019-07-02T17:55:16.000Z"
+          }
+        }
+      ]
+    }
+  }

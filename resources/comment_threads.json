@@ -1,0 +1,822 @@
+{
+    "kind": "youtube#commentThreadListResponse",
+    "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/YWTXWGKFPoIbvRLtT85R5zOvLWs\"",
+    "nextPageToken": "QURTSl9pMGdKNzhKclRDSVUtVEQ2eHNVNlhFWGg3UllTR3J2ZER2aDNIUXlOQ3Fwb0FDSG9CSDFwWFN2SG5Da00ydFZxWkRENE5waVl2ZHhYVkRuazNMX0xyS2VOVnlRT0J2VjRJeElxQ0FxeHNiRGpRZ1FTalphVUZ6SE9VM1NPSGsyeklabGprQmY1UUZzclhLd2VQVGEzWVZDZHhr",
+    "pageInfo": {
+     "totalResults": 20,
+     "resultsPerPage": 20
+    },
+    "items": [
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/GadOd3XASoKqKL8OO_8iWg6NCj4\"",
+      "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/nWANvxxra5hHim1umoaKEUuHAks\"",
+        "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+        "snippet": {
+         "authorDisplayName": "Orange Juice Gaming",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-866YL_6XbPQ/AAAAAAAAAAI/AAAAAAAAAAA/5rl24TNayQ0/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UC3S6nIDGJ5OtpC-mbvFA8Ew",
+         "authorChannelId": {
+          "value": "UC3S6nIDGJ5OtpC-mbvFA8Ew"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "If you have the Pass Royale and want to farm 300 crowns really quickly like I did, create a 3x Elixir tournament and invite all your clan mates. Make sure you all win equal amounts of time so you don&#39;t get stuck in match making. Trade crowns 3 for 2 every game.",
+         "textOriginal": "If you have the Pass Royale and want to farm 300 crowns really quickly like I did, create a 3x Elixir tournament and invite all your clan mates. Make sure you all win equal amounts of time so you don't get stuck in match making. Trade crowns 3 for 2 every game.",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 557,
+         "publishedAt": "2019-07-01T21:07:52.000Z",
+         "updatedAt": "2019-07-01T21:08:44.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 32,
+       "isPublic": true
+      },
+      "replies": {
+       "comments": [
+        {
+         "kind": "youtube#comment",
+         "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/OCYXYH_qraztq93vbWkPxFDD8Hw\"",
+         "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wuYh6Bz82C",
+         "snippet": {
+          "authorDisplayName": "PhatTw0",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-m9AA_ESYstg/AAAAAAAAAAI/AAAAAAAAAAA/ttSnx-JlmU4/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UCHsS-to9iSQ-9NDkOmz9Z3Q",
+          "authorChannelId": {
+           "value": "UCHsS-to9iSQ-9NDkOmz9Z3Q"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "@TrAsH baNDiT got the same problem, any news?",
+          "textOriginal": "@TrAsH baNDiT got the same problem, any news?",
+          "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 0,
+          "publishedAt": "2019-07-03T02:40:48.000Z",
+          "updatedAt": "2019-07-03T02:40:48.000Z"
+         }
+        },
+        {
+         "kind": "youtube#comment",
+         "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/U9xN4Pby2JA1DpR45zGXP7q6Ks8\"",
+         "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wttwQLbmfn",
+         "snippet": {
+          "authorDisplayName": "SETH MARCUM",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-O0D4iUtRdtE/AAAAAAAAAAI/AAAAAAAAAAA/jd5z2Otblv4/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UClKpoGwd0HnpJHQNlxMpjdw",
+          "authorChannelId": {
+           "value": "UClKpoGwd0HnpJHQNlxMpjdw"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "The event for the legendary fisherman comes out ether Wednesday thru Friday this week",
+          "textOriginal": "The event for the legendary fisherman comes out ether Wednesday thru Friday this week",
+          "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 1,
+          "publishedAt": "2019-07-02T20:35:54.000Z",
+          "updatedAt": "2019-07-02T20:35:54.000Z"
+         }
+        },
+        {
+         "kind": "youtube#comment",
+         "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/dUaSPW8zK2mWOUeMERX-enHwbE0\"",
+         "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wtnp6lMEje",
+         "snippet": {
+          "authorDisplayName": "Tanja Eremic",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-8ruQH3zw6iw/AAAAAAAAAAI/AAAAAAAAAAA/kWKutc1nA58/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UCZzDLSn28CXFSdU4niBL6eA",
+          "authorChannelId": {
+           "value": "UCZzDLSn28CXFSdU4niBL6eA"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "My shop is broken if that offer goes away I&#39;m braking my phone",
+          "textOriginal": "My shop is broken if that offer goes away I'm braking my phone",
+          "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 0,
+          "publishedAt": "2019-07-02T19:42:28.000Z",
+          "updatedAt": "2019-07-02T19:42:28.000Z"
+         }
+        },
+        {
+         "kind": "youtube#comment",
+         "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/DjWDof9wtlwz8PxVWxFPfcjZp4I\"",
+         "id": "UgzZ35Ry_Nz-Qe54Jy54AaABAg.8wrNncy6W8T8wtbYyITUu2",
+         "snippet": {
+          "authorDisplayName": "Casper Breer",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-uoAl8_AUQyI/AAAAAAAAAAI/AAAAAAAAAAA/HRSkEyU5Td0/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UCnB5_JHkwc9x9bbB2uAbWSQ",
+          "authorChannelId": {
+           "value": "UCnB5_JHkwc9x9bbB2uAbWSQ"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "How do you create a private tournament?",
+          "textOriginal": "How do you create a private tournament?",
+          "parentId": "UgzZ35Ry_Nz-Qe54Jy54AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 1,
+          "publishedAt": "2019-07-02T17:55:16.000Z",
+          "updatedAt": "2019-07-02T17:55:16.000Z"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/0riYUZIvCQ90QKe55FLBfAe8p2s\"",
+      "id": "Ugwc0DR1DaStRH_UJiF4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/Dvqri7GNPeGIRpfAviB1UW_VJ8o\"",
+        "id": "Ugwc0DR1DaStRH_UJiF4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Jacob Smith",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-lRoNrlp79hk/AAAAAAAAAAI/AAAAAAAAAAA/Hax5Gt-rHeI/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCFirnjnnvIJa9Y97MUjSrVQ",
+         "authorChannelId": {
+          "value": "UCFirnjnnvIJa9Y97MUjSrVQ"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "\u003ca href=\"https://www.youtube.com/watch?v=iBb9Io-E9A8&amp;t=2m00s\"\u003e2:00\u003c/a\u003e OJ is a big fat potty mouth",
+         "textOriginal": "2:00 OJ is a big fat potty mouth",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T05:53:20.000Z",
+         "updatedAt": "2019-07-03T05:53:20.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/jb4PguwsWHgIr5wEVgVeNe_c1rk\"",
+      "id": "UgxRL59EINXKONxEVx94AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/tf0RmEgCKiOl9lxWyUh9HZxIACw\"",
+        "id": "UgxRL59EINXKONxEVx94AaABAg",
+        "snippet": {
+         "authorDisplayName": "Marshadow Pokémon",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-OQPVUP6OKvI/AAAAAAAAAAI/AAAAAAAAAAA/KphbW-YjHEM/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCYBtJWr9RUY3GWLtbdr_-2g",
+         "authorChannelId": {
+          "value": "UCYBtJWr9RUY3GWLtbdr_-2g"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "I got the tower skin at like 11 this morning",
+         "textOriginal": "I got the tower skin at like 11 this morning",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T05:33:30.000Z",
+         "updatedAt": "2019-07-03T05:33:30.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/bhQ9A_AI3DDG6BUIFkrd-JcaLvY\"",
+      "id": "Ugzw4WQ0S_wlqdyzPWJ4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/F2-dy97wG3LG_VaVO5kLyUlaXuM\"",
+        "id": "Ugzw4WQ0S_wlqdyzPWJ4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Empanada de leche",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-X0dvbg5VBLw/AAAAAAAAAAI/AAAAAAAAAAA/gbG63bzMakw/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCs016apnO92YtZ8ObRbsF2A",
+         "authorChannelId": {
+          "value": "UCs016apnO92YtZ8ObRbsF2A"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "\u003ca href=\"https://www.youtube.com/watch?v=iBb9Io-E9A8&amp;t=6m08s\"\u003e6:08\u003c/a\u003e Nita se colo a clash royale xD",
+         "textOriginal": "6:08 Nita se colo a clash royale xD",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T05:26:02.000Z",
+         "updatedAt": "2019-07-03T05:26:02.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/w1DGDGgutK9Ev8aentRthxZ3aSc\"",
+      "id": "UgzmFO5OlLjsgdfrXpN4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/OKZo7zMcdyuFhKKc7kSsKNn1M2s\"",
+        "id": "UgzmFO5OlLjsgdfrXpN4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Owen CIANTAR",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/--O9TjvmFxCU/AAAAAAAAAAI/AAAAAAAAAAA/fz3-BW_cNHY/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCqniCo-hJ_vi9fi8TmWAJIQ",
+         "authorChannelId": {
+          "value": "UCqniCo-hJ_vi9fi8TmWAJIQ"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "I got a lava hound on my rare tier ten epic chest!",
+         "textOriginal": "I got a lava hound on my rare tier ten epic chest!",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T05:16:23.000Z",
+         "updatedAt": "2019-07-03T05:16:35.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/HN1pgLVvJaM6JJSfZQVwS80byrU\"",
+      "id": "Ugz7gFql7zmNmGeeaBJ4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/y3Tp9sed3lx-FyaHyD1LRLNaX4I\"",
+        "id": "Ugz7gFql7zmNmGeeaBJ4AaABAg",
+        "snippet": {
+         "authorDisplayName": "alex calderon",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-Swg-LdM0p2Y/AAAAAAAAAAI/AAAAAAAAAAA/Sbf4lWJE2Z0/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCB0VnHHOQdeG7nvlIKUuemQ",
+         "authorChannelId": {
+          "value": "UCB0VnHHOQdeG7nvlIKUuemQ"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "Having a hard time getting my whole clan to do this",
+         "textOriginal": "Having a hard time getting my whole clan to do this",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T05:03:49.000Z",
+         "updatedAt": "2019-07-03T05:03:49.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/OMF8sQFZDpXW4ac0x1y5CDQqiPg\"",
+      "id": "Ugwsb1a6xrHpTCWsrP14AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/CVqqBUeamJIepPb6dOJdLelU2JE\"",
+        "id": "Ugwsb1a6xrHpTCWsrP14AaABAg",
+        "snippet": {
+         "authorDisplayName": "Krypt Kovak",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-PWgekf3sCmU/AAAAAAAAAAI/AAAAAAAAAAA/RoOalmblRE8/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCPJZvEgRJzM3KzVLBiIw7Zw",
+         "authorChannelId": {
+          "value": "UCPJZvEgRJzM3KzVLBiIw7Zw"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "\u003ca href=\"https://www.youtube.com/watch?v=iBb9Io-E9A8&amp;t=11m01s\"\u003e11:01\u003c/a\u003e “I’m gonna go for a snowball” \u003cbr /\u003e\u003cbr /\u003ePlaces inferno dragon🤔🧐",
+         "textOriginal": "11:01 “I’m gonna go for a snowball” \n\nPlaces inferno dragon🤔🧐",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T04:52:03.000Z",
+         "updatedAt": "2019-07-03T04:52:03.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/sl8g-GB4vBaWNYCxd5Tk2UBTy-s\"",
+      "id": "UgzHpgnIXMGS95Q5TKJ4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/hPkoUKorrTimuFtGr_sYCArNK1I\"",
+        "id": "UgzHpgnIXMGS95Q5TKJ4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Isaiah Navarro",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-0QiZEzwG0qs/AAAAAAAAAAI/AAAAAAAAAAA/ROlUvMEb0OY/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UC1WPC6pO_WQaJhMkbym3koA",
+         "authorChannelId": {
+          "value": "UC1WPC6pO_WQaJhMkbym3koA"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "King vageta: my son the planet or me\u003cbr /\u003e\u003cbr /\u003eParagus: Yes",
+         "textOriginal": "King vageta: my son the planet or me\n\nParagus: Yes",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T03:44:07.000Z",
+         "updatedAt": "2019-07-03T03:44:07.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/D3IMN716eygkqfZpFpZevaFi55k\"",
+      "id": "UgwQCSzB6ma3jtozB0V4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/KDXZcnjA3S7CcnUd4rpgelf5Ca8\"",
+        "id": "UgwQCSzB6ma3jtozB0V4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Mickey Tiggelman",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-ABaVB9Bv4Aw/AAAAAAAAAAI/AAAAAAAAAAA/_H1YDORf-e4/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UC8EM_Y0NeV3WV2lSvDhIFrw",
+         "authorChannelId": {
+          "value": "UC8EM_Y0NeV3WV2lSvDhIFrw"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "Click bait lol",
+         "textOriginal": "Click bait lol",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T03:37:06.000Z",
+         "updatedAt": "2019-07-03T03:37:06.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/apaUUpGxdiu4Qrm69ATnJbR-XtM\"",
+      "id": "UgyMKEf37LexeWDriZV4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/eraarO8pWYNA1IstAnjPYxbueOQ\"",
+        "id": "UgyMKEf37LexeWDriZV4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Devyy",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-UAK10W3LJq8/AAAAAAAAAAI/AAAAAAAAAAA/08Kv4tTrxPE/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCejkWutonqt4f8kpqm_BUrA",
+         "authorChannelId": {
+          "value": "UCejkWutonqt4f8kpqm_BUrA"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "I got all 300 crowns legit in less than 24 hours in 2v2 with my friend",
+         "textOriginal": "I got all 300 crowns legit in less than 24 hours in 2v2 with my friend",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T03:21:57.000Z",
+         "updatedAt": "2019-07-03T03:21:57.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/2S7vw7syF45X1j-6rAX3Bdax8gs\"",
+      "id": "UgzhHOLg2Cks2wBScst4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/MI7jYjDf5dFUQKd8o5QIocLPT0E\"",
+        "id": "UgzhHOLg2Cks2wBScst4AaABAg",
+        "snippet": {
+         "authorDisplayName": "icebergthegamer",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-eDV9YuidKa4/AAAAAAAAAAI/AAAAAAAAAAA/M_3FrBZBmP8/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCwspdZvDr3o1zaXhGNFDDFw",
+         "authorChannelId": {
+          "value": "UCwspdZvDr3o1zaXhGNFDDFw"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "I got to tier 30 with one of these tournaments. Sad that people will not follow the rules and try to win.",
+         "textOriginal": "I got to tier 30 with one of these tournaments. Sad that people will not follow the rules and try to win.",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T03:17:44.000Z",
+         "updatedAt": "2019-07-03T03:17:44.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/8XTAjHZGJUJe1xw18Ukk4ghQDTM\"",
+      "id": "Ugzu3fJ8UpresJEI23V4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/fDGuAGQuLTh9xd60eLMBieJtZ7A\"",
+        "id": "Ugzu3fJ8UpresJEI23V4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Jean Madera",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-rwAAOR0yeg4/AAAAAAAAAAI/AAAAAAAAAAA/vzqZxuq2Mm8/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCKZQw6pyR9EQotwClDwZ40g",
+         "authorChannelId": {
+          "value": "UCKZQw6pyR9EQotwClDwZ40g"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "WHERE IS THE ZERO LOSES CLIP OJ???? COME ON!!!",
+         "textOriginal": "WHERE IS THE ZERO LOSES CLIP OJ???? COME ON!!!",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T02:24:14.000Z",
+         "updatedAt": "2019-07-03T02:24:14.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/pwRdvMwuC-7x2mttP2G6_q5d8v8\"",
+      "id": "UgyG3yR4AjJXd4IQWZ14AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/8hEh2_BtY0a0c-ONX6wAGtL_fsg\"",
+        "id": "UgyG3yR4AjJXd4IQWZ14AaABAg",
+        "snippet": {
+         "authorDisplayName": "LagMz Playz",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-lle0-XzYlGo/AAAAAAAAAAI/AAAAAAAAAAA/8wDMBTWQwqI/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCWL3uDkwtp04uStXvbUp5WQ",
+         "authorChannelId": {
+          "value": "UCWL3uDkwtp04uStXvbUp5WQ"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "How do I create this?",
+         "textOriginal": "How do I create this?",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T01:37:52.000Z",
+         "updatedAt": "2019-07-03T01:37:52.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/B_xthE9-yJ0XN1KY2Ji9K_Atq-s\"",
+      "id": "Ugym0Iio_JkmqBndAVt4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/sevq_y2Evj0x3uIvC7h3IE7kvKM\"",
+        "id": "Ugym0Iio_JkmqBndAVt4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Sebass The Gamer",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-6DjbYEX3eg8/AAAAAAAAAAI/AAAAAAAAAAA/ViAsnn6A2ak/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCJo7sWtMpTpLBzE5M6DkIMw",
+         "authorChannelId": {
+          "value": "UCJo7sWtMpTpLBzE5M6DkIMw"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "Only idiots waste their money on video games.",
+         "textOriginal": "Only idiots waste their money on video games.",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 1,
+         "publishedAt": "2019-07-03T01:37:33.000Z",
+         "updatedAt": "2019-07-03T01:37:33.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 1,
+       "isPublic": true
+      },
+      "replies": {
+       "comments": [
+        {
+         "kind": "youtube#comment",
+         "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/aKoVvvurXpTtS6Hfitc3WsiB1R4\"",
+         "id": "Ugym0Iio_JkmqBndAVt4AaABAg.8wuRSjQ2HWA8wudawNomzq",
+         "snippet": {
+          "authorDisplayName": "Roblox Nublet",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-OUFInOfzfUE/AAAAAAAAAAI/AAAAAAAAAAA/61usL4uSpIU/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UCSiex9KkI9qDw38FsIS9LMw",
+          "authorChannelId": {
+           "value": "UCSiex9KkI9qDw38FsIS9LMw"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "That is what being a gamer is about though",
+          "textOriginal": "That is what being a gamer is about though",
+          "parentId": "Ugym0Iio_JkmqBndAVt4AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 0,
+          "publishedAt": "2019-07-03T03:32:24.000Z",
+          "updatedAt": "2019-07-03T03:32:24.000Z"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/nM4cGzNQGp3wPOYex1hUP4N1pVg\"",
+      "id": "Ugz3ctl91fxDVjcVYBZ4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/50hiF5Mi2yRvcBS693ggjrhb0Ss\"",
+        "id": "Ugz3ctl91fxDVjcVYBZ4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Youssef Nokari",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-4zb2LebzY3M/AAAAAAAAAAI/AAAAAAAAAAA/2EEbrWnsxVY/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCKYBT-TD36X--MfqPFmB9BQ",
+         "authorChannelId": {
+          "value": "UCKYBT-TD36X--MfqPFmB9BQ"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "At \u003ca href=\"https://www.youtube.com/watch?v=iBb9Io-E9A8&amp;t=16m32s\"\u003e16:32\u003c/a\u003e &quot;oh no!! I used my the log&quot;",
+         "textOriginal": "At 16:32 \"oh no!! I used my the log\"",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 1,
+         "publishedAt": "2019-07-03T01:19:08.000Z",
+         "updatedAt": "2019-07-03T01:19:08.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/fDeIbpMKuxAoTyahyxT9N9Ct3ig\"",
+      "id": "UgxL_8om2gmCkqeWstJ4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/JUYkulnPhU2hBC7IbBSo_w0P3V0\"",
+        "id": "UgxL_8om2gmCkqeWstJ4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Gavin Brown",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-jCu030LmgHg/AAAAAAAAAAI/AAAAAAAAAAA/WV5JRWaTqnc/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCO-Je4QTk-HKSoeaOOb9U6Q",
+         "authorChannelId": {
+          "value": "UCO-Je4QTk-HKSoeaOOb9U6Q"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "Thanks so much OJ this helped a lot and I got the tower skin! 👍🏻🍊👍🏻",
+         "textOriginal": "Thanks so much OJ this helped a lot and I got the tower skin! 👍🏻🍊👍🏻",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T01:12:54.000Z",
+         "updatedAt": "2019-07-03T01:12:54.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/BTMVtWgwAMXsf-bii4Oyezi2UsM\"",
+      "id": "Ugzh2xwm8mI_dRB8Fax4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/LUwl7uh0h1fxLrGOWok6rIbrQCY\"",
+        "id": "Ugzh2xwm8mI_dRB8Fax4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Shain Gouws",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-i9VfxJu3yB8/AAAAAAAAAAI/AAAAAAAAAAA/Irmo49gi9EE/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UC2auBJdzMtOLPjSmEIJFA2Q",
+         "authorChannelId": {
+          "value": "UC2auBJdzMtOLPjSmEIJFA2Q"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "Can someone explain why some cards are gold",
+         "textOriginal": "Can someone explain why some cards are gold",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T00:39:13.000Z",
+         "updatedAt": "2019-07-03T00:39:13.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 1,
+       "isPublic": true
+      },
+      "replies": {
+       "comments": [
+        {
+         "kind": "youtube#comment",
+         "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/0fFW7DhFz-lDb0JAJhuPQmznuCA\"",
+         "id": "Ugzh2xwm8mI_dRB8Fax4AaABAg.8wuKm_S5FWF8wuddIhTYSK",
+         "snippet": {
+          "authorDisplayName": "Roblox Nublet",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-OUFInOfzfUE/AAAAAAAAAAI/AAAAAAAAAAA/61usL4uSpIU/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UCSiex9KkI9qDw38FsIS9LMw",
+          "authorChannelId": {
+           "value": "UCSiex9KkI9qDw38FsIS9LMw"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "Star points",
+          "textOriginal": "Star points",
+          "parentId": "Ugzh2xwm8mI_dRB8Fax4AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 0,
+          "publishedAt": "2019-07-03T03:32:43.000Z",
+          "updatedAt": "2019-07-03T03:32:43.000Z"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/JQYFHcm1ul9AWbiLySSSamU8q8c\"",
+      "id": "UgyyIhEIwM89RtIB2iN4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/Q1BIQ1yPWNMM85M9f5xht51o4Mw\"",
+        "id": "UgyyIhEIwM89RtIB2iN4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Avinash kumar",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-Cjw6-Gw8mqw/AAAAAAAAAAI/AAAAAAAAAAA/28bXyIOKWQc/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCuYxG_tuKLmr0bfVcII69jw",
+         "authorChannelId": {
+          "value": "UCuYxG_tuKLmr0bfVcII69jw"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "If you want to see his deck then here \u003ca href=\"https://www.youtube.com/watch?v=iBb9Io-E9A8&amp;t=7m31s\"\u003e7:31\u003c/a\u003e",
+         "textOriginal": "If you want to see his deck then here 7:31",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T00:21:24.000Z",
+         "updatedAt": "2019-07-03T00:21:24.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/hphZn9RoND8DVbBV4mOmrHVJoEY\"",
+      "id": "Ugy6QX7Q8xlSzTPYjF54AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/tMWIwk5kQP1i-wM5Tv8fsyRnGVU\"",
+        "id": "Ugy6QX7Q8xlSzTPYjF54AaABAg",
+        "snippet": {
+         "authorDisplayName": "Michael Mcclanahan",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-Y9CYGFxnAzs/AAAAAAAAAAI/AAAAAAAAAAA/SaK3Lwc4NfI/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCjLEeL-9eh6aMOnNjfdihcg",
+         "authorChannelId": {
+          "value": "UCjLEeL-9eh6aMOnNjfdihcg"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "So u cheated...way to go..I hate cheaters!",
+         "textOriginal": "So u cheated...way to go..I hate cheaters!",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 0,
+         "publishedAt": "2019-07-03T00:06:05.000Z",
+         "updatedAt": "2019-07-03T00:06:05.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 1,
+       "isPublic": true
+      },
+      "replies": {
+       "comments": [
+        {
+         "kind": "youtube#comment",
+         "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/VBMqxak23RgMnBpMtQrWb3TVueA\"",
+         "id": "Ugy6QX7Q8xlSzTPYjF54AaABAg.8wuGzsDE0Pd8wudfttxmxA",
+         "snippet": {
+          "authorDisplayName": "Roblox Nublet",
+          "authorProfileImageUrl": "https://yt3.ggpht.com/-OUFInOfzfUE/AAAAAAAAAAI/AAAAAAAAAAA/61usL4uSpIU/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+          "authorChannelUrl": "http://www.youtube.com/channel/UCSiex9KkI9qDw38FsIS9LMw",
+          "authorChannelId": {
+           "value": "UCSiex9KkI9qDw38FsIS9LMw"
+          },
+          "videoId": "iBb9Io-E9A8",
+          "textDisplay": "Not really cheating",
+          "textOriginal": "Not really cheating",
+          "parentId": "Ugy6QX7Q8xlSzTPYjF54AaABAg",
+          "canRate": true,
+          "viewerRating": "none",
+          "likeCount": 0,
+          "publishedAt": "2019-07-03T03:33:04.000Z",
+          "updatedAt": "2019-07-03T03:33:04.000Z"
+         }
+        }
+       ]
+      }
+     },
+     {
+      "kind": "youtube#commentThread",
+      "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/QOP6oiNrSmFS63yA0_L2sX5-mKw\"",
+      "id": "UgyCldzUSoTH69PbEUp4AaABAg",
+      "snippet": {
+       "videoId": "iBb9Io-E9A8",
+       "topLevelComment": {
+        "kind": "youtube#comment",
+        "etag": "\"Bdx4f4ps3xCOOo1WZ91nTLkRZ_c/T9IUZRJ4peGLBypTRfY1NpFHhZQ\"",
+        "id": "UgyCldzUSoTH69PbEUp4AaABAg",
+        "snippet": {
+         "authorDisplayName": "Eathan Brentlinger",
+         "authorProfileImageUrl": "https://yt3.ggpht.com/-1KUxvGpIqCU/AAAAAAAAAAI/AAAAAAAAAAA/D9FVyhteFwY/s28-c-k-no-mo-rj-c0xffffff/photo.jpg",
+         "authorChannelUrl": "http://www.youtube.com/channel/UCM0gdgGHtcguYing1M37Wtg",
+         "authorChannelId": {
+          "value": "UCM0gdgGHtcguYing1M37Wtg"
+         },
+         "videoId": "iBb9Io-E9A8",
+         "textDisplay": "I used my the log best line ever",
+         "textOriginal": "I used my the log best line ever",
+         "canRate": true,
+         "viewerRating": "none",
+         "likeCount": 1,
+         "publishedAt": "2019-07-02T23:07:53.000Z",
+         "updatedAt": "2019-07-02T23:07:53.000Z"
+        }
+       },
+       "canReply": true,
+       "totalReplyCount": 0,
+       "isPublic": true
+      }
+     }
+    ]
+   }
+   

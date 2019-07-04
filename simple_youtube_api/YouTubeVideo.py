@@ -1,4 +1,5 @@
 from simple_youtube_api.Video import Video
+from simple_youtube_api.CommentThread import CommentThread
 from simple_youtube_api import youtube_api
 from simple_youtube_api.decorators import (require_channel_auth,
                                            require_youtube_auth,
@@ -151,6 +152,27 @@ class YouTubeVideo(Video):
         '''Removes rating
         '''
         self.rate_video("none")
+
+    def fetch_comment_threads(self, snippet=True, replies=True):
+        parts = ''
+        if snippet:
+            parts += 'snippet'
+        if replies:
+            parts += ',replies'
+
+        response = self.youtube.commentThreads().list(
+            part=parts,
+            videoId='_VB39Jo8mAQ'
+        ).execute()
+
+        comment_threads = []
+        for item in response.get('items', []):
+            comment_thread = CommentThread()
+            comment_thread = youtube_api.parse_comment_thread(comment_thread,
+                                                              item)
+            comment_threads.append(comment_thread)
+
+        return comment_threads
 
     def download(self):
         '''Downloads video
