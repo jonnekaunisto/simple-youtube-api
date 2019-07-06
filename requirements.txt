@@ -44,7 +44,6 @@ requests==2.21.0
 requests-toolbelt==0.9.1
 rsa==4.0
 rstvalidator==2019.3.22
-simple-youtube-api==0.2.0
 six==1.12.0
 snowballstemmer==1.2.1
 Sphinx==2.0.1
