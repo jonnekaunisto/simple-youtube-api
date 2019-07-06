@@ -1,4 +1,5 @@
 from simple_youtube_api.Channel import Channel
+from simple_youtube_api.Channel import generate_upload_body
 from simple_youtube_api.LocalVideo import LocalVideo
 from simple_youtube_api import youtube_api
 
@@ -35,6 +36,8 @@ def test_local_video_regular_function():
     for privacy_status in privacy_statuses:
         video.set_privacy_status(privacy_status)
         video.get_privacy_status() == privacy_status
+
+    assert generate_upload_body(video)
 
 
 def test_local_video_negative_function():
@@ -146,6 +149,8 @@ def test_local_video_constructor():
 
     video.set_thumbnail_path(file_path)
     assert video.get_thumbnail_path() == file_path
+
+    str(video)
 
 
 if __name__ == "__main__":

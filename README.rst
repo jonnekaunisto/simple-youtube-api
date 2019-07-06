@@ -74,7 +74,7 @@ Run the python command
 
 .. code:: bash 
 
-   python pytest
+   python setup.py test
 
 References
 ----------

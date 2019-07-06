@@ -20,3 +20,6 @@ class Comment(object):
         self.moderation_status = None
         self.published_at = None
         self.updated_at = None
+
+    def __str__(self):
+        return self.text_original

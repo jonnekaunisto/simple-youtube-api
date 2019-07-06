@@ -12,8 +12,25 @@ class LocalVideo(Video):
     file_path:
       Specifies which file is going to be uploaded
 
+    title:
+      Specifies the title for the video
+
+    description:
+      Specifies the description for the video
+
+    tags:
+      Specifies the tags for the video
+
+    categories:
+      Specifies the category for the video
+
     publish_at:
-      Specifies what time the video is going to be published
+      Specifies when the video will be published
+      (the video has to be private for this) Has to be in
+      (YYYY-MM-DDThh:mm:ss.sZ) format
+
+    thumbnail_path:
+      Specifies which file is going to be set as thumbnail
 
     '''
     def __init__(self, file_path, title="", description="", tags=[],
@@ -59,7 +76,7 @@ class LocalVideo(Video):
         '''
         return self.publish_at
 
-    def set_thumbnail_path(self, thumbnail_path):
+    def set_thumbnail_path(self, thumbnail_path: str):
         ''' Specifies which image file is going to be uploaded
         '''
         if thumbnail_path is not None and os.path.isfile(thumbnail_path):
@@ -67,7 +84,7 @@ class LocalVideo(Video):
         else:
             raise Exception('Not a valid file path: ' + str(thumbnail_path))
 
-    def get_thumbnail_path(self):
+    def get_thumbnail_path(self) -> str:
         ''' Returns the thumbnail path
         '''
         return self.thumbnail_path

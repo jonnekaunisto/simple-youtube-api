@@ -6,6 +6,8 @@ from simple_youtube_api.decorators import (require_channel_auth,
                                            require_channel_or_youtube_auth)
 
 from pytube import YouTube as pytube_YouTube
+import typing
+from typing import List, Union
 
 import os.path
 
@@ -123,8 +125,8 @@ class YouTubeVideo(Video):
         print(response)
 
     @require_channel_auth
-    def rate_video(self, rating):
-        '''Rates video
+    def rate_video(self, rating: str):
+        '''Rates video, valid options are like, dislike and none
         '''
         if rating in ["like", "dislike", "none"]:
             request = self.channel.videos().rate(
@@ -153,7 +155,8 @@ class YouTubeVideo(Video):
         '''
         self.rate_video("none")
 
-    def fetch_comment_threads(self, snippet=True, replies=True):
+    def fetch_comment_threads(self, snippet=True, replies=True)\
+            -> CommentThread:
         parts = ''
         if snippet:
             parts += 'snippet'
@@ -174,8 +177,12 @@ class YouTubeVideo(Video):
 
         return comment_threads
 
-    def download(self):
+    def download(self, output_path=None, filename=None, filename_prefix=None):
         '''Downloads video
         '''
         video_url = 'https://youtube.com/watch?v=' + self.video_id
-        pytube_YouTube(video_url).streams.first().download()
+        pytube_YouTube(video_url).streams.first().download(
+            output_path=output_path,
+            filename=filename,
+            filename_prefix=filename_prefix
+        )

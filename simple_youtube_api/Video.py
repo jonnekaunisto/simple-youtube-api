@@ -119,8 +119,7 @@ class Video(object):
            and category in YOUTUBE_CATEGORIES.values():
             self.category = category
 
-        elif type(category) == str \
-             and category.lower() in YOUTUBE_CATEGORIES.keys():
+        elif cat_type == str and category.lower() in YOUTUBE_CATEGORIES.keys():
             self.category = YOUTUBE_CATEGORIES[category]
 
         else:
@@ -202,3 +201,7 @@ class Video(object):
         ''' Returns if the video's public statistics are viewable
         '''
         return self.public_stats_viewable
+
+    def __str__(self):
+        form = 'Title: {0}\nDescription: {1}\n Tags:{2}'
+        return form.format(self.title, self.description, self.tags)

@@ -99,7 +99,6 @@ def parse_comment_thread(comment_thread, data):
 def parse_comment(comment, data):
     comment.etag = data['etag']
     comment.id = data['id']
-    print(data)
     # snippet
     snippet_data = data.get('snippet', False)
     if snippet_data:

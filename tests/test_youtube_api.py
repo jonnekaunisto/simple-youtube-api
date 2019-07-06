@@ -31,6 +31,8 @@ def test_parse_comment_thread():
             snippet_data['totalReplyCount']
         assert comment_thread.is_public == snippet_data['isPublic']
 
+    assert str(comment_thread)
+
 
 def test_parse_comment():
     data_path = os.path.dirname(os.path.abspath(__file__)) + os.sep +\
@@ -65,6 +67,8 @@ def test_parse_comment():
         assert comment.moderation_status == snippet_data.get('moderationStatus', None)
         assert comment.published_at == snippet_data['publishedAt']
         assert comment.updated_at == snippet_data['updatedAt']
+
+    assert str(comment)
 
 
 if __name__ == "__main__":
