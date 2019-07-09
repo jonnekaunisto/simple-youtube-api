@@ -202,6 +202,21 @@ class Video(object):
         '''
         return self.public_stats_viewable
 
+    # TODO enforce (YYYY-MM-DDThh:mm:ss.sZ) format
+    def set_publish_at(self, time: str):
+        ''' Sets time that video is going to be published at in
+        (YYYY-MM-DDThh:mm:ss.sZ) format
+        '''
+        if type(time) == str:
+            self.publish_at = time
+        else:
+            raise Exception('Not a valid publish time: ' + str(time))
+
+    def get_publish_at(self) -> str:
+        ''' Returns what time the video is going to be published
+        '''
+        return self.publish_at
+
     def __str__(self):
         form = 'Title: {0}\nDescription: {1}\n Tags:{2}'
         return form.format(self.title, self.description, self.tags)

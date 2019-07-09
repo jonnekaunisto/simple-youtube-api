@@ -7,4 +7,4 @@ channel.login("client_secret.json", "credentials.storage")
 videos = channel.fetch_uploads()
 
 for video in videos:
-    print(video)
+    print(video.get_title())

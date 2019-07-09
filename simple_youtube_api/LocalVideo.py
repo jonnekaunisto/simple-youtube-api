@@ -61,21 +61,6 @@ class LocalVideo(Video):
         '''
         return self.file_path
 
-    # TODO enforce (YYYY-MM-DDThh:mm:ss.sZ) format
-    def set_publish_at(self, time: str):
-        ''' Sets time that video is going to be published at in
-        (YYYY-MM-DDThh:mm:ss.sZ) format
-        '''
-        if type(time) == str:
-            self.publish_at = time
-        else:
-            raise Exception('Not a valid publish time: ' + str(time))
-
-    def get_publish_at(self) -> str:
-        ''' Returns what time the video is going to be published
-        '''
-        return self.publish_at
-
     def set_thumbnail_path(self, thumbnail_path: str):
         ''' Specifies which image file is going to be uploaded
         '''
