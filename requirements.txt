@@ -39,6 +39,7 @@ pytest==4.3.0
 pytest-cov==2.6.1
 pytube==9.5.1
 pytz==2019.1
+progressbar2==3.42.0
 readme-renderer==24.0
 requests==2.21.0
 requests-toolbelt==0.9.1

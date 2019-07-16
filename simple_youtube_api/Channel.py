@@ -8,6 +8,9 @@ import argparse
 import http.client
 import httplib2
 import typing
+import os
+import sys
+import progressbar
 from typing import List
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
@@ -171,14 +174,27 @@ def generate_upload_body(video):
     return body
 
 
+def calculate_chunk_size(video_path):
+    video_size = os.path.getsize(video_path)
+    print("video size: " + str(video_size))
+
+    if video_size > 1000000:
+        chunk_size = 1000000
+    else:
+        chunk_size = -1
+
+    print("chunk size:" + str(chunk_size))
+    return chunk_size
+
+
 def initialize_upload(channel, video):
     body = generate_upload_body(video)
-
+    chunk_size = calculate_chunk_size(video.get_file_path())
     # Call the API's videos.insert method to create and upload the video.
     insert_request = channel.videos().insert(
         part=','.join(list(body.keys())),
         body=body,
-        media_body=MediaFileUpload(video.get_file_path(), chunksize=-1,
+        media_body=MediaFileUpload(video.get_file_path(), chunksize=chunk_size,
                                    resumable=True)
     )
 
@@ -195,15 +211,26 @@ def resumable_upload(request):
     retry = 0
     while response is None:
         try:
-            print('Uploading file...')
-            status, response = request.next_chunk()
-            if response is not None:
-                if 'id' in response:
-                    print(str(response))
-                    youtube_video = YouTubeVideo(response['id'])
-                else:
-                    exit('The upload failed with an unexpected response: %s' %
-                         response)
+            widgets = [
+                'Upload: ', progressbar.Percentage(),
+                ' ', progressbar.Bar(marker=progressbar.RotatingMarker()),
+                ' ', progressbar.ETA(),
+                ' ', progressbar.FileTransferSpeed(),
+            ]
+            bar = progressbar.ProgressBar(widgets=widgets, max_value=1000).start()
+
+            response = None
+            while response is None:
+                status, response = request.next_chunk(num_retries=4)
+                if status:
+                    bar.update(100 * 10 * status.progress() + 1)
+                    #print("Upload %d%% complete."
+                    #      % int(status.progress() * 100))
+            bar.finish()
+            if 'id' in response:
+                youtube_video = YouTubeVideo(response['id'])
+            else:
+                exit('The upload failed unexpectedly: %s' % response)
         except HttpError as e:
             if e.resp.status in RETRIABLE_STATUS_CODES:
                 error = 'A retriable HTTP error %d occurred:\n%s' %\

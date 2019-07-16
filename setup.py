@@ -55,7 +55,8 @@ requires = [
     "six>=1.12.0",
     "uritemplate>=3.0.0",
     "pytube>=9.5.1",
-    "decorator>=4.4.0"
+    "decorator>=4.4.0",
+    "progressbar2>=3.42.0"
 ]
 
 test_reqs = [
