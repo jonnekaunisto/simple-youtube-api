@@ -36,11 +36,9 @@ def autogenerate_parse(schema_json, name):
 
         if key == 'kind':
             continue
+
         if type(schema_json[key]) is not dict:
             final_string += '{3}{0}.{2} = data[\'{1}\']\n'.format(name, key, py_key, 4*' ')
-            continue
-
-        if not contains_primitive_keys(key_json):
             continue
 
         final_string += '\n'
@@ -53,26 +51,26 @@ def autogenerate_parse(schema_json, name):
                 continue
             py_key2 = convert_var(key2)
             key2_json = key_json[key2]
-            final_string += '{5}{0}.{4} = {3}_data[\'{1}\'].get(\'{2}\', None)\n'.format(name, key, key2, py_key, py_key2, 8*' ')
+            final_string += '{4}{0}.{3} = {2}_data.get(\'{1}\', None)\n'.format(name, key2, py_key, py_key2, 8*' ')
 
     final_string += '\n'
     final_string += '{1}return {0}'.format(name, 4*' ')
 
     myfile.write(final_string)
     myfile.close()
-    print(final_string)
+    # print(final_string)
 
 
 def convert_var(var_name):
     return re.sub('(?<!^)(?=[A-Z])', '_', var_name).lower()
 
 
-def contains_primitive_keys(json_dict):
+def contains_only_primitive_keys(json_dict):
     for key in json_dict.keys():
-        if type(json_dict[key]) is dict:
-            return False
-
-    return True
+        t = type(json_dict[key])
+        if t is not dict:
+            return True
+    return False
 
 
 if __name__ == '__main__':

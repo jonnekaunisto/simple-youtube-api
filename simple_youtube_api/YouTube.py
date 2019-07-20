@@ -53,14 +53,10 @@ class YouTube(object):
         videos = []
         for search_result in search_response.get('items', []):
             if search_result['id']['kind'] == 'youtube#video':
-                video_id = search_result['id']['videoId']
-                video_title = search_result['snippet']['title']
-                video_description = search_result['snippet']['description']
+                search_result['id'] = search_result['id']['videoId']
 
-                video = YouTubeVideo(video_id, youtube=self.youtube)
-                video.title = video_title
-                video.description = video_description
-
+                video = YouTubeVideo(youtube=self.youtube)
+                video = youtube_api.parse_youtube_video(video, search_result)
                 videos.append(video)
 
         return videos

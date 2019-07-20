@@ -23,7 +23,7 @@ def test_youtube_video_constructor():
     youtube = YouTube()
     youtube.login(developer_key)
 
-    video = YouTubeVideo(video_id, youtube=youtube.get_login())
+    video = YouTubeVideo(id=video_id, youtube=youtube.get_login())
 
     video.get_video_id()
 
@@ -60,7 +60,7 @@ def test_youtube_video_rating():
 
     channel.login(CLIENT_SECRET_NAME, CREDENTIALS)
 
-    video = YouTubeVideo(video_id, channel=channel.get_login())
+    video = YouTubeVideo(id=video_id, channel=channel.get_login())
 
     video.dislike()
     video.remove_rating()
@@ -103,7 +103,7 @@ def test_youtube_video_fetch():
     youtube = YouTube()
     youtube.login(developer_key)
 
-    video = YouTubeVideo(video_id, youtube=youtube.get_login())
+    video = YouTubeVideo(id=video_id, youtube=youtube.get_login())
     video.fetch(all_parts=True)
 
 
@@ -114,7 +114,7 @@ def test_youtube_video_fetch_comment_threads():
     youtube = YouTube()
     youtube.login(developer_key)
 
-    video = YouTubeVideo(YOUTUBE_VIDEO_ID, youtube=youtube.get_login())
+    video = YouTubeVideo(id=YOUTUBE_VIDEO_ID, youtube=youtube.get_login())
 
     video.fetch_comment_threads()
 

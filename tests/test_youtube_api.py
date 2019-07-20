@@ -1,5 +1,6 @@
 from simple_youtube_api.Comment import Comment
 from simple_youtube_api.CommentThread import CommentThread
+from simple_youtube_api.YouTubeVideo import YouTubeVideo
 from simple_youtube_api import youtube_api
 
 import pytest
@@ -7,6 +8,23 @@ import os
 import json
 
 data_dir = 'test_data'
+
+
+def test_parse_video():
+    data_path = os.path.dirname(os.path.abspath(__file__)) + os.sep +\
+                                data_dir + os.sep + "video.json"
+
+    with open(data_path, 'r') as f:
+        data = json.loads(f.read())
+
+    video = YouTubeVideo()
+    video = youtube_api.parse_youtube_video(video, data)
+
+    assert video.id == data['id']
+    assert video.title == data['snippet']['title']
+    assert video.definition == data['contentDetails']['definition']
+    assert video.license == data['status']['license']
+    assert video.view_count == data['statistics']['viewCount']
 
 
 def test_parse_comment_thread():

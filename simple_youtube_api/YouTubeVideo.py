@@ -15,10 +15,10 @@ import os.path
 # TODO add more functions
 class YouTubeVideo(Video):
 
-    def __init__(self, video_id, youtube=None, channel=None):
+    def __init__(self, id=None, youtube=None, channel=None):
         Video.__init__(self)
 
-        self.video_id = video_id
+        self.id = id
         self.youtube = youtube
         self.channel = channel
 
@@ -38,7 +38,7 @@ class YouTubeVideo(Video):
     def get_video_id(self):
         '''Returns video id
         '''
-        return self.video_id
+        return self.id
 
     def get_channel_id(self):
         '''Returns channel id
@@ -84,11 +84,14 @@ class YouTubeVideo(Video):
 
         search_response = self.youtube.videos().list(
           part=part,
-          id=self.video_id
+          id=self.id
         ).execute()
 
         for search_result in search_response.get('items', []):
             if search_result['kind'] == 'youtube#video':
+                video = YouTubeVideo()
+                youtube_api.parse_youtube_video(self, search_result)
+                '''
                 video_id = search_result['id']
                 if snippet or all_parts:
                     snippet_result = search_result['snippet']
@@ -106,6 +109,7 @@ class YouTubeVideo(Video):
                     self.privacy_status = status_result['privacyStatus']
                     self.public_stats_viewable = \
                         status_result['publicStatsViewable']
+                '''
 
     # TODO Finish
     @require_channel_auth
@@ -180,7 +184,7 @@ class YouTubeVideo(Video):
     def download(self, output_path=None, filename=None, filename_prefix=None):
         '''Downloads video
         '''
-        video_url = 'https://youtube.com/watch?v=' + self.video_id
+        video_url = 'https://youtube.com/watch?v=' + self.id
         pytube_YouTube(video_url).streams.first().download(
             output_path=output_path,
             filename=filename,

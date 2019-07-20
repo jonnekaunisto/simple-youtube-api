@@ -176,14 +176,13 @@ def generate_upload_body(video):
 
 def calculate_chunk_size(video_path):
     video_size = os.path.getsize(video_path)
-    print("video size: " + str(video_size))
+    print("Video size: " + str(video_size) + " bytes")
 
     if video_size > 1000000:
         chunk_size = 1000000
     else:
         chunk_size = -1
 
-    print("chunk size:" + str(chunk_size))
     return chunk_size
 
 
@@ -217,20 +216,19 @@ def resumable_upload(request):
                 ' ', progressbar.ETA(),
                 ' ', progressbar.FileTransferSpeed(),
             ]
-            bar = progressbar.ProgressBar(widgets=widgets, max_value=1000).start()
+            bar = progressbar.ProgressBar(widgets=widgets,
+                                          max_value=1000).start()
 
             response = None
             while response is None:
                 status, response = request.next_chunk(num_retries=4)
                 if status:
                     bar.update(100 * 10 * status.progress() + 1)
-                    #print("Upload %d%% complete."
-                    #      % int(status.progress() * 100))
             bar.finish()
             if 'id' in response:
                 youtube_video = YouTubeVideo(response['id'])
             else:
-                exit('The upload failed unexpectedly: %s' % response)
+                raise Exception('The upload failed unexpectedly: ' + response)
         except HttpError as e:
             if e.resp.status in RETRIABLE_STATUS_CODES:
                 error = 'A retriable HTTP error %d occurred:\n%s' %\

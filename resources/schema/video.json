@@ -230,10 +230,5 @@
       "concurrentViewers": "unsigned long",
       "activeLiveChatId": "string"
     },
-    "localizations": {
-      "(key)": {
-        "title": "string",
-        "description": "string"
-      }
-    }
+    "localizations": "dict"
   }
