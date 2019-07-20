@@ -84,5 +84,20 @@
         "topicCategories": [
             "https://en.wikipedia.org/wiki/Entertainment"
         ]
+    },
+    "recordingDetails": {
+        "TODO": true
+    },
+    "fileDetails": {
+        "TODO": true
+    },
+    "processingDetails": {
+        "TODO": true
+    },
+    "suggestions": {
+        "TODO": true
+    },
+    "liveStreamingDetails": {
+        "TODO": true
     }
 }
