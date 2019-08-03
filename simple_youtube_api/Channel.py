@@ -134,7 +134,7 @@ class Channel(object):
         self.channel.thumbnails().set(
             videoId=video_id,
             media_body=thumbnail_path
-        )
+        ).execute()
 
 
 def generate_upload_body(video):
