@@ -181,7 +181,8 @@ class YouTubeVideo(Video):
 
         return comment_threads
 
-    def download(self, output_path=None, filename=None, filename_prefix=None):
+    # TODO: debug issue with default filename
+    def download(self, output_path=None, filename="default_name", filename_prefix=None):
         '''Downloads video
         '''
         video_url = 'https://youtube.com/watch?v=' + self.id
