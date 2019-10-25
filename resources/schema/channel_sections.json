@@ -1,0 +1,40 @@
+{
+    "kind": "youtube#channelSection",
+    "etag": "etag",
+    "id": "string",
+    "snippet": {
+      "type": "string",
+      "style": "string",
+      "channelId": "string",
+      "title": "string",
+      "position": "unsigned integer",
+      "defaultLanguage": "string",
+      "localized": {
+        "title": "string"
+      }
+    },
+    "contentDetails": {
+      "playlists": [
+        "string"
+      ],
+      "channels": [
+        "string"
+      ]
+    },
+    "localizations": {
+      "(key)": {
+        "title": "string"
+      }
+    },
+    "targeting": {
+      "languages": [
+        "string"
+      ],
+      "regions": [
+        "string"
+      ],
+      "countries": [
+        "string"
+      ]
+    }
+  }
