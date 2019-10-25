@@ -1,0 +1,42 @@
+{
+    "kind": "youtube#playlist",
+    "etag": "etag",
+    "id": "string",
+    "snippet": {
+      "publishedAt": "datetime",
+      "channelId": "string",
+      "title": "string",
+      "description": "string",
+      "thumbnails": {
+        "(key)": {
+          "url": "string",
+          "width": "unsigned integer",
+          "height": "unsigned integer"
+        }
+      },
+      "channelTitle": "string",
+      "tags": [
+        "string"
+      ],
+      "defaultLanguage": "string",
+      "localized": {
+        "title": "string",
+        "description": "string"
+      }
+    },
+    "status": {
+      "privacyStatus": "string"
+    },
+    "contentDetails": {
+      "itemCount": "unsigned integer"
+    },
+    "player": {
+      "embedHtml": "string"
+    },
+    "localizations": {
+      "(key)": {
+        "title": "string",
+        "description": "string"
+      }
+    }
+  }
