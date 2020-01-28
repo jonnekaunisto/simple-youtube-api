@@ -54,7 +54,7 @@ requires = [
     "rsa>=4.0",
     "six>=1.12.0",
     "uritemplate>=3.0.0",
-    "pytube>=9.5.1",
+    "pytube3>=9.5.11",
     "decorator>=4.4.0",
     "progressbar2>=3.42.0"
 ]
