@@ -65,7 +65,7 @@ test_reqs = [
         'coveralls>=1.1,<2.0',
         'docutils>=0.14',
         'rstvalidator'
-    ]
+]
 
 with open('README.rst', 'r', 'utf-8') as fh:
     long_description = fh.read()
