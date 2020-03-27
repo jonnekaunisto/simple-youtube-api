@@ -53,11 +53,11 @@ requires = [
 ]
 
 test_reqs = [
-        'pytest-cov>=2.5.1',
-        'pytest>=3.0.0',
-        'coveralls>=1.1,<2.0',
-        'docutils>=0.14',
-        'rstvalidator'
+    'pytest-cov>=2.5.1',
+    'pytest>=3.0.0',
+    'coveralls>=1.1,<2.0',
+    'docutils>=0.14',
+    'rstvalidator'
 ]
 
 with open('README.rst', 'r', 'utf-8') as fh:

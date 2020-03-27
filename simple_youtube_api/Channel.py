@@ -126,6 +126,7 @@ class Channel(object):
 
         return youtube_video
 
+    #TODO: check that thumbnail path is valid
     def set_video_thumbnail(self, video, thumbnail_path):
         ''' Sets thumbnail for video
         '''

@@ -11,9 +11,8 @@ Reference manual for Simple YouTube API
    :maxdepth: 3
 
    Video
-   LocalVideo
-   YouTubeVideo
    Channel
+   Comment
 
 
 
