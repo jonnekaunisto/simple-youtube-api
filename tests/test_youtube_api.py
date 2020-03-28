@@ -35,7 +35,7 @@ def test_parse_comment_thread():
         data = json.loads(f.read())
 
     comment_thread = CommentThread()
-    comment_thread = youtube_api.parse_comment_thread(comment_thread, data)
+    comment_thread.from_dict(data)
 
     assert comment_thread.id == data['id']
 
@@ -60,7 +60,7 @@ def test_parse_comment():
         data = json.loads(f.read())
 
     comment = Comment()
-    comment = youtube_api.parse_comment(comment, data)
+    comment.from_dict(data)
 
     assert comment.etag == data['etag']
     assert comment.id == data['id']
@@ -81,7 +81,7 @@ def test_parse_comment():
         assert comment.parent_id == snippet_data.get('parentId', None)
         assert comment.can_rate == snippet_data['canRate']
         assert comment.viewer_rating == snippet_data['viewerRating']
-        assert comment.like_counter == snippet_data['likeCount']
+        assert comment.like_count == snippet_data['likeCount']
         assert comment.moderation_status == snippet_data.get('moderationStatus', None)
         assert comment.published_at == snippet_data['publishedAt']
         assert comment.updated_at == snippet_data['updatedAt']

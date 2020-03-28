@@ -135,57 +135,6 @@ def parse_youtube_video(video, data):
     return video
 
 
-def parse_comment_thread(comment_thread, data):
-    comment_thread.id = data['id']
-
-    # snippet
-    snippet_data = data.get('snippet', False)
-    if snippet_data:
-        comment_thread.channel_id = snippet_data.get('channelId', None)
-        comment_thread.video_id = snippet_data.get('videoId', None)
-        comment = Comment()
-        comment_data = snippet_data['topLevelComment']
-        comment_thread.top_level_comment = parse_comment(comment, comment_data)
-        comment_thread.can_reply = snippet_data['canReply']
-        comment_thread.total_reply_count = snippet_data['totalReplyCount']
-        comment_thread.is_public = snippet_data['isPublic']
-
-    replies_data = data.get('replies', False)
-    if replies_data:
-        comment_thread.replies = []
-        for reply_data in replies_data.get('comments', []):
-            comment = parse_comment(Comment(), reply_data)
-            comment_thread.replies.append(comment)
-
-    return comment_thread
-
-
-def parse_comment(comment, data):
-    comment.etag = data['etag']
-    comment.id = data['id']
-    # snippet
-    snippet_data = data.get('snippet', False)
-    if snippet_data:
-        comment.author_display_name = snippet_data['authorDisplayName']
-        comment.author_profile_image_url = \
-            snippet_data['authorProfileImageUrl']
-        comment.author_channel_url = snippet_data['authorChannelUrl']
-        comment.author_channel_id = snippet_data['authorChannelId']['value']
-        comment.channel_id = snippet_data.get('channelId', None)
-        comment.video_id = snippet_data.get('videoId', None)
-        comment.text_display = snippet_data['textDisplay']
-        comment.text_original = snippet_data['textOriginal']
-        comment.parent_id = snippet_data.get('parentId', None)
-        comment.can_rate = snippet_data['canRate']
-        comment.viewer_rating = snippet_data['viewerRating']
-        comment.like_counter = snippet_data['likeCount']
-        comment.moderation_status = snippet_data.get('moderationStatus', None)
-        comment.published_at = snippet_data['publishedAt']
-        comment.updated_at = snippet_data['updatedAt']
-
-    return comment
-
-
 def init_categories(data):
     with open(DATA_PATH + 'categories.pickle', 'rb') as handle:
         return pickle.load(handle)
