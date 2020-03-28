@@ -41,6 +41,16 @@ class PyTest(TestCommand):
 cmdclass = {'test': PyTest}  # Define custom commands.
 
 
+if "build_docs" in sys.argv:
+    try:
+        from sphinx.setup_command import BuildDoc
+    except ImportError:
+        raise ImportError(
+            "Running the documenation builds has additional"
+            " dependencies. Please run (pip install pyser[docs])"
+        )
+    cmdclass["build_docs"] = BuildDoc
+
 # Define the requirements for specific execution needs.
 requires = [
     "google-api-python-client>=1.7.7",
@@ -49,7 +59,8 @@ requires = [
     "oauth2client>=4.1.3",
     "pytube3>=9.5.11",
     "decorator>=4.4.0",
-    "progressbar2>=3.42.0"
+    "progressbar2>=3.42.0",
+    "pyser>=0.1.3"
 ]
 
 test_reqs = [
@@ -59,6 +70,16 @@ test_reqs = [
     'docutils>=0.14',
     'rstvalidator'
 ]
+
+doc_reqs = [
+    'sphinx_rtd_theme>=0.1.10b0S',
+    'Sphinx>=1.5.2'
+]
+
+extra_reqs = {
+    "doc": doc_reqs,
+    "test": test_reqs
+}
 
 with open('README.rst', 'r', 'utf-8') as fh:
     long_description = fh.read()
@@ -82,4 +103,5 @@ setup(
     ],
     install_requires=requires,
     tests_require=test_reqs,
+    extras_require=extra_reqs,
 )

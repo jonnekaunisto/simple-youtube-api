@@ -11,6 +11,8 @@ from typing import List, Union
 
 import os.path
 
+import json
+
 
 # TODO add more functions
 class YouTubeVideo(Video):
@@ -175,8 +177,7 @@ class YouTubeVideo(Video):
         comment_threads = []
         for item in response.get('items', []):
             comment_thread = CommentThread()
-            comment_thread = youtube_api.parse_comment_thread(comment_thread,
-                                                              item)
+            comment_thread.from_dict(item)
             comment_threads.append(comment_thread)
 
         return comment_threads
