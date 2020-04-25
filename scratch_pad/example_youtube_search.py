@@ -1,7 +1,7 @@
 from simple_youtube_api.YouTube import YouTube
 
-with open('developer_key', 'r') as myfile:
-    data = myfile.read().replace('\n', '')
+with open("developer_key", "r") as myfile:
+    data = myfile.read().replace("\n", "")
 
 developer_key = data
 

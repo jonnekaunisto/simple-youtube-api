@@ -25,13 +25,17 @@ httplib2.RETRIES = 1
 MAX_RETRIES = 10
 
 # Always retry when these exceptions are raised.
-RETRIABLE_EXCEPTIONS = (httplib2.HttpLib2Error, IOError,
-                        http.client.NotConnected, http.client.IncompleteRead,
-                        http.client.ImproperConnectionState,
-                        http.client.CannotSendRequest,
-                        http.client.CannotSendHeader,
-                        http.client.ResponseNotReady,
-                        http.client.BadStatusLine)
+RETRIABLE_EXCEPTIONS = (
+    httplib2.HttpLib2Error,
+    IOError,
+    http.client.NotConnected,
+    http.client.IncompleteRead,
+    http.client.ImproperConnectionState,
+    http.client.CannotSendRequest,
+    http.client.CannotSendHeader,
+    http.client.ResponseNotReady,
+    http.client.BadStatusLine,
+)
 
 
 # Always retry when an apiclient.errors.HttpError with one of these status
@@ -39,13 +43,13 @@ RETRIABLE_EXCEPTIONS = (httplib2.HttpLib2Error, IOError,
 RETRIABLE_STATUS_CODES = [500, 502, 503, 504]
 
 
-API_SERVICE_NAME = 'youtube'
-API_VERSION = 'v3'
+API_SERVICE_NAME = "youtube"
+API_VERSION = "v3"
 
 
 # add functions
 class Channel(object):
-    '''
+    """
     Class for authorizing changes to channel
 
     Attributes
@@ -53,14 +57,19 @@ class Channel(object):
 
     channel
       login object to the channel
-     '''
+     """
+
     def __init__(self):
         self.channel = None
 
-    def login(self, client_secret_path: str, storage_path: str,
-              scope=youtube_api.SCOPES):
-        ''' Logs into the channel with credentials
-        '''
+    def login(
+        self,
+        client_secret_path: str,
+        storage_path: str,
+        scope=youtube_api.SCOPES,
+    ):
+        """ Logs into the channel with credentials
+        """
         STORAGE = Storage(storage_path)
         credentials = STORAGE.get()
 
@@ -68,38 +77,38 @@ class Channel(object):
             flow = flow_from_clientsecrets(client_secret_path, scope=scope)
             http = httplib2.Http()
             credentials = run_flow(flow, STORAGE, http=http)
-        self.channel = build(API_SERVICE_NAME, API_VERSION,
-                             credentials=credentials)
+        self.channel = build(
+            API_SERVICE_NAME, API_VERSION, credentials=credentials
+        )
 
     def get_login(self):
-        ''' Returns the login object
-        '''
+        """ Returns the login object
+        """
         return self.channel
 
     def fetch_uploads(self) -> List[YouTubeVideo]:
-        ''' Fetches uploaded videos from channel
-        '''
-        response = self.channel.channels().list(
-            mine=True,
-            part='contentDetails'
-        ).execute()
-        content_details = response['items'][0]['contentDetails']
-        uploads_playlist_id = content_details['relatedPlaylists']['uploads']
+        """ Fetches uploaded videos from channel
+        """
+        response = (
+            self.channel.channels()
+            .list(mine=True, part="contentDetails")
+            .execute()
+        )
+        content_details = response["items"][0]["contentDetails"]
+        uploads_playlist_id = content_details["relatedPlaylists"]["uploads"]
 
         playlistitems_list_request = self.channel.playlistItems().list(
-            playlistId=uploads_playlist_id,
-            part='snippet',
-            maxResults=5
+            playlistId=uploads_playlist_id, part="snippet", maxResults=5
         )
 
         videos = []
         while playlistitems_list_request:
             playlistitems_list_response = playlistitems_list_request.execute()
             # Print information about each video.
-            for playlist_item in playlistitems_list_response.get('items', []):
-                video_title = playlist_item['snippet']['title']
-                video_id = playlist_item['snippet']['resourceId']['videoId']
-                video_description = playlist_item['snippet']['description']
+            for playlist_item in playlistitems_list_response.get("items", []):
+                video_title = playlist_item["snippet"]["title"]
+                video_id = playlist_item["snippet"]["resourceId"]["videoId"]
+                video_description = playlist_item["snippet"]["description"]
 
                 video = YouTubeVideo(video_id, channel=self.channel)
                 video.title = video_title
@@ -107,16 +116,16 @@ class Channel(object):
 
                 videos.append(video)
 
-                playlistitems_list_request = self.channel.playlistItems().\
-                    list_next(playlistitems_list_request,
-                              playlistitems_list_response)
+                playlistitems_list_request = self.channel.playlistItems().list_next(
+                    playlistitems_list_request, playlistitems_list_response
+                )
 
         return videos
 
     # TODO add more metadata to returned video
     def upload_video(self, video: LocalVideo):
-        ''' Uploads video to authorized channel
-        '''
+        """ Uploads video to authorized channel
+        """
         youtube_video = initialize_upload(self.channel, video)
 
         youtube_video.channel = self.get_login()
@@ -126,15 +135,14 @@ class Channel(object):
 
         return youtube_video
 
-    #TODO: check that thumbnail path is valid
+    # TODO: check that thumbnail path is valid
     def set_video_thumbnail(self, video, thumbnail_path):
-        ''' Sets thumbnail for video
-        '''
+        """ Sets thumbnail for video
+        """
         video_id = video.get_video_id()
 
         self.channel.thumbnails().set(
-            videoId=video_id,
-            media_body=thumbnail_path
+            videoId=video_id, media_body=thumbnail_path
         ).execute()
 
 
@@ -192,10 +200,11 @@ def initialize_upload(channel, video):
     chunk_size = calculate_chunk_size(video.get_file_path())
     # Call the API's videos.insert method to create and upload the video.
     insert_request = channel.videos().insert(
-        part=','.join(list(body.keys())),
+        part=",".join(list(body.keys())),
         body=body,
-        media_body=MediaFileUpload(video.get_file_path(), chunksize=chunk_size,
-                                   resumable=True)
+        media_body=MediaFileUpload(
+            video.get_file_path(), chunksize=chunk_size, resumable=True
+        ),
     )
 
     return resumable_upload(insert_request)
@@ -212,13 +221,18 @@ def resumable_upload(request):
     while response is None:
         try:
             widgets = [
-                'Upload: ', progressbar.Percentage(),
-                ' ', progressbar.Bar(marker=progressbar.RotatingMarker()),
-                ' ', progressbar.ETA(),
-                ' ', progressbar.FileTransferSpeed(),
+                "Upload: ",
+                progressbar.Percentage(),
+                " ",
+                progressbar.Bar(marker=progressbar.RotatingMarker()),
+                " ",
+                progressbar.ETA(),
+                " ",
+                progressbar.FileTransferSpeed(),
             ]
-            bar = progressbar.ProgressBar(widgets=widgets,
-                                          max_value=1000).start()
+            bar = progressbar.ProgressBar(
+                widgets=widgets, max_value=1000
+            ).start()
 
             response = None
             while response is None:
@@ -226,18 +240,20 @@ def resumable_upload(request):
                 if status:
                     bar.update(100 * 10 * status.progress() + 1)
             bar.finish()
-            if 'id' in response:
-                youtube_video = YouTubeVideo(response['id'])
+            if "id" in response:
+                youtube_video = YouTubeVideo(response["id"])
             else:
-                raise Exception('The upload failed unexpectedly: ' + response)
+                raise Exception("The upload failed unexpectedly: " + response)
         except HttpError as e:
             if e.resp.status in RETRIABLE_STATUS_CODES:
-                error = 'A retriable HTTP error %d occurred:\n%s' %\
-                         (e.resp.status, e.content)
+                error = "A retriable HTTP error %d occurred:\n%s" % (
+                    e.resp.status,
+                    e.content,
+                )
             else:
                 raise
         except RETRIABLE_EXCEPTIONS as e:
-            error = 'A retriable error occurred: %s' % e
+            error = "A retriable error occurred: %s" % e
 
         if error is not None:
             print(error)
@@ -247,6 +263,6 @@ def resumable_upload(request):
 
             max_sleep = 2 ** retry
             sleep_seconds = random.random() * max_sleep
-            print('Sleeping %f seconds and then retrying...' % sleep_seconds)
+            print("Sleeping %f seconds and then retrying..." % sleep_seconds)
             time.sleep(sleep_seconds)
     return youtube_video

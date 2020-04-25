@@ -22,7 +22,7 @@ video.set_privacy_status("private")
 video.set_public_stats_viewable(True)
 
 # setting thumbnail
-video.set_thumbnail_path('test_thumb.png')
+video.set_thumbnail_path("test_thumb.png")
 
 # uploading video and printing the results
 video = channel.upload_video(video)

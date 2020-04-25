@@ -1,5 +1,6 @@
 import json
 import pickle
+
 f = open("categories.json")
 
 data = json.load(f)
@@ -13,9 +14,9 @@ for item in data["items"]:
         categories[category_name.lower()] = category_id
 
 
-with open('categories.pickle', 'wb') as handle:
+with open("categories.pickle", "wb") as handle:
     pickle.dump(categories, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-with open('categories.pickle', 'rb') as handle:
+with open("categories.pickle", "rb") as handle:
     b = pickle.load(handle)

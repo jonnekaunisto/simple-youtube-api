@@ -1,10 +1,46 @@
-from pyser import JSONBase, DeserializeField, DeserializeObjectField
+from pyser import SchemaJSON, BaseJSON, DeserField, DeserObjectField
 from simple_youtube_api.name_converter import u_to_c
 from simple_youtube_api.Comment import Comment
 
 
-class CommentThread(JSONBase):
-    '''
+class CommentThreadSchema(SchemaJSON):
+    def __init__(self):
+        self.etag = DeserField()
+        self.id = DeserField()
+
+        # snippet
+        self.channel_id = DeserField(
+            name_conv=u_to_c, optional=True, parent_keys=["snippet"]
+        )
+        self.video_id = DeserField(
+            name_conv=u_to_c, optional=True, parent_keys=["snippet"]
+        )
+        self.top_level_comment = DeserObjectField(
+            name_conv=u_to_c, kind=Comment, parent_keys=["snippet"]
+        )
+        self.can_reply = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.total_reply_count = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.is_public = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.replies = DeserObjectField(
+            name="comments",
+            optional=True,
+            kind=Comment,
+            parent_keys=["replies"],
+            repeated=True,
+        )
+
+
+commentThreadSchema = CommentThreadSchema()
+
+
+class CommentThread(BaseJSON):
+    """
     Class for CommentThread resource which holds the top level comment and
     replies
 
@@ -42,22 +78,21 @@ class CommentThread(JSONBase):
 
     replies
         The list of comment object replies
-     '''
+     """
+
     def __init__(self):
-        super().__init__()
-        self.etag = DeserializeField()
-        self.id = DeserializeField()
+        self.set_schema_json(commentThreadSchema)
+        self.etag = None
+        self.id = None
 
         # snippet
-        self.channel_id = DeserializeField(name_conv=u_to_c, optional=True, parent_keys=['snippet'])
-        self.video_id = DeserializeField(name_conv=u_to_c, optional=True, parent_keys=['snippet'])
-        self.top_level_comment = DeserializeObjectField(name_conv=u_to_c, kind=Comment, parent_keys=['snippet'])
-        self.can_reply = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.total_reply_count = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.is_public = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.replies = DeserializeObjectField(name='comments', optional=True, kind=Comment, parent_keys=['replies'], repeated=True)
-
-        self.init_deserialize_json()
+        self.channel_id = None
+        self.video_id = None
+        self.top_level_comment = None
+        self.can_reply = None
+        self.total_reply_count = None
+        self.is_public = None
+        self.replies = None
 
     def __str__(self):
         if self.top_level_comment is not None:

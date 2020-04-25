@@ -4,16 +4,16 @@ from codecs import open
 from setuptools import find_packages, setup
 from setuptools.command.test import test as TestCommand
 
-MAJOR               = 0
-MINOR               = 2
-MICRO               = 5
-VERSION             = '%d.%d.%d' % (MAJOR, MINOR, MICRO)
+MAJOR = 0
+MINOR = 2
+MICRO = 5
+VERSION = "%d.%d.%d" % (MAJOR, MINOR, MICRO)
 
 
 class PyTest(TestCommand):
     """Handle test execution from setup."""
 
-    user_options = [('pytest-args=', 'a', "Arguments to pass into pytest")]
+    user_options = [("pytest-args=", "a", "Arguments to pass into pytest")]
 
     def initialize_options(self):
         """Initialize the PyTest options."""
@@ -31,14 +31,16 @@ class PyTest(TestCommand):
         try:
             import pytest
         except ImportError:
-            raise ImportError('Running tests requires additional dependencies.'
-                              '\nPlease run (pip install moviepy[test])')
+            raise ImportError(
+                "Running tests requires additional dependencies."
+                "\nPlease run (pip install moviepy[test])"
+            )
 
         errno = pytest.main(self.pytest_args.split(" "))
         sys.exit(errno)
 
 
-cmdclass = {'test': PyTest}  # Define custom commands.
+cmdclass = {"test": PyTest}  # Define custom commands.
 
 
 if "build_docs" in sys.argv:
@@ -60,28 +62,22 @@ requires = [
     "pytube3>=9.5.11",
     "decorator>=4.4.0",
     "progressbar2>=3.42.0",
-    "pyser>=0.1.3"
+    "pyser>=0.1.4",
 ]
 
 test_reqs = [
-    'pytest-cov>=2.5.1',
-    'pytest>=3.0.0',
-    'coveralls>=1.1,<2.0',
-    'docutils>=0.14',
-    'rstvalidator'
+    "pytest-cov>=2.5.1",
+    "pytest>=3.0.0",
+    "coveralls>=1.1,<2.0",
+    "docutils>=0.14",
+    "rstcheck>=3.3.1",
 ]
 
-doc_reqs = [
-    'sphinx_rtd_theme>=0.1.10b0S',
-    'Sphinx>=1.5.2'
-]
+doc_reqs = ["sphinx_rtd_theme>=0.1.10b0S", "Sphinx>=1.5.2"]
 
-extra_reqs = {
-    "doc": doc_reqs,
-    "test": test_reqs
-}
+extra_reqs = {"doc": doc_reqs, "test": test_reqs}
 
-with open('README.rst', 'r', 'utf-8') as fh:
+with open("README.rst", "r", "utf-8") as fh:
     long_description = fh.read()
 
 setup(
@@ -92,14 +88,18 @@ setup(
     description="A python YouTube API wrapper",
     long_description=long_description,
     url="https://github.com/jonnekaunisto/simple-youtube-api",
-    license='MIT License',
+    license="MIT License",
     keywords="youtube",
-    packages=find_packages(exclude='docs'),
+    packages=find_packages(exclude="docs"),
     cmdclass=cmdclass,
     classifiers=[
-        "Programming Language :: Python :: 3",
+        "Development Status :: 2 - Pre-Alpha",
+        "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
+        "Natural Language :: English",
         "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3 :: Only",
+        "Topic :: Utilities",
     ],
     install_requires=requires,
     tests_require=test_reqs,
