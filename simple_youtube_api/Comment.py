@@ -1,10 +1,69 @@
-
-from pyser import JSONBase, DeserializeField
+from pyser import SchemaJSON, BaseJSON, DeserField
 from simple_youtube_api.name_converter import u_to_c
 
 
-class Comment(JSONBase):
-    '''
+class CommentSchema(SchemaJSON):
+    """Schema for comment"""
+    def __init__(self):
+        self.etag = DeserField()
+        self.id = DeserField()
+
+        # snippet
+        self.author_display_name = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.author_profile_image_url = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.author_channel_url = DeserField(
+            name_conv=u_to_c, optional=True, parent_keys=["snippet"]
+        )
+        self.author_channel_id = DeserField(
+            name="value",
+            optional=True,
+            parent_keys=["snippet", "authorChannelId"],
+        )
+
+        self.channel_id = DeserField(
+            name_conv=u_to_c, optional=True, parent_keys=["snippet"]
+        )
+        self.video_id = DeserField(
+            name_conv=u_to_c, optional=True, parent_keys=["snippet"]
+        )
+        self.text_display = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.text_original = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.parent_id = DeserField(
+            name_conv=u_to_c, optional=True, parent_keys=["snippet"]
+        )
+        self.can_rate = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.viewer_rating = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.like_count = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.moderation_status = DeserField(
+            name_conv=u_to_c, optional=True, parent_keys=["snippet"]
+        )
+        self.published_at = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+        self.updated_at = DeserField(
+            name_conv=u_to_c, parent_keys=["snippet"]
+        )
+
+
+commentSchema = CommentSchema()
+
+
+class Comment(BaseJSON):
+    """
     Class for comment resource
 
     Attributes
@@ -68,31 +127,26 @@ class Comment(JSONBase):
     updated_at
         The date and time when the comment was last updated.
 
-     '''
+    """
+
     def __init__(self):
-        super().__init__()
+        self.set_schema_json(commentSchema)
 
-        self.etag = DeserializeField()
-        self.id = DeserializeField()
-
-        # snippet
-        self.author_display_name = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.author_profile_image_url = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.author_channel_url = DeserializeField(name_conv=u_to_c, optional=True, parent_keys=['snippet'])
-        self.author_channel_id = DeserializeField(name='value', optional=True, parent_keys=['snippet', 'authorChannelId'])
-
-        self.channel_id = DeserializeField(name_conv=u_to_c, optional=True, parent_keys=['snippet'])
-        self.video_id = DeserializeField(name_conv=u_to_c, optional=True, parent_keys=['snippet'])
-        self.text_display = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.text_original = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.parent_id = DeserializeField(name_conv=u_to_c, optional=True, parent_keys=['snippet'])
-        self.can_rate = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.viewer_rating = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.like_count = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.moderation_status = DeserializeField(name_conv=u_to_c, optional=True, parent_keys=['snippet'])
-        self.published_at = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.updated_at = DeserializeField(name_conv=u_to_c, parent_keys=['snippet'])
-        self.init_deserialize_json()
+        self.author_display_name = None
+        self.author_profile_image_url = None
+        self.author_channel_url = None
+        self.author_channel_id = None
+        self.channel_id = None
+        self.video_id = None
+        self.text_display = None
+        self.text_original = None
+        self.parent_id = None
+        self.can_rate = None
+        self.viewer_rating = None
+        self.like_count = None
+        self.moderation_status = None
+        self.published_at = None
+        self.updated_at = None
 
     def __str__(self):
         return self.text_original

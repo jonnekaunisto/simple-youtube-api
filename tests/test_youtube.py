@@ -4,8 +4,8 @@ import os.path
 
 
 def test_regular_function():
-    with open('credentials/developer_key', 'r') as myfile:
-        developer_key = myfile.read().replace('\n', '')
+    with open("credentials/developer_key", "r") as myfile:
+        developer_key = myfile.read().replace("\n", "")
 
     yt = YouTube()
     yt.login(developer_key)
@@ -33,13 +33,14 @@ def test_fetch_categories():
 
 
 def get_youtube():
-    with open('credentials/developer_key', 'r') as myfile:
-        developer_key = myfile.read().replace('\n', '')
+    with open("credentials/developer_key", "r") as myfile:
+        developer_key = myfile.read().replace("\n", "")
 
     youtube = YouTube()
     youtube.login(developer_key)
 
     return youtube
+
 
 if __name__ == "__main__":
     pytest.main()

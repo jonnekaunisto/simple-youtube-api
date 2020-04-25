@@ -18,28 +18,32 @@ def video_status_set(f, video, *a, **k):
 
 @decorator.decorator
 def require_channel_auth(f, video, *a, **k):
-    if(video.channel is not None):
+    if video.channel is not None:
         return f(video, *a, **k)
     else:
-        raise Exception("Setting channel authentication is required before calling " + f.__name__)
+        raise Exception(
+            "Setting channel authentication is required before calling "
+            + f.__name__
+        )
 
 
 @decorator.decorator
 def require_youtube_auth(f, video, *a, **k):
-    if(video.youtube is not None):
+    if video.youtube is not None:
         return f(video, *a, **k)
     else:
-        raise Exception("Setting youtube authentication is required before calling " + f.__name__)
+        raise Exception(
+            "Setting youtube authentication is required before calling "
+            + f.__name__
+        )
 
 
 @decorator.decorator
 def require_channel_or_youtube_auth(f, video, *a, **k):
-    if(video.youtube is not None or video.channel != None):
+    if video.youtube is not None or video.channel != None:
         return f(video, *a, **k)
     else:
-        raise Exception("Setting youtube or channel authentication is required before calling " + f.__name__)
-
-
-
-
-
+        raise Exception(
+            "Setting youtube or channel authentication is required before calling "
+            + f.__name__
+        )

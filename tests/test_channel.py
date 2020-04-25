@@ -14,7 +14,7 @@ CREDENTIALS = "credentials/credentials.storage"
 
 
 def download_video():
-    urllib.request.urlretrieve(VIDEO_RESOURCE_URL, VIDEO_NAME) 
+    urllib.request.urlretrieve(VIDEO_RESOURCE_URL, VIDEO_NAME)
 
 
 def test_channel_regular_function():
@@ -38,10 +38,10 @@ def test_channel_fetch_uploads():
 
 def not_working_channel_upload_video():
     channel = Channel()
-    '''
+    """
     testing this will make too many requests to google which will go over the
     query quota
-    '''
+    """
 
     assert os.path.isfile(CLIENT_SECRET_NAME), "CLIENT SECRET_NAME not valid"
     assert os.path.isfile(CREDENTIALS), "CREDENTIALS is not valid"
@@ -58,6 +58,7 @@ def not_working_channel_upload_video():
     video.set_privacy_status("private")
 
     assert channel.upload_video(video)
+
 
 if __name__ == "__main__":
     pytest.main()

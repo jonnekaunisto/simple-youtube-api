@@ -1,4 +1,5 @@
 import json
+
 f = open("languages.json")
 
 data = json.load(f)

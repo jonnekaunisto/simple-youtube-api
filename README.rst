@@ -67,13 +67,13 @@ Simple YouTube API needs API keys from Google in order to be able to make querie
 
 .. code:: bash
 
-    $ (sudo) python setup.py install
+    python setup.py install
 
 **Installation with pip:** make sure that you have ``pip`` installed, type this in a terminal:
 
 .. code:: bash
 
-    $ (sudo) pip install simple-youtube-api
+    pip install simple-youtube-api
     
   
 Generating YouTube API Keys
