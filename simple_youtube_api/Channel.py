@@ -238,7 +238,10 @@ def resumable_upload(request):
             while response is None:
                 status, response = request.next_chunk(num_retries=4)
                 if status:
-                    bar.update(100 * 10 * status.progress() + 1)
+                    progress = 100 * 10 * status.progress() + 1
+                    if progress > 1000:
+                        progress = 1000
+                    bar.update(progress)
             bar.finish()
             if "id" in response:
                 youtube_video = YouTubeVideo(response["id"])
