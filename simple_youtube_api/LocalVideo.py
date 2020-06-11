@@ -13,16 +13,19 @@ class LocalVideo(Video):
       Specifies which file is going to be uploaded
 
     title:
-      Specifies the title for the video
+      The video's title. The property value has a maximum length of 100
+      characters and may contain all valid UTF-8 characters except < and >.
 
     description:
-      Specifies the description for the video
+      The video's description. The property value has a maximum length of
+      5000 bytes and may contain all valid UTF-8 characters except < and >.
 
     tags:
-      Specifies the tags for the video
+      A list of keyword tags associated with the video. Tags may contain
+      spaces. The property value has a maximum length of 500 characters.
 
-    categories:
-      Specifies the category for the video
+    category:
+      The YouTube video category associated with the video.
 
     publish_at:
       Specifies when the video will be published
@@ -30,7 +33,7 @@ class LocalVideo(Video):
       (YYYY-MM-DDThh:mm:ss.sZ) format
 
     thumbnail_path:
-      Specifies which file is going to be set as thumbnail
+      Specifies which file is going to be set as thumbnail.
 
     """
 
