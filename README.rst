@@ -13,7 +13,7 @@ Simple Youtube API
 
 
 
-Simple Youtube API is a Youtube API wrapper for python, making it easier to search and upload your videos.
+Simple Youtube API(full documentation_ is a Youtube API wrapper for python, making it easier to search and upload your videos.
 
 
 Examples
@@ -83,12 +83,16 @@ Generating YouTube API Keys
 3. Search for "YouTube Data API V3"
 4. Click Credentials
 5. Click Create Credentials
-6. Select that you will call API from "Web Server"
-7. Select "Public Data" if you want to not get private data and "User Data" if you do
-8. Download or copy your API key from the Credentials tab
 
-Documentation
--------------
+For user data:
+5. Select OAuth Client ID
+6. Select that you will call API from "Web Server"
+7. Download or copy your API key from the Credentials tab
+
+For non-user data
+5. Select API Key
+6. Paste the key into a file
+
 Running Tests
 -------------
 Run the python command
@@ -129,5 +133,7 @@ jonnekaunisto (owner)
 
 .. _`YouTube API Documentation`: https://developers.google.com/youtube/v3/docs/
 .. _`Python YouTube API Examples`: https://github.com/youtube/api-samples/tree/master/python
+.. _documentation: https://simple-youtube-api.readthedocs.io/
+
 
 
