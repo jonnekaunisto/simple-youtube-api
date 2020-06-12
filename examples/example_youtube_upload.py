@@ -13,7 +13,7 @@ video.set_title("My Title")
 video.set_description("This is a description")
 video.set_tags(["this", "tag"])
 video.set_category("gaming")
-video.set_default_language("english")
+video.set_default_language("en-US")
 
 # setting status
 video.set_embeddable(True)
