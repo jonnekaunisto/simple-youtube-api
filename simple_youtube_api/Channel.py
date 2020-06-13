@@ -52,9 +52,6 @@ class Channel(object):
     """
     Class for authorizing changes to channel
 
-    Attributes
-    -----------
-
     channel
       login object to the channel
      """

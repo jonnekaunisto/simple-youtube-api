@@ -44,12 +44,9 @@ extensions = [
     "sphinx.ext.todo",
     "sphinx.ext.viewcode",
     "sphinx.ext.autosummary",
-    "numpydoc",
     "sphinx_autodoc_typehints",
 ]
 
-numpydoc_class_members_toctree = False
-numpydoc_show_class_members = False
 autosummary_generate = True
 
 # Add any paths that contain templates here, relative to this directory.
