@@ -68,7 +68,16 @@ class Channel(object):
         storage_path: str,
         scope=youtube_api.SCOPES,
     ):
-        """ Logs into the channel with credentials
+        """Logs into the channel with credentials
+
+        client_secret_path
+            The path to the client_secret file, which should be obtained from
+            Google cloud
+        storage_path
+            The path where the login is stored, or if logging in for the first
+            the path where the login is saved into
+        scope
+            Sets the scope that the login will ask for
         """
         STORAGE = Storage(storage_path)
         credentials = STORAGE.get()
