@@ -73,7 +73,11 @@ test_reqs = [
     "rstcheck>=3.3.1",
 ]
 
-doc_reqs = ["sphinx_rtd_theme>=0.1.10b0S", "Sphinx>=1.5.2"]
+doc_reqs = [
+    "sphinx_rtd_theme>=0.1.10b0S",
+    "Sphinx>=1.5.2",
+    "sphinx-autodoc-typehints>=1.10.3"
+]
 
 extra_reqs = {"doc": doc_reqs, "test": test_reqs}
 
