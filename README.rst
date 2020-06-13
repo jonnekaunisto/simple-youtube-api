@@ -13,7 +13,7 @@ Simple Youtube API
 
 
 
-Simple Youtube API(full documentation_ is a Youtube API wrapper for python, making it easier to search and upload your videos.
+Simple Youtube API(full documentation_) is a Youtube API wrapper for python, making it easier to search and upload your videos.
 
 
 Examples
@@ -38,7 +38,7 @@ In this example we log in into a YouTube channel, set the appropriate variables 
     video.set_description("This is a description")
     video.set_tags(["this", "tag"])
     video.set_category("gaming")
-    video.set_default_language("english")
+    video.set_default_language("en-US")
 
     # setting status
     video.set_embeddable(True)
