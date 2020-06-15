@@ -59,7 +59,6 @@ requires = [
     "google-auth>=1.6.2",
     "google-auth-httplib2>=0.0.3",
     "oauth2client>=4.1.3",
-    "pytube3>=9.5.11",
     "decorator>=4.4.0",
     "progressbar2>=3.42.0",
     "pyser>=0.1.4",

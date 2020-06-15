@@ -1,6 +1,6 @@
-from pyser import SchemaJSON, BaseJSON, DeserField, DeserObjectField
+from pyser import SchemaJSON, DeserField, DeserObjectField
 from simple_youtube_api.name_converter import u_to_c
-from simple_youtube_api.Comment import Comment
+from simple_youtube_api.Comment import Comment, CommentSchema
 
 
 class CommentThreadSchema(SchemaJSON):
@@ -16,7 +16,8 @@ class CommentThreadSchema(SchemaJSON):
             name_conv=u_to_c, optional=True, parent_keys=["snippet"]
         )
         self.top_level_comment = DeserObjectField(
-            name_conv=u_to_c, kind=Comment, parent_keys=["snippet"]
+            name_conv=u_to_c, kind=Comment, schema=CommentSchema,
+            parent_keys=["snippet"]
         )
         self.can_reply = DeserField(
             name_conv=u_to_c, parent_keys=["snippet"]
@@ -31,15 +32,13 @@ class CommentThreadSchema(SchemaJSON):
             name="comments",
             optional=True,
             kind=Comment,
+            schema=CommentSchema,
             parent_keys=["replies"],
             repeated=True,
         )
 
 
-commentThreadSchema = CommentThreadSchema()
-
-
-class CommentThread(BaseJSON):
+class CommentThread():
     """
     Class for CommentThread resource which holds the top level comment and
     replies
@@ -81,7 +80,6 @@ class CommentThread(BaseJSON):
      """
 
     def __init__(self):
-        self.set_schema_json(commentThreadSchema)
         self.etag = None
         self.id = None
 

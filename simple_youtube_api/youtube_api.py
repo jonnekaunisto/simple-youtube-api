@@ -6,7 +6,6 @@ import httplib2
 import pickle
 import os
 
-from simple_youtube_api.Comment import Comment
 from simple_youtube_api.youtube_constants import *
 
 from googleapiclient.discovery import build

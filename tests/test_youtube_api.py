@@ -1,5 +1,5 @@
-from simple_youtube_api.Comment import Comment
-from simple_youtube_api.CommentThread import CommentThread
+from simple_youtube_api.Comment import Comment, CommentSchema
+from simple_youtube_api.CommentThread import CommentThread, CommentThreadSchema
 from simple_youtube_api.YouTubeVideo import YouTubeVideo
 from simple_youtube_api import youtube_api
 
@@ -45,7 +45,7 @@ def test_parse_comment_thread():
         data = json.loads(f.read())
 
     comment_thread = CommentThread()
-    comment_thread.from_dict(data)
+    CommentThreadSchema().from_dict(comment_thread, data)
 
     assert comment_thread.id == data["id"]
 
@@ -76,7 +76,7 @@ def test_parse_comment():
         data = json.loads(f.read())
 
     comment = Comment()
-    comment.from_dict(data)
+    CommentSchema().from_dict(comment, data)
 
     assert comment.etag == data["etag"]
     assert comment.id == data["id"]

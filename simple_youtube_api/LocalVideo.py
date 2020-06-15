@@ -55,6 +55,7 @@ class LocalVideo(Video):
         self.set_category(category)
         self.publish_at = None
         self.thumbnail_path = None
+        self.self_declared_made_for_kids = None
 
         if default_language is not None:
             self.set_default_language(default_language)
@@ -84,3 +85,9 @@ class LocalVideo(Video):
         """ Returns the thumbnail path
         """
         return self.thumbnail_path
+
+    def set_made_for_kids(self, made_for_kids: bool):
+        if type(made_for_kids):
+            self.self_declared_made_for_kids = made_for_kids
+        else:
+            raise Exception("Must be a type bool")

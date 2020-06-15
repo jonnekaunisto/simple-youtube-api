@@ -45,11 +45,6 @@ def test_youtube_video_constructor():
     """
 
 
-def test_youtube_video_downloading():
-    video = YouTubeVideo(YOUTUBE_VIDEO_ID)
-    video.download()
-
-
 def test_youtube_video_rating():
     video_id = YOUTUBE_VIDEO_ID
 

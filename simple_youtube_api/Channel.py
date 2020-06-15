@@ -145,6 +145,7 @@ class Channel(object):
     def set_video_thumbnail(self, video, thumbnail_path):
         """ Sets thumbnail for video
         """
+
         video_id = video.get_video_id()
 
         self.channel.thumbnails().set(
@@ -184,6 +185,8 @@ def generate_upload_body(video):
             status.update({"publicStatsViewable": video.public_stats_viewable})
         if video.publish_at is not None:
             status.update({"publishAt": video.publish_at})
+        if video.self_declared_made_for_kids is not None:
+            status.update({"selfDeclaredMadeForKids": video.self_declared_made_for_kids})
         body.update({"status": status})
 
     return body

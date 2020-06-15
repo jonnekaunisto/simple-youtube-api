@@ -1,5 +1,5 @@
 from simple_youtube_api.Video import Video
-from simple_youtube_api.CommentThread import CommentThread
+from simple_youtube_api.CommentThread import CommentThread, CommentThreadSchema
 from simple_youtube_api import youtube_api
 from simple_youtube_api.decorators import (
     require_channel_auth,
@@ -21,12 +21,16 @@ class YouTubeVideo(Video):
     def __init__(self, id=None, youtube=None, channel=None):
         Video.__init__(self)
 
-        self.id = id
         self.youtube = youtube
         self.channel = channel
 
+        self.id = id
+
         # snippet
         self.channel_id = None
+
+        # status
+        self.made_for_kids = None
 
     def set_youtube_auth(self, youtube):
         """Sets authentication for video
@@ -192,27 +196,14 @@ class YouTubeVideo(Video):
 
         response = (
             self.youtube.commentThreads()
-            .list(part=parts, videoId="_VB39Jo8mAQ")
+            .list(part=parts, videoId=self.id)
             .execute()
         )
 
         comment_threads = []
         for item in response.get("items", []):
             comment_thread = CommentThread()
-            comment_thread.from_dict(item)
+            CommentThreadSchema().from_dict(comment_thread, item)
             comment_threads.append(comment_thread)
 
         return comment_threads
-
-    # TODO: debug issue with default filename
-    def download(
-        self, output_path=None, filename="default_name", filename_prefix=None
-    ):
-        """Downloads video
-        """
-        video_url = "https://youtube.com/watch?v=" + self.id
-        pytube_YouTube(video_url).streams.first().download(
-            output_path=output_path,
-            filename=filename,
-            filename_prefix=filename_prefix,
-        )

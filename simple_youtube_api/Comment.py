@@ -1,4 +1,4 @@
-from pyser import SchemaJSON, BaseJSON, DeserField
+from pyser import SchemaJSON, DeserField
 from simple_youtube_api.name_converter import u_to_c
 
 
@@ -59,10 +59,7 @@ class CommentSchema(SchemaJSON):
         )
 
 
-commentSchema = CommentSchema()
-
-
-class Comment(BaseJSON):
+class Comment():
     """
     Class for comment resource
 
@@ -130,8 +127,6 @@ class Comment(BaseJSON):
     """
 
     def __init__(self):
-        self.set_schema_json(commentSchema)
-
         self.author_display_name = None
         self.author_profile_image_url = None
         self.author_channel_url = None
