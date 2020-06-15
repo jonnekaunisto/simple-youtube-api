@@ -7,7 +7,6 @@ from simple_youtube_api.decorators import (
     require_channel_or_youtube_auth,
 )
 
-from pytube import YouTube as pytube_YouTube
 import typing
 from typing import List, Union
 
