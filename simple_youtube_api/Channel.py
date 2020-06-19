@@ -132,6 +132,9 @@ class Channel(object):
     def upload_video(self, video: LocalVideo):
         """ Uploads video to authorized channel
         """
+        if video.file_path is None:
+            Exception("Must specify a file path")
+
         youtube_video = initialize_upload(self.channel, video)
 
         youtube_video.channel = self.get_login()
@@ -139,18 +142,60 @@ class Channel(object):
         if video.thumbnail_path is not None:
             self.set_video_thumbnail(youtube_video, video.thumbnail_path)
 
+        if video.playlist_id is not None:
+            self.add_video_to_playlist(video.playlist_id, video)
+
         return youtube_video
 
     # TODO: check that thumbnail path is valid
     def set_video_thumbnail(self, video, thumbnail_path):
         """ Sets thumbnail for video
+
+            video
+              YouTubeVideo object or the string id of the video
+            thumbnail_path
+              Path to the thumbnail
         """
+        if type(video) is not str:
+            video_id = video.id
+        else:
+            video_id = video
 
-        video_id = video.get_video_id()
-
-        self.channel.thumbnails().set(
+        response = self.channel.thumbnails().set(
             videoId=video_id, media_body=thumbnail_path
         ).execute()
+
+        return response
+
+    def add_video_to_playlist(self, playlist_id, video):
+        """ Adds video to playlist
+
+            playlist_id
+                The id of the playlist to be added to
+            video
+                YouTubeVideo object or the string id of the video
+        """
+
+        if type(video) is not str:
+            video_id = video.id
+        else:
+            video_id = video
+
+        response = self.channel.playlistItems().insert(
+            part="snippet",
+            body={
+                "snippet": {
+                    "playlistId": playlist_id,
+                    "position": 0,
+                    "resourceId": {
+                        "kind": "youtube#video",
+                        "videoId": video_id
+                    }
+                }
+            }
+        ).execute()
+
+        return response
 
 
 def generate_upload_body(video):
@@ -206,13 +251,13 @@ def calculate_chunk_size(video_path):
 
 def initialize_upload(channel, video):
     body = generate_upload_body(video)
-    chunk_size = calculate_chunk_size(video.get_file_path())
+    chunk_size = calculate_chunk_size(video.file_path)
     # Call the API's videos.insert method to create and upload the video.
     insert_request = channel.videos().insert(
         part=",".join(list(body.keys())),
         body=body,
         media_body=MediaFileUpload(
-            video.get_file_path(), chunksize=chunk_size, resumable=True
+            video.file_path, chunksize=chunk_size, resumable=True
         ),
     )
 

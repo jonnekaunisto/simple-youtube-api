@@ -66,11 +66,6 @@ class Video(object):
         else:
             self.title = title
 
-    def get_title(self) -> str:
-        """ Returns title of the video
-        """
-        return self.title
-
     @video_snippet_set
     def set_description(self, description: str):
         """Sets description for video and returns an exception if description
@@ -83,11 +78,6 @@ class Video(object):
         else:
             self.description = description
 
-    def get_description(self) -> str:
-        """ Returns description of the video
-        """
-        return self.description
-
     @video_snippet_set
     def set_tags(self, tags: List[str]):
         """Sets tags to the video and returns an exception if tags are invalid
@@ -98,11 +88,6 @@ class Video(object):
             raise Exception("Tags are too long: " + str(len("".join(tags))))
         else:
             self.tags = tags
-
-    def get_tags(self) -> List[str]:
-        """ Returns tags of the video
-        """
-        return self.tags
 
     @video_snippet_set
     def set_category(self, category: Union[int, str]):
@@ -126,11 +111,6 @@ class Video(object):
         else:
             raise Exception("Not a valid category: " + str(category))
 
-    def get_category(self) -> int:
-        """ Returns category of the video
-        """
-        return self.category
-
     @video_snippet_set
     def set_default_language(self, language: str):
         """ Sets default language for video
@@ -139,11 +119,6 @@ class Video(object):
             raise Exception("Language must be a string")
         else:
             self.default_language = language
-
-    def get_default_language(self) -> str:
-        """ Returns default language of the video
-        """
-        return self.default_language
 
     @video_status_set
     def set_embeddable(self, embeddable: bool):
@@ -155,11 +130,6 @@ class Video(object):
         else:
             self.embeddable = embeddable
 
-    def get_embeddable(self) -> bool:
-        """ Returns if the video is embeddable
-        """
-        return self.embeddable
-
     @video_status_set
     def set_license(self, license: str):
         """ Specifies license for video either 'youtube' or 'creativeCommon'
@@ -168,11 +138,6 @@ class Video(object):
             self.license = license
         else:
             raise Exception("Not a valid license: " + str(license))
-
-    def get_license(self) -> str:
-        """ Returns license of the video
-        """
-        return self.license
 
     @video_status_set
     def set_privacy_status(self, privacy_status: str):
@@ -183,11 +148,6 @@ class Video(object):
         else:
             self.privacy_status = privacy_status
 
-    def get_privacy_status(self) -> str:
-        """ Returns privacy status of the video
-        """
-        return self.privacy_status
-
     @video_status_set
     def set_public_stats_viewable(self, viewable: bool):
         """ Specifies if public stats are viewable
@@ -196,11 +156,6 @@ class Video(object):
             self.public_stats_viewable = viewable
         else:
             raise Exception("Not a valid status: " + str(viewable))
-
-    def get_public_stats_viewable(self) -> bool:
-        """ Returns if the video's public statistics are viewable
-        """
-        return self.public_stats_viewable
 
     # TODO enforce (YYYY-MM-DDThh:mm:ss.sZ) format
     def set_publish_at(self, time: str):
@@ -211,11 +166,6 @@ class Video(object):
             self.publish_at = time
         else:
             raise Exception("Not a valid publish time: " + str(time))
-
-    def get_publish_at(self) -> str:
-        """ Returns what time the video is going to be published
-        """
-        return self.publish_at
 
     def __str__(self):
         form = "Title: {0}\nDescription: {1}\n Tags:{2}"

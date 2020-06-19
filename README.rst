@@ -51,7 +51,7 @@ In this example we log in into a YouTube channel, set the appropriate variables 
 
     # uploading video and printing the results
     video = channel.upload_video(video)
-    print(video.get_video_id())
+    print(video.id)
     print(video)
 
     # liking video

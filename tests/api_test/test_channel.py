@@ -33,7 +33,7 @@ def test_channel_fetch_uploads():
     videos = channel.fetch_uploads()
 
     for video in videos:
-        print(video.get_title())
+        print(video.title)
 
 
 def not_working_channel_upload_video():

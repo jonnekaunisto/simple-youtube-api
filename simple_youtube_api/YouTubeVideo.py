@@ -41,16 +41,6 @@ class YouTubeVideo(Video):
         """
         self.channel = channel
 
-    def get_video_id(self):
-        """Returns video id
-        """
-        return self.id
-
-    def get_channel_id(self):
-        """Returns channel id
-        """
-        return self.channel_id
-
     # TODO add more values to be fetched
     # TODO add fetching some values that are only available to channel
     @require_youtube_auth

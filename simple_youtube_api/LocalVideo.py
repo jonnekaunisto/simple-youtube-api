@@ -35,6 +35,8 @@ class LocalVideo(Video):
     thumbnail_path:
       Specifies which file is going to be set as thumbnail.
 
+    playlist_id
+      Specifies which playlist the video gets added onto.
     """
 
     def __init__(
@@ -56,6 +58,7 @@ class LocalVideo(Video):
         self.publish_at = None
         self.thumbnail_path = None
         self.self_declared_made_for_kids = None
+        self.playlist_id = None
 
         if default_language is not None:
             self.set_default_language(default_language)
@@ -68,11 +71,6 @@ class LocalVideo(Video):
         else:
             raise Exception("Not a valid file path: " + str(file_path))
 
-    def get_file_path(self) -> str:
-        """ Retuns which video will be uploaded
-        """
-        return self.file_path
-
     def set_thumbnail_path(self, thumbnail_path: str):
         """ Specifies which image file is going to be uploaded
         """
@@ -81,13 +79,14 @@ class LocalVideo(Video):
         else:
             raise Exception("Not a valid file path: " + str(thumbnail_path))
 
-    def get_thumbnail_path(self) -> str:
-        """ Returns the thumbnail path
-        """
-        return self.thumbnail_path
-
     def set_made_for_kids(self, made_for_kids: bool):
         if type(made_for_kids):
             self.self_declared_made_for_kids = made_for_kids
         else:
             raise Exception("Must be a type bool")
+
+    def set_playlist(self, playlist_id):
+        if type(playlist_id) is str:
+            self.playlist_id = playlist_id
+        else:
+            raise Exception("playlist_id must be a string")

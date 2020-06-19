@@ -18,10 +18,10 @@ def test_youtube_search():
     videos = youtube.search("Your Search Term")
 
     for video in videos:
-        print(video.get_title())
+        print(video.title)
 
     video = youtube.search_by_video_id("Ks-_Mh1QhMc")
-    print(video.get_title())
+    print(video.title)
 
     response = youtube.search_by_video_id_raw("Ks-_Mh1QhMc")
     print(response)

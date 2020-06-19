@@ -25,23 +25,23 @@ def test_youtube_video_constructor():
 
     video = YouTubeVideo(id=video_id, youtube=youtube.get_login())
 
-    video.get_video_id()
+    video.id
 
     video.set_youtube_auth(youtube)
     video.set_channel_auth(youtube)
-    video.get_channel_id()
+    video.channel_id
 
     """
-    assert video.get_video_id() == video_id
-    assert video.get_title() == title
-    assert video.get_description() == description
-    assert video.get_tags() == tags
-    #assert video.get_category() == id_category
+    assert video.video_id == video_id
+    assert video.title == title
+    assert video.description == description
+    assert video.tags == tags
+    #assert video.category == id_category
 
 
     for privacy_status in privacy_statuses:
         video.set_privacy_status(privacy_status)
-        assert video.get_privacy_status() == privacy_status
+        assert video.privacy_status == privacy_status
     """
 
 

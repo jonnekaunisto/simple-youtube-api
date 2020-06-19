@@ -21,5 +21,5 @@ video.set_public_stats_viewable(True)
 
 
 video = channel.upload_video(video)
-print(video.get_video_id())
-print(video.get_title())
+print(video.id)
+print(video.title)
