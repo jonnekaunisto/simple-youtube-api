@@ -4,7 +4,8 @@ import rstcheck
 from docutils.utils import Reporter
 
 README_FILE_NAME = "README.rst"
-project_path = os.path.abspath(os.curdir)
+file_path = os.path.dirname(os.path.realpath(__file__))
+project_path = file_path + os.sep + ".." + os.sep + ".."
 README_PATH = project_path + os.sep + README_FILE_NAME
 
 

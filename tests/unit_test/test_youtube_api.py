@@ -7,7 +7,7 @@ import pytest
 import os
 import json
 
-data_dir = "test_data"
+data_dir = os.sep + ".." + os.sep + "test_data"
 
 
 def test_parse_video():
