@@ -85,13 +85,15 @@ Generating YouTube API Keys
 5. Click Create Credentials
 
 For user data:
-5. Select OAuth Client ID
-6. Select that you will call API from "Web Server"
-7. Download or copy your API key from the Credentials tab
 
-For non-user data
-5. Select API Key
-6. Paste the key into a file
+1. Select OAuth Client ID
+2. Select that you will call API from "Web Server"
+3. Download or copy your API key from the Credentials tab
+
+For non-user data:
+
+1. Select API Key
+2. Paste the key into a file
 
 Running Tests
 -------------
