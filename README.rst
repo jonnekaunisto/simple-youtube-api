@@ -80,7 +80,7 @@ Generating YouTube API Keys
 ---------------------------
 1. Log into https://console.cloud.google.com
 2. Create a new Project
-3. Search for "YouTube Data API V3"
+3. Search for "YouTube Data API V3" or go to https://console.cloud.google.com/apis/library/youtube.googleapis.com
 4. Click Credentials
 5. Click Create Credentials
 
