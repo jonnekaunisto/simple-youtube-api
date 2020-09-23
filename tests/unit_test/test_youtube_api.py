@@ -24,9 +24,12 @@ def test_parse_video():
     )
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     with open(data_path, "r", encoding="utf8") as file:
         data = json.loads(file.read())
 =======
+=======
+>>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class
     with open(data_path, "r", encoding='utf-8') as f:
         data = json.loads(f.read())
 >>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class

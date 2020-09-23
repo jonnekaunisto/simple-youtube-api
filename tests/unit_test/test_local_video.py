@@ -2,11 +2,14 @@
 import os
 
 import pytest
+<<<<<<< HEAD
 
 from simple_youtube_api import LocalVideo
 from simple_youtube_api.channel import generate_upload_body
 from simple_youtube_api import youtube_constants
 
+=======
+>>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class
 import os
 import datetime
 
@@ -24,7 +27,11 @@ def test_local_video_regular_function():
     id_category = 1
     privacy_statuses = ["public", "private", "unlisted"]
     playlist_id = "some_playlist_id"
+<<<<<<< HEAD
     publish_at = datetime.datetime(datetime.date.today().year+1,5,17)
+=======
+    publish_at = datetime.datetime(2028, 5, 17)
+>>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class
 
     video = LocalVideo(file_path)
 
@@ -142,8 +149,13 @@ def test_local_video_constructor():
 
     # status variables
     embeddable = True
+<<<<<<< HEAD
     video_license = "youtube"
     privacy_status = "public"
+=======
+    license = "youtube"
+    privacy_status = "private"
+>>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class
     public_stats_viewable = True
     publish_at = datetime.datetime(2021, 5, 17)
 
