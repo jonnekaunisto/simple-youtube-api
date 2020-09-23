@@ -143,7 +143,7 @@ class Channel(object):
             self.set_video_thumbnail(youtube_video, video.thumbnail_path)
 
         if video.playlist_id is not None:
-            self.add_video_to_playlist(video.playlist_id, video)
+            self.add_video_to_playlist(video.playlist_id, youtube_video)
 
         return youtube_video
 
