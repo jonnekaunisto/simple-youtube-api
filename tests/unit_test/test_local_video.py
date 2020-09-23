@@ -6,7 +6,7 @@ from simple_youtube_api import youtube_api
 
 import pytest
 import os
-
+import datetime
 
 def test_local_video_regular_function():
     file_path = (
@@ -21,6 +21,7 @@ def test_local_video_regular_function():
     id_category = 1
     privacy_statuses = ["public", "private", "unlisted"]
     playlist_id = "some_playlist_id"
+    publish_at = datetime.datetime(2028, 5, 17)
 
     video = LocalVideo(file_path)
 
@@ -43,7 +44,10 @@ def test_local_video_regular_function():
     for privacy_status in privacy_statuses:
         video.set_privacy_status(privacy_status)
         video.privacy_status == privacy_status
-
+    video.set_privacy_status("private")
+    assert video.privacy_status == "private"
+    video.set_publish_at(publish_at)
+    assert video.publish_at == publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z')
     # TODO: add stronger check
     assert generate_upload_body(video)
 
@@ -65,7 +69,7 @@ def test_local_video_negative_function():
     license = "not_valid"
     privacy_status = "not_valid"
     public_stats_viewable = "not_valid"
-    publish_at = False
+    publish_at = datetime.datetime(1, 1, 1)
 
     video = LocalVideo(file_path)
 
@@ -106,8 +110,16 @@ def test_local_video_negative_function():
         video.set_privacy_status(privacy_status)
     with pytest.raises(Exception):
         video.set_public_stats_viewable(public_stats_viewable)
+    privacy_status = "private"
     with pytest.raises(Exception):
         video.set_publish_at(publish_at)
+    with pytest.raises(Exception):
+        video.set_publish_at(datetime.datetime(2020, 5, 17))
+    with pytest.raises(Exception):
+        video.set_publish_at(datetime.datetime(2028, 5, 17, 12, 32, 00))
+    privacy_status = "not_valid"
+    with pytest.raises(Exception):
+        video.set_publish_at(datetime.datetime(2028, 5, 17, 12, 30, 00))
 
 
 def test_local_video_constructor():
@@ -126,9 +138,9 @@ def test_local_video_constructor():
     # status variables
     embeddable = True
     license = "youtube"
-    privacy_status = "public"
+    privacy_status = "private"
     public_stats_viewable = True
-    publish_at = "9"
+    publish_at = datetime.datetime(2021, 5, 17)
 
     # snippet test
     video = LocalVideo(
@@ -174,7 +186,7 @@ def test_local_video_constructor():
         video.privacy_status == privacy_status
     ), "Privacy Wrong: " + str(video.privacy_status)
     assert video.public_stats_viewable == public_stats_viewable
-    assert video.publish_at == publish_at
+    assert video.publish_at == publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z')
 
     assert video.status_set is True, "Wrong video status: " + str(
         video.status_set

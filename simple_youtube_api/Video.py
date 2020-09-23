@@ -11,7 +11,7 @@ from simple_youtube_api.decorators import video_snippet_set, video_status_set
 
 import typing
 from typing import List, Union
-
+import datetime
 
 # TODO add variables
 class Video(object):
@@ -157,15 +157,21 @@ class Video(object):
         else:
             raise Exception("Not a valid status: " + str(viewable))
 
-    # TODO enforce (YYYY-MM-DDThh:mm:ss.sZ) format
-    def set_publish_at(self, time: str):
+    #@video_status_set
+    def set_publish_at(self, publish_at):
         """ Sets time that video is going to be published at in
         (YYYY-MM-DDThh:mm:ss.sZ) format
         """
-        if type(time) == str:
-            self.publish_at = time
+        if (not isinstance(publish_at, datetime.datetime)):
+            raise Exception("publish_at must be a datetime object")
+        if (self.privacy_status != 'private'):
+            raise Exception("In order to be scheduled, the privacy has to be private")
+        
+        if (publish_at >= datetime.datetime.now() and (publish_at.minute == 0 or publish_at.minute == 30)):
+            self.publish_at = publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z')
+            print(publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z'))
         else:
-            raise Exception("Not a valid publish time: " + str(time))
+            raise Exception("Datetime is in the past or it is not an hour or 30 minute (ex 12:00 or 12:30)")
 
     def __str__(self):
         form = "Title: {0}\nDescription: {1}\n Tags:{2}"

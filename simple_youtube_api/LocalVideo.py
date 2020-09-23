@@ -2,7 +2,6 @@ from simple_youtube_api.Video import Video
 import os.path
 import typing
 
-
 class LocalVideo(Video):
     """
     Class for making a video that is uploaded to YouTube
@@ -30,7 +29,7 @@ class LocalVideo(Video):
     publish_at:
       Specifies when the video will be published
       (the video has to be private for this) Has to be in
-      (YYYY-MM-DDThh:mm:ss.sZ) format
+      (YYYY-MM-DDThh:mm:ss.sZ) formatstrftime('%G-%m-%dT%H:%M:%S.000Z')
 
     thumbnail_path:
       Specifies which file is going to be set as thumbnail.
