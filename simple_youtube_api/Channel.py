@@ -64,6 +64,7 @@ class Channel(object):
         client_secret_path: str,
         storage_path: str,
         scope=youtube_api.SCOPES,
+        auth_local_webserver=True,
     ):
         """Logs into the channel with credentials
 
@@ -75,14 +76,26 @@ class Channel(object):
             the path where the login is saved into
         scope
             Sets the scope that the login will ask for
+        auth_local_webserver
+            Wheter login process should use local auth webserver, set this to
+            false if you are not doing this locally.
         """
+
         STORAGE = Storage(storage_path)
         credentials = STORAGE.get()
 
         if credentials is None or credentials.invalid:
+            saved_argv = []
+            if auth_local_webserver is False:
+                saved_argv = sys.argv
+                sys.argv = [sys.argv[0], "--noauth_local_webserver"]
+
             flow = flow_from_clientsecrets(client_secret_path, scope=scope)
             http = httplib2.Http()
             credentials = run_flow(flow, STORAGE, http=http)
+
+            sys.argv = saved_argv
+
         self.channel = build(
             API_SERVICE_NAME, API_VERSION, credentials=credentials
         )
