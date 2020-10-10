@@ -34,4 +34,4 @@ jobs:
         pycodestyle --max-line-length=127 --count  --show-pep8 --show-source ./simple_youtube_api ./tests
     - name: Run unit tests with pytest
       run: |
-        pytest ./tests/unit_tests
+        pytest ./tests/unit_tests/
