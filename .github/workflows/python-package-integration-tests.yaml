@@ -7,7 +7,7 @@ name: Python package Integration Tests
 on:
   push:
     paths:
-    - .github/workflow/**
+    - .github/workflows/**
     - simple_youtube_api/**
     - tests/**
     - setup.py
@@ -15,7 +15,7 @@ on:
   pull_request:
     branches: 'master'
     paths:
-    - .github/workflow/**
+    - .github/workflows/**
     - simple_youtube_api/**
     - tests/**
     - setup.py
