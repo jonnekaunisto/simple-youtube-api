@@ -33,7 +33,7 @@ class PyTest(TestCommand):
         except ImportError:
             raise ImportError(
                 "Running tests requires additional dependencies."
-                "\nPlease run (pip install moviepy[test])"
+                "\nPlease run (pip install simple-youtube-api[test])"
             )
 
         errno = pytest.main(self.pytest_args.split(" "))
