@@ -56,6 +56,7 @@ jobs:
         pip install .
     - name: Create Credential Files
       run: |
-        echo ${{ secrets.GITHUB_TOKEN }} > "credentials/developer_key"
-        echo ${{ secrets.GITHUB_TOKEN }} > "credentials/credentials.storage"
-        echo ${{ secrets.GITHUB_TOKEN }} > "credentials/client_secret.json"
+        mkdir credentials
+        echo ${{ secrets.YOUTUBE_DEVELOPER_KEY }} > "credentials/developer_key"
+        echo ${{ secrets.CHANNEL_CREDENTIALS }} > "credentials/credentials.storage"
+        echo ${{ secrets.CLIENT_SECRET }} > "credentials/client_secret.json"
