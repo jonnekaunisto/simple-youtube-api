@@ -49,12 +49,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-pip-
 
+    - name: Install pycodestyle
+      run: pip install pycodestyle
+
     - name: Install dependencies
       if: steps.cache.outputs.cache-hit != 'true'
       run: |
-        echo ${{ steps.cache.outputs.cache-hit }} 
         python -m pip install --upgrade pip
-        pip install pycodestyle
         pip install .[test]
     - name: Lint with pycodestyle
       run: |
