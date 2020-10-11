@@ -46,16 +46,16 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
+      uses: actions/setup-python@v2
+      with:
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
-        run: |
+      run: |
         python -m pip install --upgrade pip
         pip install pycodestyle
         pip install .
     - name: Create Credential Files
-        run: |
-          echo ${{ secrets.GITHUB_TOKEN }} > "credentials/developer_key"
-          echo ${{ secrets.GITHUB_TOKEN }} > "credentials/credentials.storage"
-          echo ${{ secrets.GITHUB_TOKEN }} > "credentials/client_secret.json"
+      run: |
+        echo ${{ secrets.GITHUB_TOKEN }} > "credentials/developer_key"
+        echo ${{ secrets.GITHUB_TOKEN }} > "credentials/credentials.storage"
+        echo ${{ secrets.GITHUB_TOKEN }} > "credentials/client_secret.json"
