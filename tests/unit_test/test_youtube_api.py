@@ -19,8 +19,8 @@ def test_parse_video():
         + "video.json"
     )
 
-    with open(data_path, "r") as f:
-        data = json.loads(f.read(), encoding="utf8")
+    with open(data_path, "r", encoding="utf8") as f:
+        data = json.loads(f.read())
 
     video = YouTubeVideo()
     video = youtube_api.parse_youtube_video(video, data)
