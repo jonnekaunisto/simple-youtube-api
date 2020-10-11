@@ -57,6 +57,6 @@ jobs:
     - name: Create Credential Files
       run: |
         mkdir credentials
-        echo ${{ secrets.YOUTUBE_DEVELOPER_KEY }} > "credentials/developer_key"
-        echo ${{ secrets.CHANNEL_CREDENTIALS }} > "credentials/credentials.storage"
-        echo ${{ secrets.CLIENT_SECRET }} > "credentials/client_secret.json"
+        echo "${{ secrets.YOUTUBE_DEVELOPER_KEY }}" > "credentials/developer_key"
+        echo "${{ secrets.CHANNEL_CREDENTIALS }}" > "credentials/credentials.storage"
+        echo "${{ secrets.CLIENT_SECRET }}" > "credentials/client_secret.json"
