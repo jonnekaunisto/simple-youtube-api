@@ -12,7 +12,7 @@ on:
 jobs:
   build:
 
-    runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.python-version }}
     strategy:
       matrix:
         python-version: [3.5, 3.6, 3.7, 3.8]
