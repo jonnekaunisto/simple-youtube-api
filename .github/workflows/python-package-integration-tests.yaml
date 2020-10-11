@@ -21,7 +21,7 @@ on:
     - setup.py
 
 jobs:
-  unit-test:
+  pre-build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -49,7 +49,7 @@ jobs:
 
   integ-test:
     runs-on: ubuntu-latest
-    needs: [unit-tests]
+    needs: [pre-build]
     strategy:
       matrix:
         python-version: [3.8]
