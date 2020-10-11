@@ -1,17 +1,17 @@
 # This workflow will install Python dependencies, run tests and lint with a variety of Python versions
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: Python package
+# For running integration tests and uploading coverage. Separate file to minimize quota usage.
+name: Python package Integration Tests
 
 on:
   push:
     branches: '**'
   pull_request:
-    branches: '**'
+    branches: 'master'
 
 jobs:
-  build:
-
+  unit-test:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -36,3 +36,26 @@ jobs:
     - name: Run unit tests with pytest
       run: |
         pytest tests/unit_test/
+
+  integ-test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+        run: |
+        python -m pip install --upgrade pip
+        pip install pycodestyle
+        pip install .
+    - name: Create Credential Files
+        run: |
+          echo ${{ secrets.GITHUB_TOKEN }} > "credentials/developer_key"
+          echo ${{ secrets.GITHUB_TOKEN }} > "credentials/credentials.storage"
+          echo ${{ secrets.GITHUB_TOKEN }} > "credentials/client_secret.json"
