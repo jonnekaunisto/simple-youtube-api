@@ -1,10 +1,9 @@
-from simple_youtube_api import Channel, LocalVideo
-from simple_youtube_api.channel import generate_upload_body
-from simple_youtube_api import youtube_api
-
-
 import pytest
 import os
+
+from simple_youtube_api import LocalVideo
+from simple_youtube_api.channel import generate_upload_body
+from simple_youtube_api import youtube_constants
 
 
 def test_local_video_regular_function():
@@ -52,9 +51,9 @@ def test_local_video_negative_function():
     file_path = os.path.realpath(__file__)
     bad_file_path = "not_valid"
     thumbnail_path = "not_valid"
-    title = "-" * (youtube_api.MAX_YOUTUBE_TITLE_LENGTH + 1)
-    description = "-" * (youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH + 1)
-    tags = ["-" * (youtube_api.MAX_YOUTUBE_TAGS_LENGTH + 1)]
+    title = "-" * (youtube_constants.MAX_YOUTUBE_TITLE_LENGTH + 1)
+    description = "-" * (youtube_constants.MAX_YOUTUBE_DESCRIPTION_LENGTH + 1)
+    tags = ["-" * (youtube_constants.MAX_YOUTUBE_TAGS_LENGTH + 1)]
     string_category = "not a category"
     id_category = -1
     default_language = False

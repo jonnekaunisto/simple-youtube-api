@@ -5,26 +5,31 @@ from simple_youtube_api import youtube_api
 from simple_youtube_api.decorators import (
     require_channel_auth,
     require_youtube_auth,
-    require_channel_or_youtube_auth,
 )
-
-import typing
-from typing import List, Union
-
-import os.path
-
-import json
 
 
 # TODO add more functions
 class YouTubeVideo(Video):
-    def __init__(self, id=None, youtube=None, channel=None):
+    ''' Class for YouTube Video
+
+        id
+          Video id
+
+        youtube
+          YouTube authentication
+
+        channel
+          Channel autentication
+
+    '''
+
+    def __init__(self, video_id=None, youtube=None, channel=None):
         Video.__init__(self)
 
         self.youtube = youtube
         self.channel = channel
 
-        self.id = id
+        self.id = video_id
 
         # snippet
         self.channel_id = None
@@ -87,10 +92,10 @@ class YouTubeVideo(Video):
                 parts_list.append(part_tupple[1])
 
         # For Channel authenticated
-        if False:
-            for part_tupple in channel_perm_parts:
-                if part_tupple[0] or all_parts:
-                    parts_list.append(part_tupple[1])
+        # if False:
+        #    for part_tupple in channel_perm_parts:
+        #       if part_tupple[0] or all_parts:
+        #            parts_list.append(part_tupple[1])
 
         part = ", ".join(parts_list)
         print(part)
@@ -101,32 +106,13 @@ class YouTubeVideo(Video):
 
         for search_result in search_response.get("items", []):
             if search_result["kind"] == "youtube#video":
-                video = YouTubeVideo()
                 youtube_api.parse_youtube_video(self, search_result)
-                """
-                video_id = search_result['id']
-                if snippet or all_parts:
-                    snippet_result = search_result['snippet']
-                    self.channel_id = snippet_result['channelId']
-                    self.title = snippet_result['title']
-                    self.description = snippet_result['description']
-                    self.tags = snippet_result['tags']
-                    self.category = snippet_result['categoryId']
-                    # self.default_language = snippet_result['defaultLanguage']
 
-                if status or all_parts:
-                    status_result = search_result['status']
-                    self.embeddable = status_result['embeddable']
-                    self.license = status_result['license']
-                    self.privacy_status = status_result['privacyStatus']
-                    self.public_stats_viewable = \
-                        status_result['publicStatsViewable']
-                """
 
     # TODO Finish
     @require_channel_auth
     def update(self, title=None):
-        """updates a part of video
+        """ Updates a part of video
         """
         body = {
             "id": self.id,
@@ -178,6 +164,8 @@ class YouTubeVideo(Video):
     def fetch_comment_threads(
         self, snippet=True, replies=True
     ) -> CommentThread:
+        """Fetches comment threads for video
+        """
         parts = ""
         if snippet:
             parts += "snippet"

@@ -5,6 +5,8 @@ from simple_youtube_api.comment import Comment, CommentSchema
 
 
 class CommentThreadSchema(SchemaJSON):
+    """ CommentThread Schema
+    """
     def __init__(self):
         self.etag = DeserField()
         self.id = DeserField()
@@ -94,7 +96,4 @@ class CommentThread():
         self.replies = None
 
     def __str__(self):
-        if self.top_level_comment is not None:
-            return self.top_level_comment.text_original
-        else:
-            return "None"
+        return str(self.top_level_comment.text_original)

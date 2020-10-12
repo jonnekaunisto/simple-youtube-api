@@ -1,10 +1,9 @@
 '''Query public YouTube data'''
-from simple_youtube_api.youtube_video import YouTubeVideo
-from simple_youtube_api import youtube_api
 
 from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-import json
+
+from simple_youtube_api.youtube_video import YouTubeVideo
+from simple_youtube_api import youtube_api
 
 # Always retry when an apiclient.errors.HttpError with one of these status
 # codes is raised.
@@ -19,7 +18,9 @@ MAX_YOUTUBE_TAGS_LENGTH = 500
 VALID_PRIVACY_STATUSES = ("public", "private", "unlisted")
 
 
-class YouTube(object):
+class YouTube():
+    """ Query YouTube public data
+    """
     def __init__(self):
         self.youtube = None
 

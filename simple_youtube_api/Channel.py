@@ -21,7 +21,8 @@ from oauth2client.file import Storage
 
 from simple_youtube_api.local_video import LocalVideo
 from simple_youtube_api.youtube_video import YouTubeVideo
-from simple_youtube_api import youtube_api
+
+from simple_youtube_api import youtube_constants
 
 httplib2.RETRIES = 1
 # Maximum number of times to retry before giving up.
@@ -65,7 +66,7 @@ class Channel():
         self,
         client_secret_path: str,
         storage_path: str,
-        scope=youtube_api.SCOPES,
+        scope=youtube_constants.SCOPES,
         auth_local_webserver=True,
     ):
         """Logs into the channel with credentials

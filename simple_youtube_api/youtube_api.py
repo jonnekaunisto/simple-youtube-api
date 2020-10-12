@@ -1,25 +1,10 @@
-'''Helper functions for simple-youtube-api'''
-import argparse
-import time
-import random
-import http.client
-import httplib2
-import pickle
-import os
-
-from simple_youtube_api.youtube_constants import *
-
-from googleapiclient.discovery import build
-from googleapiclient.errors import HttpError
-from googleapiclient.http import MediaFileUpload
-
-from oauth2client.client import flow_from_clientsecrets
-from oauth2client.tools import run_flow
-from oauth2client.file import Storage
+''' Helper functions for simple-youtube-api '''
 
 
 # autogenerate code, do not edit
+# TODO: get rid of this
 def parse_youtube_video(video, data):
+    ''' parses youtube video '''
     video.etag = data["etag"]
     video.id = data["id"]
 
@@ -177,21 +162,13 @@ def parse_youtube_video(video, data):
     return video
 
 
-def init_categories(data):
-    with open(DATA_PATH + "categories.pickle", "rb") as handle:
-        return pickle.load(handle)
-
-
 def parse_categories(data):
+    """ Parses categories """
     categories = {}
     for item in data["items"]:
         if item["snippet"]["assignable"]:
             category_name = item["snippet"]["title"]
             category_id = item["id"]
             categories[category_name.lower()] = category_id
-
-    path = os.path.dirname(os.path.abspath(__file__)) + os.sep + "data"
-    with open(path + os.sep + "categories.pickle", "wb") as handle:
-        pickle.dump(categories, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
     return categories

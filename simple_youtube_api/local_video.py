@@ -1,8 +1,7 @@
 '''LocalVideo for uploading to YouTube'''
-from simple_youtube_api.video import Video
 import os.path
-import typing
 
+from simple_youtube_api.video import Video
 
 class LocalVideo(Video):
     """
@@ -45,11 +44,14 @@ class LocalVideo(Video):
         file_path,
         title="",
         description="",
-        tags=[],
+        tags=None,
         category=1,
         default_language=None,
     ):
         Video.__init__(self)
+
+        if tags is None:
+            tags = []
 
         self.set_file_path(file_path)
         self.set_title(title)
@@ -81,13 +83,17 @@ class LocalVideo(Video):
             raise Exception("Not a valid file path: " + str(thumbnail_path))
 
     def set_made_for_kids(self, made_for_kids: bool):
+        """ Specifies if video is made for kids
+        """
         if type(made_for_kids):
             self.self_declared_made_for_kids = made_for_kids
         else:
             raise Exception("Must be a type bool")
 
-    def set_playlist(self, playlist_id):
-        if type(playlist_id) is str:
+    def set_playlist(self, playlist_id: str):
+        """ Specifies playlist that video will be put on
+        """
+        if isinstance(playlist_id, str):
             self.playlist_id = playlist_id
         else:
             raise Exception("playlist_id must be a string")
