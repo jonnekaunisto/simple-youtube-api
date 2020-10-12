@@ -1,3 +1,4 @@
+'''YouTube constants'''
 import os
 
 DATA_PATH = (

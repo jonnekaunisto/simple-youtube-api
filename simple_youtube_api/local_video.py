@@ -1,4 +1,5 @@
-from simple_youtube_api.Video import Video
+'''LocalVideo for uploading to YouTube'''
+from simple_youtube_api.video import Video
 import os.path
 import typing
 

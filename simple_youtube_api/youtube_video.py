@@ -1,5 +1,6 @@
-from simple_youtube_api.Video import Video
-from simple_youtube_api.CommentThread import CommentThread, CommentThreadSchema
+'''Query and update YouTube Video'''
+from simple_youtube_api.video import Video
+from simple_youtube_api.comment_thread import CommentThread, CommentThreadSchema
 from simple_youtube_api import youtube_api
 from simple_youtube_api.decorators import (
     require_channel_auth,
@@ -128,7 +129,7 @@ class YouTubeVideo(Video):
         """updates a part of video
         """
         body = {
-            "id": self.__video_id,
+            "id": self.id,
             "snippet": {"title": "", "categoryId": 1},
         }
 
@@ -136,7 +137,7 @@ class YouTubeVideo(Video):
             body["snippet"]["title"] = title
         print(body)
         response = (
-            channel.get_login()
+            self.channel.get_login()
             .videos()
             .update(body=body, part="snippet,status")
             .execute()

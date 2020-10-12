@@ -1,7 +1,6 @@
-from simple_youtube_api.Comment import Comment, CommentSchema
-from simple_youtube_api.CommentThread import CommentThread, CommentThreadSchema
-from simple_youtube_api.YouTubeVideo import YouTubeVideo
-from simple_youtube_api import youtube_api
+from simple_youtube_api.comment import Comment, CommentSchema
+from simple_youtube_api.comment_thread import CommentThread, CommentThreadSchema
+from simple_youtube_api import youtube_api, YouTubeVideo
 
 import pytest
 import os

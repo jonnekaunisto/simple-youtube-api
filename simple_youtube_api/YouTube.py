@@ -1,4 +1,5 @@
-from simple_youtube_api.YouTubeVideo import YouTubeVideo
+'''Query public YouTube data'''
+from simple_youtube_api.youtube_video import YouTubeVideo
 from simple_youtube_api import youtube_api
 
 from googleapiclient.discovery import build

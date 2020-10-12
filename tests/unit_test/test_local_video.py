@@ -1,6 +1,5 @@
-from simple_youtube_api.Channel import Channel
-from simple_youtube_api.Channel import generate_upload_body
-from simple_youtube_api.LocalVideo import LocalVideo
+from simple_youtube_api import Channel, LocalVideo
+from simple_youtube_api.channel import generate_upload_body
 from simple_youtube_api import youtube_api
 
 

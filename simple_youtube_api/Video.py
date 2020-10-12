@@ -1,3 +1,4 @@
+'''Parent class for all Video objects'''
 from simple_youtube_api.youtube_api import (
     MAX_YOUTUBE_TITLE_LENGTH,
     MAX_YOUTUBE_DESCRIPTION_LENGTH,

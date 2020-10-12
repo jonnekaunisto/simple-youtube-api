@@ -1,3 +1,4 @@
+'''Helper functions for simple-youtube-api'''
 import argparse
 import time
 import random
