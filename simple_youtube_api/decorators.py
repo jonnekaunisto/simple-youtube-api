@@ -40,7 +40,7 @@ def require_youtube_auth(f, video, *a, **k):
 
 @decorator.decorator
 def require_channel_or_youtube_auth(f, video, *a, **k):
-    if video.youtube is not None or video.channel != None:
+    if video.youtube is not None or video.channel is not None:
         return f(video, *a, **k)
     else:
         raise Exception(

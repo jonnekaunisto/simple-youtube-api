@@ -1,0 +1,98 @@
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+# For running integration tests and uploading coverage. Separate file to minimize quota usage.
+name: Python package Integration Tests
+
+on:
+  push:
+    paths:
+    - .github/workflows/**
+    - simple_youtube_api/**
+    - tests/**
+    - setup.py
+    branches: 'master'
+  pull_request:
+    branches: 'master'
+    paths:
+    - .github/workflows/**
+    - simple_youtube_api/**
+    - tests/**
+    - setup.py
+
+jobs:
+  pre-build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        python-version: [3.6, 3.7, 3.8]
+        os: [windows-latest, ubuntu-latest, macos-latest]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Get pip cache dir
+      id: pip-cache
+      run: |
+        echo "::set-output name=dir::$(pip cache dir)"
+
+    - name: pip cache
+      uses: actions/cache@v2
+      id: cache
+      with:
+        path: ${{ steps.pip-cache.outputs.dir }}
+        key: ${{ runner.os }}-pip-${{ hashFiles('setup.py') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install wheel
+        pip install pycodestyle
+        pip install .[test]
+    - name: Lint with pycodestyle
+      run: |
+        # stop the build if there are Python syntax errors or undefined names
+        pycodestyle --max-line-length=127 --count  --show-pep8 --show-source ./simple_youtube_api ./tests
+    - name: Run unit tests with pytest
+      run: |
+        pytest tests/unit_test/
+
+  integ-test:
+    runs-on: ubuntu-latest
+    needs: [pre-build]
+    strategy:
+      matrix:
+        python-version: [3.8]
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pycodestyle
+        pip install .[test]
+    - name: Create Credential Files
+      run: |
+        mkdir credentials
+        echo "${{ secrets.YOUTUBE_DEVELOPER_KEY }}" > "credentials/developer_key"
+        echo "${{ secrets.CHANNEL_CREDENTIALS }}" > "credentials/credentials.storage"
+        echo "${{ secrets.CLIENT_SECRET }}" > "credentials/client_secret.json"
+
+    - name: Run all tests
+      run: pytest tests/ --doctest-modules -v --cov simple_youtube_api --cov-report term-missing
+
+    - name: Coveralls
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: coveralls
+      
