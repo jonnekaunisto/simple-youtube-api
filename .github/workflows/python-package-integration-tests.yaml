@@ -92,6 +92,7 @@ jobs:
       run: pytest tests/ --doctest-modules -v --cov simple_youtube_api --cov-report term-missing
 
     - name: Coveralls
-      uses: coverallsapp/github-action@master
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: coveralls
+      
