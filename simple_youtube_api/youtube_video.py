@@ -108,7 +108,6 @@ class YouTubeVideo(Video):
             if search_result["kind"] == "youtube#video":
                 youtube_api.parse_youtube_video(self, search_result)
 
-
     # TODO Finish
     @require_channel_auth
     def update(self, title=None):

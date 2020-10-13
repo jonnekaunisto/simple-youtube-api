@@ -3,6 +3,7 @@ import os.path
 
 from simple_youtube_api.video import Video
 
+
 class LocalVideo(Video):
     """
     Class for making a video that is uploaded to YouTube

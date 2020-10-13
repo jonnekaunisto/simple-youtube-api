@@ -30,13 +30,11 @@ def test_youtube_video_constructor():
     # assert video.title == title
     # assert video.description == description
     # assert video.tags == tags
-    #assert video.category == id_category
-
+    # assert video.category == id_category
 
     # for privacy_status in privacy_statuses:
     #    video.set_privacy_status(privacy_status)
     #    assert video.privacy_status == privacy_status
-
 
 
 def test_youtube_video_rating():
