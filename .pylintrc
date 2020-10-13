@@ -140,7 +140,10 @@ disable=print-statement,
         exception-escape,
         comprehension-escape,
         too-many-instance-attributes, # Naturally will have a lot
-        too-few-public-methods # Naturally some will not have a lot
+        too-few-public-methods, # Naturally some will not have a lot
+        too-many-arguments, # Naturally some will have a lot
+        too-many-locals, # Naturally some will have a lot
+        fixme # Naturally will have some TODOs
 
 # Enable the message, report, category or checker with the given id(s). You can
 # either give multiple identifier separated by comma (,) or put this option
@@ -372,7 +375,7 @@ attr-naming-style=snake_case
 
 # Regular expression matching correct attribute names. Overrides attr-naming-
 # style.
-#attr-rgx=
+attr-rgx=(([a-z_][a-z0-9_]{1,30})|(_[a-z0-9_]*)|(__[a-z][a-z0-9_]+__))$
 
 # Bad variable names which should always be refused, separated by a comma.
 bad-names=foo,

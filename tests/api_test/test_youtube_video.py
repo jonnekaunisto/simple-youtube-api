@@ -11,6 +11,7 @@ YOUTUBE_VIDEO_ID = "_i4fVYVqLbQ"
 
 
 def test_youtube_video_constructor():
+    """Test video constructor"""
 
     video_id = YOUTUBE_VIDEO_ID
 
@@ -25,21 +26,21 @@ def test_youtube_video_constructor():
     video.set_youtube_auth(youtube)
     video.set_channel_auth(youtube)
 
-    '''
-    assert video.video_id == video_id
-    assert video.title == title
-    assert video.description == description
-    assert video.tags == tags
+    # assert video.video_id == video_id
+    # assert video.title == title
+    # assert video.description == description
+    # assert video.tags == tags
     #assert video.category == id_category
 
 
-    for privacy_status in privacy_statuses:
-        video.set_privacy_status(privacy_status)
-        assert video.privacy_status == privacy_status
-    '''
+    # for privacy_status in privacy_statuses:
+    #    video.set_privacy_status(privacy_status)
+    #    assert video.privacy_status == privacy_status
+
 
 
 def test_youtube_video_rating():
+    """Test rating youtube video"""
     video_id = YOUTUBE_VIDEO_ID
 
     channel = Channel()
@@ -60,6 +61,7 @@ def test_youtube_video_rating():
 
 
 def test_youtube_video_without_credentials():
+    """Test video without credentials"""
     video_id = YOUTUBE_VIDEO_ID
 
     video = YouTubeVideo(video_id)
@@ -84,6 +86,7 @@ def test_youtube_video_without_credentials():
 
 
 def test_youtube_video_fetch():
+    """Test fetching video"""
     video_id = YOUTUBE_VIDEO_ID
 
     with open("credentials/developer_key", "r") as myfile:
@@ -97,6 +100,7 @@ def test_youtube_video_fetch():
 
 
 def test_youtube_video_fetch_comment_threads():
+    """Test fetching comment thread"""
     with open("credentials/developer_key", "r") as myfile:
         developer_key = myfile.read().replace("\n", "")
 

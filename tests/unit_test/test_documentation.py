@@ -1,3 +1,4 @@
+"""Testing Readme file"""
 import os
 import pytest
 import rstcheck
@@ -10,6 +11,7 @@ README_PATH = project_path + os.sep + README_FILE_NAME
 
 
 def test_readme_format():
+    """Testing readme format"""
     with open(README_PATH, "r") as rst_file:
         text = rst_file.read()
     errors = list(rstcheck.check(text, report_level=Reporter.WARNING_LEVEL))

@@ -1,15 +1,20 @@
+""" Testing youtube api """
+
+import os
+import json
+
+import pytest
+
 from simple_youtube_api.comment import Comment, CommentSchema
 from simple_youtube_api.comment_thread import CommentThread, CommentThreadSchema
 from simple_youtube_api import youtube_api, YouTubeVideo
 
-import pytest
-import os
-import json
 
 data_dir = os.sep + ".." + os.sep + "test_data"
 
 
 def test_parse_video():
+    """Testing parsing video"""
     data_path = (
         os.path.dirname(os.path.abspath(__file__))
         + os.sep
@@ -18,8 +23,8 @@ def test_parse_video():
         + "video.json"
     )
 
-    with open(data_path, "r", encoding="utf8") as f:
-        data = json.loads(f.read())
+    with open(data_path, "r", encoding="utf8") as file:
+        data = json.loads(file.read())
 
     video = YouTubeVideo()
     video = youtube_api.parse_youtube_video(video, data)
@@ -32,6 +37,7 @@ def test_parse_video():
 
 
 def test_parse_comment_thread():
+    """Testing parsing comment thread"""
     data_path = (
         os.path.dirname(os.path.abspath(__file__))
         + os.sep
@@ -40,8 +46,8 @@ def test_parse_comment_thread():
         + "comment_thread_test.json"
     )
 
-    with open(data_path, "r") as f:
-        data = json.loads(f.read())
+    with open(data_path, "r") as file:
+        data = json.loads(file.read())
 
     comment_thread = CommentThread()
     CommentThreadSchema().from_dict(comment_thread, data)
@@ -63,6 +69,7 @@ def test_parse_comment_thread():
 
 
 def test_parse_comment():
+    """Testing parsing comment"""
     data_path = (
         os.path.dirname(os.path.abspath(__file__))
         + os.sep
@@ -71,8 +78,8 @@ def test_parse_comment():
         + "comment_test.json"
     )
 
-    with open(data_path, "r") as f:
-        data = json.loads(f.read())
+    with open(data_path, "r") as file:
+        data = json.loads(file.read())
 
     comment = Comment()
     CommentSchema().from_dict(comment, data)
