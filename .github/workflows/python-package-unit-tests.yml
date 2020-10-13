@@ -13,10 +13,11 @@ on:
 jobs:
   lint:
 
-    runs-on: macos-latest
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         python-version: [3.8]
+        os: [windows-latest, ubuntu-latest, macos-latest]
     
     steps:
     - uses: actions/checkout@v2

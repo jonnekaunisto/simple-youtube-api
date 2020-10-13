@@ -1,11 +1,12 @@
 '''Query and update YouTube Video'''
-from simple_youtube_api.video import Video
-from simple_youtube_api.comment_thread import CommentThread, CommentThreadSchema
 from simple_youtube_api import youtube_api
 from simple_youtube_api.decorators import (
     require_channel_auth,
     require_youtube_auth,
 )
+
+from .video import Video
+from .comment_thread import CommentThread, CommentThreadSchema
 
 
 # TODO add more functions

@@ -1,7 +1,7 @@
 '''LocalVideo for uploading to YouTube'''
 import os.path
 
-from simple_youtube_api.video import Video
+from .video import Video
 
 
 class LocalVideo(Video):

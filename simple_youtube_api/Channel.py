@@ -19,10 +19,10 @@ from oauth2client.client import flow_from_clientsecrets
 from oauth2client.tools import run_flow
 from oauth2client.file import Storage
 
-from simple_youtube_api.local_video import LocalVideo
-from simple_youtube_api.youtube_video import YouTubeVideo
+from .local_video import LocalVideo
+from .youtube_video import YouTubeVideo
 
-from simple_youtube_api import youtube_constants
+from . import youtube_constants
 
 httplib2.RETRIES = 1
 # Maximum number of times to retry before giving up.
