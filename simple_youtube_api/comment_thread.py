@@ -1,7 +1,7 @@
 '''YouTube Comment Thread Resource'''
 from pyser import SchemaJSON, DeserField, DeserObjectField
-from .name_converter import u_to_c
-from .comment import Comment, CommentSchema
+from simple_youtube_api.name_converter import u_to_c
+from simple_youtube_api.comment import Comment, CommentSchema
 
 
 class CommentThreadSchema(SchemaJSON):

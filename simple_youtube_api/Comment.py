@@ -1,6 +1,6 @@
 '''YouTube Comment Resource'''
 from pyser import SchemaJSON, DeserField
-from .name_converter import u_to_c
+from simple_youtube_api.name_converter import u_to_c
 
 
 class CommentSchema(SchemaJSON):

@@ -3,7 +3,7 @@
 from googleapiclient.discovery import build
 
 from simple_youtube_api import youtube_api
-from .youtube_video import YouTubeVideo
+from simple_youtube_api.youtube_video import YouTubeVideo
 
 # Always retry when an apiclient.errors.HttpError with one of these status
 # codes is raised.
