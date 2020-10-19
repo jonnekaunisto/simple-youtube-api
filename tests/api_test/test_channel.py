@@ -1,10 +1,11 @@
-from simple_youtube_api.Channel import Channel
-from simple_youtube_api.LocalVideo import LocalVideo
+"""Test channel"""
+import os
+import datetime
 
 import urllib
 import pytest
-import os
-import datetime
+
+from simple_youtube_api import LocalVideo, Channel
 
 VIDEO_RESOURCE_URL = "http://commondatastorage.googleapis.com/ \
                       gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
@@ -14,14 +15,18 @@ CREDENTIALS = "credentials/credentials.storage"
 
 
 def download_video():
+    """Download example video"""
     urllib.request.urlretrieve(VIDEO_RESOURCE_URL, VIDEO_NAME)
 
 
 def test_channel_regular_function():
+    """Test channel constructor"""
     channel = Channel()
+    assert channel
 
 
 def test_channel_fetch_uploads():
+    """Test fetching uploads"""
     channel = Channel()
 
     assert os.path.isfile(CLIENT_SECRET_NAME), "CLIENT SECRET_NAME not valid"
@@ -37,11 +42,12 @@ def test_channel_fetch_uploads():
 
 
 def not_working_channel_upload_video():
-    channel = Channel()
     """
     testing this will make too many requests to google which will go over the
     query quota
     """
+
+    channel = Channel()
 
     assert os.path.isfile(CLIENT_SECRET_NAME), "CLIENT SECRET_NAME not valid"
     assert os.path.isfile(CREDENTIALS), "CREDENTIALS is not valid"
