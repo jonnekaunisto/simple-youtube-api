@@ -4,8 +4,8 @@ Simple Youtube API
 .. image:: https://badge.fury.io/py/simple-youtube-api.svg
     :target: https://badge.fury.io/py/simple-youtube-api
     :alt: Simple YouTube API page on the Python Package Index
-.. image:: https://travis-ci.org/jonnekaunisto/simple-youtube-api.svg?branch=master
-    :target: https://travis-ci.org/jonnekaunisto/simple-youtube-api
+.. image:: https://github.com/jonnekaunisto/simple-youtube-api/workflows/Python%20package%20Integration%20Tests/badge.svg
+    :target: https://github.com/jonnekaunisto/simple-youtube-api/actions?query=workflow%3A%22Python+package+Integration+Tests%22
     :alt: Build status on travis
 .. image:: https://coveralls.io/repos/github/jonnekaunisto/simple-youtube-api/badge.svg?branch=master
     :target: https://coveralls.io/github/jonnekaunisto/simple-youtube-api?branch=master
