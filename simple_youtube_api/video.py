@@ -1,4 +1,8 @@
-from simple_youtube_api.youtube_api import (
+'''Parent class for all Video objects'''
+
+from typing import List, Union
+
+from simple_youtube_api.youtube_constants import (
     MAX_YOUTUBE_TITLE_LENGTH,
     MAX_YOUTUBE_DESCRIPTION_LENGTH,
     MAX_YOUTUBE_TAGS_LENGTH,
@@ -6,15 +10,10 @@ from simple_youtube_api.youtube_api import (
     YOUTUBE_LICENCES,
     VALID_PRIVACY_STATUS,
 )
-
 from simple_youtube_api.decorators import video_snippet_set, video_status_set
 
-import typing
-from typing import List, Union
 
-
-# TODO add variables
-class Video(object):
+class Video():
 
     """
     Base class for YouTubeVideo and LocalVideo
@@ -53,41 +52,42 @@ class Video(object):
         self.license = None
         self.privacy_status = None
         self.public_stats_viewable = None
+        self.publish_at = None
         self.status_set = False
 
     @video_snippet_set
     def set_title(self, title: str):
         """Sets title for video and returns an exception if title is invalid
         """
-        if not type(title) is str:
+        if not isinstance(title, str):
             raise Exception("Title must be a string")
         if len(title) > MAX_YOUTUBE_TITLE_LENGTH:
             raise Exception("Title is too long: " + str(len(title)))
-        else:
-            self.title = title
+
+        self.title = title
 
     @video_snippet_set
     def set_description(self, description: str):
         """Sets description for video and returns an exception if description
         is invalid
         """
-        if not type(description) is str:
+        if not isinstance(description, str):
             raise Exception("Description must be a string")
         if len(description) > MAX_YOUTUBE_DESCRIPTION_LENGTH:
             raise Exception("Description is too long: " + str(len(description)))
-        else:
-            self.description = description
+
+        self.description = description
 
     @video_snippet_set
     def set_tags(self, tags: List[str]):
         """Sets tags to the video and returns an exception if tags are invalid
         """
-        if not type(tags) is list:
+        if not isinstance(tags, list):
             raise Exception("Tags must be a list")
         if len("".join(tags)) > MAX_YOUTUBE_TAGS_LENGTH:
             raise Exception("Tags are too long: " + str(len("".join(tags))))
-        else:
-            self.tags = tags
+
+        self.tags = tags
 
     @video_snippet_set
     def set_category(self, category: Union[int, str]):
@@ -107,7 +107,6 @@ class Video(object):
 
         elif cat_type == str and category.lower() in YOUTUBE_CATEGORIES.keys():
             self.category = YOUTUBE_CATEGORIES[category]
-
         else:
             raise Exception("Not a valid category: " + str(category))
 
@@ -115,29 +114,28 @@ class Video(object):
     def set_default_language(self, language: str):
         """ Sets default language for video
         """
-        if not type(language) is str:
+        if not isinstance(language, str):
             raise Exception("Language must be a string")
-        else:
-            self.default_language = language
+
+        self.default_language = language
 
     @video_status_set
     def set_embeddable(self, embeddable: bool):
         """ Specifies if video is embeddable
         """
-        if not type(embeddable) is bool:
+        if not isinstance(embeddable, bool):
             raise Exception("Embeddable must be a boolean")
 
-        else:
-            self.embeddable = embeddable
+        self.embeddable = embeddable
 
     @video_status_set
-    def set_license(self, license: str):
+    def set_license(self, video_license: str):
         """ Specifies license for video either 'youtube' or 'creativeCommon'
         """
-        if type(license) == str and license in YOUTUBE_LICENCES:
-            self.license = license
+        if isinstance(video_license, str) and video_license in YOUTUBE_LICENCES:
+            self.license = video_license
         else:
-            raise Exception("Not a valid license: " + str(license))
+            raise Exception("Not a valid license: " + str(video_license))
 
     @video_status_set
     def set_privacy_status(self, privacy_status: str):
@@ -145,14 +143,14 @@ class Video(object):
         """
         if privacy_status not in VALID_PRIVACY_STATUS:
             raise Exception("Not valid privacy status: " + str(privacy_status))
-        else:
-            self.privacy_status = privacy_status
+
+        self.privacy_status = privacy_status
 
     @video_status_set
     def set_public_stats_viewable(self, viewable: bool):
         """ Specifies if public stats are viewable
         """
-        if type(viewable) == bool:
+        if isinstance(viewable, bool):
             self.public_stats_viewable = viewable
         else:
             raise Exception("Not a valid status: " + str(viewable))
@@ -162,7 +160,7 @@ class Video(object):
         """ Sets time that video is going to be published at in
         (YYYY-MM-DDThh:mm:ss.sZ) format
         """
-        if type(time) == str:
+        if isinstance(time, str):
             self.publish_at = time
         else:
             raise Exception("Not a valid publish time: " + str(time))

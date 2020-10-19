@@ -1,18 +1,22 @@
-from simple_youtube_api.YouTube import YouTube
+"""Test youtube"""
 import pytest
-import os.path
+
+
+from simple_youtube_api import YouTube
 
 
 def test_regular_function():
+    """Test constructor"""
     with open("credentials/developer_key", "r") as myfile:
         developer_key = myfile.read().replace("\n", "")
 
-    yt = YouTube()
-    yt.login(developer_key)
-    yt.get_login()
+    youtube = YouTube()
+    youtube.login(developer_key)
+    youtube.get_login()
 
 
 def test_youtube_search():
+    """Test youtube search"""
     youtube = get_youtube()
 
     videos = youtube.search("Your Search Term")
@@ -28,11 +32,13 @@ def test_youtube_search():
 
 
 def test_fetch_categories():
+    """Test fetching categories"""
     youtube = get_youtube()
     youtube.fetch_categories()
 
 
 def get_youtube():
+    """Makes youtube object"""
     with open("credentials/developer_key", "r") as myfile:
         developer_key = myfile.read().replace("\n", "")
 

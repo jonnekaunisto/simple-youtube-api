@@ -1,3 +1,4 @@
+'''YouTube Comment Resource'''
 from pyser import SchemaJSON, DeserField
 from simple_youtube_api.name_converter import u_to_c
 
@@ -144,4 +145,4 @@ class Comment():
         self.updated_at = None
 
     def __str__(self):
-        return self.text_original
+        return str(self.text_original)

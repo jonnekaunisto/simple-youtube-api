@@ -1,14 +1,15 @@
-from simple_youtube_api.Channel import Channel
-from simple_youtube_api.Channel import generate_upload_body
-from simple_youtube_api.LocalVideo import LocalVideo
-from simple_youtube_api import youtube_api
-
+"""Testing local video"""
+import os
 
 import pytest
-import os
+
+from simple_youtube_api import LocalVideo
+from simple_youtube_api.channel import generate_upload_body
+from simple_youtube_api import youtube_constants
 
 
 def test_local_video_regular_function():
+    """Testing function"""
     file_path = (
         os.path.dirname(os.path.abspath(__file__))
         + os.sep
@@ -16,7 +17,7 @@ def test_local_video_regular_function():
     )
     title = "this is a title"
     description = "this is a description"
-    tags = ["this", "is" "a", "tag"]
+    tags = ["this", "is", "a", "tag"]
     string_category = "film"
     id_category = 1
     privacy_statuses = ["public", "private", "unlisted"]
@@ -42,27 +43,28 @@ def test_local_video_regular_function():
 
     for privacy_status in privacy_statuses:
         video.set_privacy_status(privacy_status)
-        video.privacy_status == privacy_status
+        assert video.privacy_status == privacy_status
 
     # TODO: add stronger check
     assert generate_upload_body(video)
 
 
 def test_local_video_negative_function():
+    """Testing negative cases"""
     # snippet variables
     file_path = os.path.realpath(__file__)
     bad_file_path = "not_valid"
     thumbnail_path = "not_valid"
-    title = "-" * (youtube_api.MAX_YOUTUBE_TITLE_LENGTH + 1)
-    description = "-" * (youtube_api.MAX_YOUTUBE_DESCRIPTION_LENGTH + 1)
-    tags = ["-" * (youtube_api.MAX_YOUTUBE_TAGS_LENGTH + 1)]
+    title = "-" * (youtube_constants.MAX_YOUTUBE_TITLE_LENGTH + 1)
+    description = "-" * (youtube_constants.MAX_YOUTUBE_DESCRIPTION_LENGTH + 1)
+    tags = ["-" * (youtube_constants.MAX_YOUTUBE_TAGS_LENGTH + 1)]
     string_category = "not a category"
     id_category = -1
     default_language = False
 
     # status variables
     embeddable = "not_valid"
-    license = "not_valid"
+    video_license = "not_valid"
     privacy_status = "not_valid"
     public_stats_viewable = "not_valid"
     publish_at = False
@@ -101,7 +103,7 @@ def test_local_video_negative_function():
     with pytest.raises(Exception):
         video.set_embeddable(embeddable)
     with pytest.raises(Exception):
-        video.set_license(license)
+        video.set_license(video_license)
     with pytest.raises(Exception):
         video.set_privacy_status(privacy_status)
     with pytest.raises(Exception):
@@ -111,6 +113,7 @@ def test_local_video_negative_function():
 
 
 def test_local_video_constructor():
+    """Testing constructor"""
     file_path = (
         os.path.dirname(os.path.abspath(__file__))
         + os.sep
@@ -118,14 +121,14 @@ def test_local_video_constructor():
     )
     title = "this is a title"
     description = "this is a description"
-    tags = ["this", "is" "a", "tag"]
+    tags = ["this", "is", "a", "tag"]
     string_category = "film"
     id_category = 1
     default_language = "english"
 
     # status variables
     embeddable = True
-    license = "youtube"
+    video_license = "youtube"
     privacy_status = "public"
     public_stats_viewable = True
     publish_at = "9"
@@ -163,13 +166,13 @@ def test_local_video_constructor():
     assert video.status_set is False, "Wrong status set " + str(video.status_set)
 
     video.set_embeddable(embeddable)
-    video.set_license(license)
+    video.set_license(video_license)
     video.set_privacy_status(privacy_status)
     video.set_public_stats_viewable(public_stats_viewable)
     video.set_publish_at(publish_at)
 
     assert video.embeddable == embeddable
-    assert video.license == license
+    assert video.license == video_license
     assert (
         video.privacy_status == privacy_status
     ), "Privacy Wrong: " + str(video.privacy_status)

@@ -1,17 +1,16 @@
-from simple_youtube_api.LocalVideo import LocalVideo
-from simple_youtube_api.YouTubeVideo import YouTubeVideo
-from simple_youtube_api import youtube_api
+'''Log into YouTube Channel and query and update data'''
+
 
 import time
 import random
-import argparse
 import http.client
-import httplib2
-import typing
 import os
 import sys
-import progressbar
 from typing import List
+
+import progressbar
+import httplib2
+
 from googleapiclient.discovery import build
 from googleapiclient.errors import HttpError
 from googleapiclient.http import MediaFileUpload
@@ -19,6 +18,11 @@ from googleapiclient.http import MediaFileUpload
 from oauth2client.client import flow_from_clientsecrets
 from oauth2client.tools import run_flow
 from oauth2client.file import Storage
+
+from .local_video import LocalVideo
+from .youtube_video import YouTubeVideo
+
+from . import youtube_constants
 
 httplib2.RETRIES = 1
 # Maximum number of times to retry before giving up.
@@ -47,8 +51,7 @@ API_SERVICE_NAME = "youtube"
 API_VERSION = "v3"
 
 
-# add functions
-class Channel(object):
+class Channel():
     """
     Class for authorizing changes to channel
 
@@ -63,7 +66,7 @@ class Channel(object):
         self,
         client_secret_path: str,
         storage_path: str,
-        scope=youtube_api.SCOPES,
+        scope=youtube_constants.SCOPES,
         auth_local_webserver=True,
     ):
         """Logs into the channel with credentials
@@ -81,8 +84,8 @@ class Channel(object):
             false if you are not doing this locally.
         """
 
-        STORAGE = Storage(storage_path)
-        credentials = STORAGE.get()
+        storage = Storage(storage_path)
+        credentials = storage.get()
 
         if credentials is None or credentials.invalid:
             saved_argv = []
@@ -91,8 +94,7 @@ class Channel(object):
                 sys.argv = [sys.argv[0], "--noauth_local_webserver"]
 
             flow = flow_from_clientsecrets(client_secret_path, scope=scope)
-            http = httplib2.Http()
-            credentials = run_flow(flow, STORAGE, http=http)
+            credentials = run_flow(flow, storage, http=httplib2.Http())
 
             sys.argv = saved_argv
 
@@ -169,7 +171,7 @@ class Channel(object):
             thumbnail_path
               Path to the thumbnail
         """
-        if type(video) is not str:
+        if isinstance(video, str):
             video_id = video.id
         else:
             video_id = video
@@ -189,7 +191,7 @@ class Channel(object):
                 YouTubeVideo object or the string id of the video
         """
 
-        if type(video) is not str:
+        if isinstance(video, str):
             video_id = video.id
         else:
             video_id = video
@@ -212,6 +214,7 @@ class Channel(object):
 
 
 def generate_upload_body(video):
+    """ Generates upload body """
     body = dict()
 
     snippet = dict()
@@ -251,6 +254,7 @@ def generate_upload_body(video):
 
 
 def calculate_chunk_size(video_path):
+    """ Calculates the chuncsize for video """
     video_size = os.path.getsize(video_path)
     print("Video size: " + str(video_size) + " bytes")
 
@@ -263,6 +267,7 @@ def calculate_chunk_size(video_path):
 
 
 def initialize_upload(channel, video):
+    """ Initializes upload """
     body = generate_upload_body(video)
     chunk_size = calculate_chunk_size(video.file_path)
     # Call the API's videos.insert method to create and upload the video.
@@ -281,6 +286,7 @@ def initialize_upload(channel, video):
 # failed upload.
 # TODO: add more variables into video when returned
 def resumable_upload(request):
+    """ Uploads video """
     youtube_video = None
     response = None
     error = None
@@ -297,7 +303,7 @@ def resumable_upload(request):
                 " ",
                 progressbar.FileTransferSpeed(),
             ]
-            bar = progressbar.ProgressBar(
+            bar_object = progressbar.ProgressBar(
                 widgets=widgets, max_value=1000
             ).start()
 
@@ -305,22 +311,22 @@ def resumable_upload(request):
             while response is None:
                 status, response = request.next_chunk(num_retries=4)
                 if status:
-                    bar.update(min(1000, 100 * 10 * status.progress() + 1))
-            bar.finish()
+                    bar_object.update(min(1000, 100 * 10 * status.progress() + 1))
+            bar_object.finish()
             if "id" in response:
                 youtube_video = YouTubeVideo(response["id"])
             else:
                 raise Exception("The upload failed unexpectedly: " + response)
-        except HttpError as e:
-            if e.resp.status in RETRIABLE_STATUS_CODES:
+        except HttpError as http_error:
+            if http_error.resp.status in RETRIABLE_STATUS_CODES:
                 error = "A retriable HTTP error %d occurred:\n%s" % (
-                    e.resp.status,
-                    e.content,
+                    http_error.resp.status,
+                    http_error.content,
                 )
             else:
                 raise
-        except RETRIABLE_EXCEPTIONS as e:
-            error = "A retriable error occurred: %s" % e
+        except RETRIABLE_EXCEPTIONS as http_error:
+            error = "A retriable error occurred: %s" % http_error
 
         if error is not None:
             print(error)

@@ -1,11 +1,8 @@
-from simple_youtube_api.YouTubeVideo import YouTubeVideo
-from simple_youtube_api.YouTube import YouTube
-from simple_youtube_api.Channel import Channel
-
-
-import pytest
+""" Testing youtube video """
 import os
+import pytest
 
+from simple_youtube_api import YouTubeVideo, YouTube, Channel
 
 CLIENT_SECRET_NAME = "credentials/client_secret.json"
 CREDENTIALS = "credentials/credentials.storage"
@@ -14,6 +11,7 @@ YOUTUBE_VIDEO_ID = "_i4fVYVqLbQ"
 
 
 def test_youtube_video_constructor():
+    """Test video constructor"""
 
     video_id = YOUTUBE_VIDEO_ID
 
@@ -23,29 +21,24 @@ def test_youtube_video_constructor():
     youtube = YouTube()
     youtube.login(developer_key)
 
-    video = YouTubeVideo(id=video_id, youtube=youtube.get_login())
-
-    video.id
+    video = YouTubeVideo(video_id=video_id, youtube=youtube.get_login())
 
     video.set_youtube_auth(youtube)
     video.set_channel_auth(youtube)
-    video.channel_id
 
-    """
-    assert video.video_id == video_id
-    assert video.title == title
-    assert video.description == description
-    assert video.tags == tags
-    #assert video.category == id_category
+    # assert video.video_id == video_id
+    # assert video.title == title
+    # assert video.description == description
+    # assert video.tags == tags
+    # assert video.category == id_category
 
-
-    for privacy_status in privacy_statuses:
-        video.set_privacy_status(privacy_status)
-        assert video.privacy_status == privacy_status
-    """
+    # for privacy_status in privacy_statuses:
+    #    video.set_privacy_status(privacy_status)
+    #    assert video.privacy_status == privacy_status
 
 
 def test_youtube_video_rating():
+    """Test rating youtube video"""
     video_id = YOUTUBE_VIDEO_ID
 
     channel = Channel()
@@ -55,7 +48,7 @@ def test_youtube_video_rating():
 
     channel.login(CLIENT_SECRET_NAME, CREDENTIALS)
 
-    video = YouTubeVideo(id=video_id, channel=channel.get_login())
+    video = YouTubeVideo(video_id=video_id, channel=channel.get_login())
 
     video.dislike()
     video.remove_rating()
@@ -66,6 +59,7 @@ def test_youtube_video_rating():
 
 
 def test_youtube_video_without_credentials():
+    """Test video without credentials"""
     video_id = YOUTUBE_VIDEO_ID
 
     video = YouTubeVideo(video_id)
@@ -90,6 +84,7 @@ def test_youtube_video_without_credentials():
 
 
 def test_youtube_video_fetch():
+    """Test fetching video"""
     video_id = YOUTUBE_VIDEO_ID
 
     with open("credentials/developer_key", "r") as myfile:
@@ -98,18 +93,19 @@ def test_youtube_video_fetch():
     youtube = YouTube()
     youtube.login(developer_key)
 
-    video = YouTubeVideo(id=video_id, youtube=youtube.get_login())
+    video = YouTubeVideo(video_id=video_id, youtube=youtube.get_login())
     video.fetch(all_parts=True)
 
 
 def test_youtube_video_fetch_comment_threads():
+    """Test fetching comment thread"""
     with open("credentials/developer_key", "r") as myfile:
         developer_key = myfile.read().replace("\n", "")
 
     youtube = YouTube()
     youtube.login(developer_key)
 
-    video = YouTubeVideo(id=YOUTUBE_VIDEO_ID, youtube=youtube.get_login())
+    video = YouTubeVideo(video_id=YOUTUBE_VIDEO_ID, youtube=youtube.get_login())
 
     video.fetch_comment_threads()
 
