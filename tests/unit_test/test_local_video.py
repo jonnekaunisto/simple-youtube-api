@@ -26,7 +26,7 @@ def test_local_video_regular_function():
     id_category = 1
     privacy_statuses = ["public", "private", "unlisted"]
     playlist_id = "some_playlist_id"
-    publish_at = datetime.datetime(datetime.date.today().year+1,5,17)
+    publish_at = datetime.datetime(datetime.date.today().year+1, 5, 17)
 
     video = LocalVideo(file_path)
 
