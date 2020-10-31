@@ -23,16 +23,8 @@ def test_parse_video():
         + "video.json"
     )
 
-<<<<<<< HEAD
-<<<<<<< HEAD
     with open(data_path, "r", encoding="utf8") as file:
         data = json.loads(file.read())
-=======
-=======
->>>>>>> 0853796dc0760b3b42a249426629a6b1c10665bc
-    with open(data_path, "r", encoding='utf-8') as f:
-        data = json.loads(f.read())
->>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class
 
     video = YouTubeVideo()
     video = youtube_api.parse_youtube_video(video, data)
