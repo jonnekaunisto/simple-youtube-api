@@ -1,11 +1,8 @@
 '''LocalVideo for uploading to YouTube'''
 import os.path
 
-<<<<<<< HEAD:simple_youtube_api/local_video.py
 from simple_youtube_api.video import Video
 
-=======
->>>>>>> 0853796dc0760b3b42a249426629a6b1c10665bc:simple_youtube_api/LocalVideo.py
 class LocalVideo(Video):
     """
     Class for making a video that is uploaded to YouTube
