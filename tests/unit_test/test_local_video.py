@@ -1,17 +1,12 @@
 """Testing local video"""
 import os
+import datetime
 
 import pytest
-<<<<<<< HEAD
 
 from simple_youtube_api import LocalVideo
 from simple_youtube_api.channel import generate_upload_body
 from simple_youtube_api import youtube_constants
-
-=======
->>>>>>> 0853796dc0760b3b42a249426629a6b1c10665bc
-import os
-import datetime
 
 def test_local_video_regular_function():
     """Testing function"""
@@ -145,13 +140,8 @@ def test_local_video_constructor():
 
     # status variables
     embeddable = True
-<<<<<<< HEAD
     video_license = "youtube"
     privacy_status = "public"
-=======
-    license = "youtube"
-    privacy_status = "private"
->>>>>>> 0853796dc0760b3b42a249426629a6b1c10665bc
     public_stats_viewable = True
     publish_at = datetime.datetime(2021, 5, 17)
 
