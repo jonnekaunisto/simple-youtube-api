@@ -28,10 +28,14 @@ def test_local_video_regular_function():
     privacy_statuses = ["public", "private", "unlisted"]
     playlist_id = "some_playlist_id"
 <<<<<<< HEAD
+<<<<<<< HEAD
     publish_at = datetime.datetime(datetime.date.today().year+1,5,17)
 =======
     publish_at = datetime.datetime(2028, 5, 17)
 >>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class
+=======
+    publish_at = datetime.datetime(datetime.date.today().year+1,5,17)
+>>>>>>> added new edits
 
     video = LocalVideo(file_path)
 

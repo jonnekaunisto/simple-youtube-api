@@ -160,6 +160,7 @@ class Video():
 
     #@video_status_set
 <<<<<<< HEAD:simple_youtube_api/video.py
+<<<<<<< HEAD:simple_youtube_api/video.py
     def set_publish_at(self, publish_at: Union[datetime.datetime, str]):
         """ Sets time that video is going to be published at in
         (YYYY-MM-DDThh:mm:ss.sZ) format
@@ -182,23 +183,29 @@ class Video():
                 #print(publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z'))
             else:
                 raise Exception("Datetime is in the past or it is not an hour or 30 minute (ex 12:00 or 12:30)")
-=======
     def set_publish_at(self, publish_at):
         """ Sets time that video is going to be published at in
         (YYYY-MM-DDThh:mm:ss.sZ) format
         """
-        if (not isinstance(publish_at, datetime.datetime)):
-            raise Exception("publish_at must be a datetime object")
+        if (not isinstance(publish_at, datetime.datetime) and not isinstance(publish_at, str)):
+            raise Exception("publish_at must be a datetime object or a string")
         if (self.privacy_status != 'private'):
             raise Exception("In order to be scheduled, the privacy has to be private")
         
-        if (publish_at >= datetime.datetime.now() and (publish_at.minute == 0 or publish_at.minute == 30)):
-            self.publish_at = publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z')
-            print(publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z'))
+        if (isinstance(publish_at, str)):
+            publish_at = datetime.date.strptime(publish_at, '%G-%m-%dT%H:%M:%S.000Z')
+            if (publish_at >= datetime.datetime.utcnow() and (publish_at.minute == 0 or publish_at.minute == 30)):
+                self.publish_at = publish_at
+                #print(publish_at)
+            else:
+                raise Exception("Datetime is in the past or it is not an hour or 30 minute (ex 12:00 or 12:30)")
         else:
-            raise Exception("Datetime is in the past or it is not an hour or 30 minute (ex 12:00 or 12:30)")
+            if (publish_at >= datetime.datetime.utcnow() and (publish_at.minute == 0 or publish_at.minute == 30)):
+                self.publish_at = publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z')
+                #print(publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z'))
+            else:
+                raise Exception("Datetime is in the past or it is not an hour or 30 minute (ex 12:00 or 12:30)")
 
->>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class:simple_youtube_api/Video.py
     def __str__(self):
         form = "Title: {0}\nDescription: {1}\n Tags:{2}"
         return form.format(self.title, self.description, self.tags)

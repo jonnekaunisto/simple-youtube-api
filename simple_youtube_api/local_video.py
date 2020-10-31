@@ -1,11 +1,8 @@
 '''LocalVideo for uploading to YouTube'''
 import os.path
 
-<<<<<<< HEAD:simple_youtube_api/local_video.py
 from simple_youtube_api.video import Video
 
-=======
->>>>>>> Added ability to pass datetime object to set_publish_at function in LocalVideo class:simple_youtube_api/LocalVideo.py
 class LocalVideo(Video):
     """
     Class for making a video that is uploaded to YouTube
