@@ -13,6 +13,9 @@ from simple_youtube_api.youtube_constants import (
 )
 from simple_youtube_api.decorators import video_snippet_set, video_status_set
 
+import typing
+from typing import List, Union
+import datetime
 
 class Video():
 
@@ -179,6 +182,7 @@ class Video():
                 #print(publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z'))
             else:
                 raise Exception("Datetime is in the past or it is not an hour or 30 minute (ex 12:00 or 12:30)")
+
     def __str__(self):
         form = "Title: {0}\nDescription: {1}\n Tags:{2}"
         return form.format(self.title, self.description, self.tags)
