@@ -1,7 +1,6 @@
 '''Parent class for all Video objects'''
 
 from typing import List, Union
-import datetime
 
 from simple_youtube_api.youtube_constants import (
     MAX_YOUTUBE_TITLE_LENGTH,
@@ -13,30 +12,21 @@ from simple_youtube_api.youtube_constants import (
 )
 from simple_youtube_api.decorators import video_snippet_set, video_status_set
 
-import typing
-from typing import List, Union
-import datetime
 
 class Video():
 
     """
     Base class for YouTubeVideo and LocalVideo
-
     Attributes
     -----------
-
     title
       The title for the video on YouTube
-
     description
       The description for the video on YouTube
-
     tags
       The list of tags for the video on YouTube
-
     category
       The category for the video on YouTube
-
     default_langualage
       The default language for the video on YouTube WARNING MIGHT NOT WORK
      """
@@ -96,13 +86,10 @@ class Video():
     @video_snippet_set
     def set_category(self, category: Union[int, str]):
         """ Sets category for video
-
         Parameters
         ----------
-
         category
           Can either be the name of the category or the category id
-
         """
         cat_type = type(category)
 
