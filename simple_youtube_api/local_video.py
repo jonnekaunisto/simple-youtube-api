@@ -40,13 +40,13 @@ class LocalVideo(Video):
     """
 
     def __init__(
-        self,
-        file_path,
-        title="",
-        description="",
-        tags=None,
-        category=1,
-        default_language=None,
+            self,
+            file_path,
+            title="",
+            description="",
+            tags=None,
+            category=1,
+            default_language=None,
     ):
         Video.__init__(self)
 
