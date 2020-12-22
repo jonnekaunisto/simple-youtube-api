@@ -142,7 +142,7 @@ def test_local_video_constructor():
     # status variables
     embeddable = True
     video_license = "youtube"
-    privacy_status = "public"
+    privacy_status = "private"
     public_stats_viewable = True
     publish_at = datetime.datetime(2021, 5, 17)
 

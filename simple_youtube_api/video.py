@@ -1,5 +1,7 @@
 '''Parent class for all Video objects'''
 
+import datetime
+
 from typing import List, Union
 
 from simple_youtube_api.youtube_constants import (
@@ -11,8 +13,6 @@ from simple_youtube_api.youtube_constants import (
     VALID_PRIVACY_STATUS,
 )
 from simple_youtube_api.decorators import video_snippet_set, video_status_set
-
-import datetime
 
 
 class Video():
