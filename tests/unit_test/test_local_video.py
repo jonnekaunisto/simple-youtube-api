@@ -8,6 +8,7 @@ from simple_youtube_api import LocalVideo
 from simple_youtube_api.channel import generate_upload_body
 from simple_youtube_api import youtube_constants
 
+
 def test_local_video_regular_function():
     """Testing function"""
     file_path = (
