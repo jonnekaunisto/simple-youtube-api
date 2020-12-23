@@ -8,12 +8,6 @@ from simple_youtube_api import LocalVideo
 from simple_youtube_api.channel import generate_upload_body
 from simple_youtube_api import youtube_constants
 
-<<<<<<< HEAD
-import os
-import datetime
-
-=======
->>>>>>> fixing more pylint errors
 
 def test_local_video_regular_function():
     """Testing function"""

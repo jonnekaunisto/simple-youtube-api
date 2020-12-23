@@ -148,7 +148,6 @@ class Video():
         else:
             raise Exception("Not a valid status: " + str(viewable))
 
-
     # @video_status_set
     def set_publish_at(self, publish_at: Union[datetime.datetime, str]):
         """ Sets time that video is going to be published at in
@@ -158,7 +157,6 @@ class Video():
             raise Exception("publish_at must be a datetime object or a string")
         if self.privacy_status != 'private':
             raise Exception("In order to be scheduled, the privacy has to be private")
-        
         if isinstance(publish_at, str):
             publish_at = datetime.date.strptime(publish_at, '%G-%m-%dT%H:%M:%S.000Z')
             if publish_at >= datetime.datetime.utcnow() and (publish_at.minute == 0 or publish_at.minute == 30):
