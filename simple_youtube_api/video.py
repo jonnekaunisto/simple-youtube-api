@@ -171,7 +171,6 @@ class Video():
             else:
                 raise Exception("Datetime is not an hour or 30 minute (ex 12:00 or 12:30)")
 
-
     def __str__(self):
         form = "Title: {0}\nDescription: {1}\n Tags:{2}"
         return form.format(self.title, self.description, self.tags)
