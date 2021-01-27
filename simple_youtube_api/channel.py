@@ -171,7 +171,7 @@ class Channel():
             thumbnail_path
               Path to the thumbnail
         """
-        if isinstance(video, str):
+        if not isinstance(video, str):
             video_id = video.id
         else:
             video_id = video
