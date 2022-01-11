@@ -150,7 +150,8 @@ class Channel():
         if video.file_path is None:
             Exception("Must specify a file path")
 
-        youtube_video = initialize_upload(self.channel, video)
+        uploader = Uploader(self.channel, video)
+        youtube_video = uploader.initialize_upload()
 
         youtube_video.channel = self.get_login()
 
@@ -213,129 +214,135 @@ class Channel():
         return response
 
 
-def generate_upload_body(video):
-    """ Generates upload body """
-    body = dict()
+class Uploader:
+    """
+    Internal helper class which encapsulates the upload stuff.
+    """
+    def __init__(self, channel, video):
+        self.channel = channel
+        self.video = video
+        self.video_size = os.path.getsize(self.video.file_path)
 
-    snippet = dict()
-    if video.title is not None:
-        snippet.update({"title": video.title})
-    else:
-        Exception("Title is required")
-    if video.description is not None:
-        snippet.update({"description": video.description})
-    if video.tags is not None:
-        snippet.update({"tags": video.tags})
-    if video.category is not None:
-        snippet.update({"categoryId": video.category})
-    else:
-        Exception("Category is required")
-    if video.default_language is not None:
-        snippet.update({"defaultLanguage": video.default_language})
-    body.update({"snippet": snippet})
+    def generate_upload_body(self):
+        """ Generates upload body """
+        body = dict()
 
-    if video.status_set:
-        status = dict()
-        if video.embeddable is not None:
-            status.update({"embeddable": video.embeddable})
-        if video.license is not None:
-            status.update({"license": video.license})
-        if video.privacy_status is not None:
-            status.update({"privacyStatus": video.privacy_status})
-        if video.public_stats_viewable is not None:
-            status.update({"publicStatsViewable": video.public_stats_viewable})
-        if video.publish_at is not None:
-            status.update({"publishAt": video.publish_at})
-        if video.self_declared_made_for_kids is not None:
-            status.update({"selfDeclaredMadeForKids": video.self_declared_made_for_kids})
-        body.update({"status": status})
+        snippet = dict()
+        if self.video.title is not None:
+            snippet.update({"title": self.video.title})
+        else:
+            Exception("Title is required")
+        if self.video.description is not None:
+            snippet.update({"description": self.video.description})
+        if self.video.tags is not None:
+            snippet.update({"tags": self.video.tags})
+        if self.video.category is not None:
+            snippet.update({"categoryId": self.video.category})
+        else:
+            Exception("Category is required")
+        if self.video.default_language is not None:
+            snippet.update({"defaultLanguage": self.video.default_language})
+        body.update({"snippet": snippet})
 
-    return body
+        if self.video.status_set:
+            status = dict()
+            if self.video.embeddable is not None:
+                status.update({"embeddable": self.video.embeddable})
+            if self.video.license is not None:
+                status.update({"license": self.video.license})
+            if self.video.privacy_status is not None:
+                status.update({"privacyStatus": self.video.privacy_status})
+            if self.video.public_stats_viewable is not None:
+                status.update({"publicStatsViewable": self.video.public_stats_viewable})
+            if self.video.publish_at is not None:
+                status.update({"publishAt": self.video.publish_at})
+            if self.video.self_declared_made_for_kids is not None:
+                status.update({"selfDeclaredMadeForKids": self.video.self_declared_made_for_kids})
+            body.update({"status": status})
 
+        return body
 
-def calculate_chunk_size(video_path):
-    """ Calculates the chuncsize for video """
-    video_size = os.path.getsize(video_path)
-    print("Video size: " + str(video_size) + " bytes")
+    def calculate_chunk_size(self):
+        """ Calculates the chunk size for video """
+        print("Video size: " + str(self.video_size) + " bytes")
+        chunk_max = 1024*1024
 
-    if video_size > 1000000:
-        chunk_size = 1000000
-    else:
-        chunk_size = -1
+        if self.video_size > chunk_max:
+            chunk_size = chunk_max
+        else:
+            chunk_size = -1
 
-    return chunk_size
+        return chunk_size
 
+    def initialize_upload(self):
+        """ Initializes upload """
+        body = self.generate_upload_body()
+        chunk_size = self.calculate_chunk_size()
+        # Call the API's videos.insert method to create and upload the video.
+        insert_request = self.channel.videos().insert(
+            part=",".join(list(body.keys())),
+            body=body,
+            media_body=MediaFileUpload(
+                self.video.file_path, chunksize=chunk_size, resumable=True
+            ),
+        )
 
-def initialize_upload(channel, video):
-    """ Initializes upload """
-    body = generate_upload_body(video)
-    chunk_size = calculate_chunk_size(video.file_path)
-    # Call the API's videos.insert method to create and upload the video.
-    insert_request = channel.videos().insert(
-        part=",".join(list(body.keys())),
-        body=body,
-        media_body=MediaFileUpload(
-            video.file_path, chunksize=chunk_size, resumable=True
-        ),
-    )
+        return self.resumable_upload(insert_request)
 
-    return resumable_upload(insert_request)
+    # This method implements an exponential backoff strategy to resume a
+    # failed upload.
+    # TODO: add more variables into video when returned
+    def resumable_upload(self, request):
+        """ Uploads video """
+        youtube_video = None
+        response = None
+        error = None
+        retry = 0
+        while response is None:
+            try:
+                widgets = [
+                    "Upload: ",
+                    progressbar.Percentage(),
+                    " ",
+                    progressbar.Bar(marker=progressbar.RotatingMarker()),
+                    " ",
+                    progressbar.ETA(),
+                    " ",
+                    progressbar.FileTransferSpeed(),
+                ]
+                bar_object = progressbar.ProgressBar(
+                    widgets=widgets, max_value=self.video_size
+                ).start()
 
+                response = None
+                while response is None:
+                    status, response = request.next_chunk(num_retries=4)
+                    if status:
+                        bar_object.update(status.resumable_progress)
+                bar_object.finish()
+                if "id" in response:
+                    youtube_video = YouTubeVideo(response["id"])
+                else:
+                    raise Exception("The upload failed unexpectedly: " + response)
+            except HttpError as http_error:
+                if http_error.resp.status in RETRIABLE_STATUS_CODES:
+                    error = "A retriable HTTP error %d occurred:\n%s" % (
+                        http_error.resp.status,
+                        http_error.content,
+                    )
+                else:
+                    raise
+            except RETRIABLE_EXCEPTIONS as http_error:
+                error = "A retriable error occurred: %s" % http_error
 
-# This method implements an exponential backoff strategy to resume a
-# failed upload.
-# TODO: add more variables into video when returned
-def resumable_upload(request):
-    """ Uploads video """
-    youtube_video = None
-    response = None
-    error = None
-    retry = 0
-    while response is None:
-        try:
-            widgets = [
-                "Upload: ",
-                progressbar.Percentage(),
-                " ",
-                progressbar.Bar(marker=progressbar.RotatingMarker()),
-                " ",
-                progressbar.ETA(),
-                " ",
-                progressbar.FileTransferSpeed(),
-            ]
-            bar_object = progressbar.ProgressBar(
-                widgets=widgets, max_value=1000
-            ).start()
+            if error is not None:
+                print(error)
+                retry += 1
+                if retry > MAX_RETRIES:
+                    return youtube_video
 
-            response = None
-            while response is None:
-                status, response = request.next_chunk(num_retries=4)
-                if status:
-                    bar_object.update(min(1000, 100 * 10 * status.progress() + 1))
-            bar_object.finish()
-            if "id" in response:
-                youtube_video = YouTubeVideo(response["id"])
-            else:
-                raise Exception("The upload failed unexpectedly: " + response)
-        except HttpError as http_error:
-            if http_error.resp.status in RETRIABLE_STATUS_CODES:
-                error = "A retriable HTTP error %d occurred:\n%s" % (
-                    http_error.resp.status,
-                    http_error.content,
-                )
-            else:
-                raise
-        except RETRIABLE_EXCEPTIONS as http_error:
-            error = "A retriable error occurred: %s" % http_error
-
-        if error is not None:
-            print(error)
-            retry += 1
-            if retry > MAX_RETRIES:
-                return youtube_video
-
-            max_sleep = 2 ** retry
-            sleep_seconds = random.random() * max_sleep
-            print("Sleeping %f seconds and then retrying..." % sleep_seconds)
-            time.sleep(sleep_seconds)
-    return youtube_video
+                max_sleep = 2 ** retry
+                sleep_seconds = random.random() * max_sleep
+                print("Sleeping %f seconds and then retrying..." % sleep_seconds)
+                time.sleep(sleep_seconds)
+        return youtube_video
