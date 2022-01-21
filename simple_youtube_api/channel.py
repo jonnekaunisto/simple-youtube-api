@@ -172,9 +172,9 @@ class Channel():
               Path to the thumbnail
         """
         if isinstance(video, str):
-            video_id = video.id
-        else:
             video_id = video
+        else:
+            video_id = video.id
 
         response = self.channel.thumbnails().set(
             videoId=video_id, media_body=thumbnail_path
@@ -192,9 +192,9 @@ class Channel():
         """
 
         if isinstance(video, str):
-            video_id = video.id
-        else:
             video_id = video
+        else:
+            video_id = video.id
 
         response = self.channel.playlistItems().insert(
             part="snippet",
