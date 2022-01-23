@@ -68,6 +68,7 @@ class Channel():
         storage_path: str,
         scope=youtube_constants.SCOPES,
         auth_local_webserver=True,
+        oauth_flags=None
     ):
         """Logs into the channel with credentials
 
@@ -82,6 +83,10 @@ class Channel():
         auth_local_webserver
             Whether login process should use local auth webserver, set this to
             false if you are not doing this locally.
+        oauth_flags
+            Flags for the oauth2 cleint library which can be used to pass custom command
+            line arguments instead of using argarse internally which will fail
+            if custom commandline parameters are used.
         """
 
         storage = Storage(storage_path)
@@ -94,7 +99,7 @@ class Channel():
                 sys.argv = [sys.argv[0], "--noauth_local_webserver"]
 
             flow = flow_from_clientsecrets(client_secret_path, scope=scope)
-            credentials = run_flow(flow, storage, http=httplib2.Http())
+            credentials = run_flow(flow, storage, http=httplib2.Http(), flags=oauth_flags)
 
             sys.argv = saved_argv
 
