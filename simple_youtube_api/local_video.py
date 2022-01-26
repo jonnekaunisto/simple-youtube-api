@@ -31,7 +31,7 @@ class LocalVideo(Video):
     publish_at:
       Specifies when the video will be published
       (the video has to be private for this) Has to be in
-      (YYYY-MM-DDThh:mm:ss.sZ) format
+      (YYYY-MM-DDThh:mm:ss.sZ) formatstrftime('%G-%m-%dT%H:%M:%S.000Z')
 
     thumbnail_path:
       Specifies which file is going to be set as thumbnail.
@@ -41,13 +41,13 @@ class LocalVideo(Video):
     """
 
     def __init__(
-        self,
-        file_path,
-        title="",
-        description="",
-        tags=None,
-        category=1,
-        default_language=None,
+            self,
+            file_path,
+            title="",
+            description="",
+            tags=None,
+            category=1,
+            default_language=None,
     ):
         Video.__init__(self)
 

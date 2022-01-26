@@ -1,5 +1,7 @@
 '''Parent class for all Video objects'''
 
+import datetime
+
 from typing import List, Union
 
 from simple_youtube_api.youtube_constants import (
@@ -17,22 +19,16 @@ class Video():
 
     """
     Base class for YouTubeVideo and LocalVideo
-
     Attributes
     -----------
-
     title
       The title for the video on YouTube
-
     description
       The description for the video on YouTube
-
     tags
       The list of tags for the video on YouTube
-
     category
       The category for the video on YouTube
-
     default_langualage
       The default language for the video on YouTube WARNING MIGHT NOT WORK
      """
@@ -92,13 +88,10 @@ class Video():
     @video_snippet_set
     def set_category(self, category: Union[int, str]):
         """ Sets category for video
-
         Parameters
         ----------
-
         category
           Can either be the name of the category or the category id
-
         """
         cat_type = type(category)
 
@@ -155,15 +148,28 @@ class Video():
         else:
             raise Exception("Not a valid status: " + str(viewable))
 
-    # TODO enforce (YYYY-MM-DDThh:mm:ss.sZ) format
-    def set_publish_at(self, time: str):
+    # @video_status_set
+    def set_publish_at(self, publish_at: Union[datetime.datetime, str]):
         """ Sets time that video is going to be published at in
         (YYYY-MM-DDThh:mm:ss.sZ) format
         """
-        if isinstance(time, str):
-            self.publish_at = time
+        if not isinstance(publish_at, datetime.datetime) and not isinstance(publish_at, str):
+            raise Exception("publish_at must be a datetime object or a string")
+        if self.privacy_status != 'private':
+            raise Exception("In order to be scheduled, the privacy has to be private")
+        if isinstance(publish_at, str):
+            publish_at = datetime.date.strptime(publish_at, '%G-%m-%dT%H:%M:%S.000Z')
+            if publish_at >= datetime.datetime.utcnow() and (publish_at.minute == 0 or publish_at.minute == 30):
+                self.publish_at = publish_at
+                # print(publish_at)
+            else:
+                raise Exception("Datetime is not an hour or 30 minute (ex 12:00 or 12:30)")
         else:
-            raise Exception("Not a valid publish time: " + str(time))
+            if publish_at >= datetime.datetime.utcnow() and (publish_at.minute == 0 or publish_at.minute == 30):
+                self.publish_at = publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z')
+                # print(publish_at.strftime('%G-%m-%dT%H:%M:%S.000Z'))
+            else:
+                raise Exception("Datetime is not an hour or 30 minute (ex 12:00 or 12:30)")
 
     def __str__(self):
         form = "Title: {0}\nDescription: {1}\n Tags:{2}"
