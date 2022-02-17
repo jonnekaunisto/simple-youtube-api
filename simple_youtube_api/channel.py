@@ -201,7 +201,6 @@ class Channel():
             body={
                 "snippet": {
                     "playlistId": playlist_id,
-                    "position": 0,
                     "resourceId": {
                         "kind": "youtube#video",
                         "videoId": video_id
